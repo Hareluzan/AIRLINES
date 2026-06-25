@@ -6,7 +6,7 @@
 <title>תעופה מחוץ לארה״ב ושרשרת הערך התעופתית</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800;900&family=Heebo:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0A0E18;
@@ -88,7 +88,7 @@ body::after{
 .hero-horizon::before{left:38%}.hero-horizon::after{right:38%}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:2px;color:var(--hud);text-transform:uppercase;margin-bottom:20px}
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--hud)}
-h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(34px,5.6vw,62px);line-height:1.08;letter-spacing:-.5px;max-width:16ch}
+h1{font-family:'Rubik',sans-serif;font-weight:800;font-size:clamp(34px,5.6vw,62px);line-height:1.1;letter-spacing:-.8px;max-width:16ch}
 .hero-sub{margin-top:18px;font-size:clamp(16px,2vw,20px);color:var(--ink-mid);font-weight:400;max-width:46ch;line-height:1.5}
 .hero-sub strong{color:var(--ink);font-weight:700}
 .hero-thesis{margin-top:26px;font-size:15px;color:var(--ink-mid);max-width:54ch;line-height:1.65;border-right:2px solid var(--hud);padding-right:16px}
@@ -99,7 +99,7 @@ h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(34px,5.6
 .hstat .v .down{color:var(--neg)}
 
 /* role cards */
-.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:42px}
 .role{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 20px;overflow:hidden;transition:transform .25s,border-color .25s}
 .role:hover{transform:translateY(-3px)}
 .role::before{content:"";position:absolute;top:0;right:0;left:0;height:3px}
@@ -127,7 +127,7 @@ h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(34px,5.6
 .sec-eyebrow .num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--hud);border:1px solid var(--hud);border-radius:7px;padding:3px 9px;direction:ltr}
 .sec-eyebrow .label{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-dim)}
 .sec-eyebrow .rule{flex:1;height:1px;background:var(--line)}
-h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4vw,38px);line-height:1.18;letter-spacing:-.3px}
+h2{font-family:'Rubik',sans-serif;font-weight:700;font-size:clamp(25px,3.4vw,38px);line-height:1.2;letter-spacing:-.5px}
 .sec-lead{margin-top:16px;font-size:16px;color:var(--ink-mid);line-height:1.66}
 .sec-lead strong{color:var(--ink);font-weight:700}
 
@@ -372,7 +372,7 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .tn .tn-k{font-size:13px;color:var(--ink-mid);margin-top:8px;line-height:1.4}
 
 /* decision matrix */
-.dmatrix{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.dmatrix{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
 .dm{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;position:relative;overflow:hidden}
 .dm::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
 .dm.s::before{background:var(--safran)}
@@ -395,7 +395,7 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .gloss-panel{position:fixed;top:0;bottom:0;left:0;z-index:101;width:min(420px,92vw);background:var(--panel);border-left:1px solid var(--line);transform:translateX(-100%);transition:transform .35s cubic-bezier(.16,1,.3,1);overflow-y:auto;padding:26px}
 .gloss-panel.open{transform:translateX(0)}
 .gloss-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;position:sticky;top:-26px;background:var(--panel);padding:10px 0;border-bottom:1px solid var(--line)}
-.gloss-head h3{font-family:'Frank Ruhl Libre',serif;font-size:22px;font-weight:700}
+.gloss-head h3{font-family:'Rubik',sans-serif;font-size:22px;font-weight:700}
 .gloss-close{background:var(--card-2);border:1px solid var(--line);color:var(--ink-mid);width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px}
 .gloss-item{padding:16px 0;border-bottom:1px solid var(--line-soft)}
 .gloss-item.hl{background:var(--hud-soft);margin:0 -14px;padding:16px 14px;border-radius:10px;border-bottom:none}
@@ -580,7 +580,8 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
   <div class="wrap">
     <div class="eyebrow">רעיון השקעה · ועדת השקעות</div>
     <h1>תעופה מחוץ לארה״ב ושרשרת הערך התעופתית</h1>
-    <p class="hero-sub"><strong>Safran</strong> כרעיון ליבה איכותי, <strong>Copa</strong> כתוספת ממוקדת, ו-LATAM כרקע והשוואה בלבד.</p>
+    <p class="hero-sub"><strong>Safran</strong> כרעיון ליבה איכותי, ו-<strong>Copa</strong> כתוספת ממוקדת.</p>
+    <!-- LATAM הוסתר זמנית (מיקוד בשתי מניות). מקור: "<strong>Safran</strong> כרעיון ליבה איכותי, <strong>Copa</strong> כתוספת ממוקדת, ו-LATAM כרקע והשוואה בלבד." -->
     <p class="hero-thesis">השוק תימחר זעזוע דלק זמני שכבר החל להתהפך, על תעשייה שמוגבלת מבנית בצד ההיצע. הדרך המועדפת להיחשף לכך אינה סל חברות תעופה, אלא שתי נקודות איכותיות נבחרות.</p>
 
     <div class="hero-stats">
@@ -615,12 +616,14 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
         <p>חפיר רשת בפנמה, מאזן מהחזקים בענף ותמחור זול. רגישה לדלק כי אינה מגדרת.</p>
         <div class="metric"><span class="mv">0.51</span><span class="ml">PEG</span></div>
       </div>
+      <!-- LATAM הוסתר זמנית (מיקוד בשתי מניות) — לא נמחק:
       <div class="role ctx">
         <div class="role-top"><span class="tick">LATAM</span><span class="badge">Context</span></div>
         <h3>חברת השוואה ורקע</h3>
         <p>ביטוי מחזורי יותר ובעל בטא גבוהה יותר. משמשת להשוואה אזורית בלבד, לא כליבת הרעיון.</p>
         <div class="metric"><span class="mv" style="color:var(--ink-dim)">-</span><span class="ml">רקע בלבד</span></div>
       </div>
+      -->
     </div>
   </div>
 </header>
@@ -1448,6 +1451,33 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       </div>
     </div>
 
+    <h3 class="card-title reveal" style="margin-top:40px;font-size:15px"><span class="tk"></span>צמיחה חזויה: מכפיל עתידי מול קצב צמיחה</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:24px;font-size:15px">ככל שמסתכלים קדימה ל-2027 ול-2028, המכפיל העתידי יורד בעוד קצב הצמיחה הצפוי של הרווח נשאר גבוה. הפער בין המכפיל לצמיחה הוא לב הטיעון: צמיחה איכותית שמתומחרת בזול ביחס לקצב שלה, ומכאן PEG עתידי נמוך.</p>
+    <div class="grid g2 reveal" style="align-items:start">
+      <div class="card pad-lg">
+        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>SAFRAN · מכפיל עתידי מול צמיחה</div>
+        <table class="valtable">
+          <thead><tr><th>שנה</th><th class="n">מכפיל עתידי</th><th class="n">צמיחה חזויה</th><th class="n">PEG משתמע</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">2027</td><td class="n">10.4×</td><td class="n" style="color:var(--pos)">+23%</td><td class="n">0.45 <span class="disc-tag cheap">זול</span></td></tr>
+            <tr><td class="metric-name">2028</td><td class="n">5.6×</td><td class="n" style="color:var(--pos)">+87%</td><td class="n">0.06 <span class="disc-tag cheap">זול</span></td></tr>
+          </tbody>
+        </table>
+        <p class="fn-note" style="text-align:right;margin-top:14px">המכפיל נדחס מ-10.4 ל-5.6 בין 2027 ל-2028, בעוד הצמיחה הצפויה מאיצה. PEG משתמע מתחת ל-0.5 משקף תמחור זול ביחס לקצב הצמיחה.</p>
+      </div>
+      <div class="card pad-lg">
+        <div class="card-title"><span class="tk" style="background:var(--copa)"></span>COPA (CPA) · מכפיל עתידי מול צמיחה</div>
+        <table class="valtable">
+          <thead><tr><th>שנה</th><th class="n">מכפיל עתידי</th><th class="n">צמיחה חזויה</th><th class="n">PEG משתמע</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">2027</td><td class="n">8.0×</td><td class="n" style="color:var(--pos)">+22.5%</td><td class="n">0.36 <span class="disc-tag cheap">זול</span></td></tr>
+            <tr><td class="metric-name">2028</td><td class="n">6.6×</td><td class="n" style="color:var(--pos)">+21.5%</td><td class="n">0.31 <span class="disc-tag cheap">זול</span></td></tr>
+          </tbody>
+        </table>
+        <p class="fn-note" style="text-align:right;margin-top:14px">צמיחה דו-ספרתית יציבה של מעל 20% מול מכפיל עתידי חד-ספרתי שיורד מ-8.0 ל-6.6. PEG משתמע סביב 0.3 ממשיך את סיפור הדיסקאונט של Copa.</p>
+      </div>
+    </div>
+
     <p class="src-note">מקורות: דיווחי Safran לשנת 2025 המלאה ולרבעון הראשון 2026, ודיווחי Copa Holdings לשנת 2025 המלאה ולרבעון הראשון 2026. נתוני 2024 מוצגים להשוואה. הנתונים נמסרו על בסיס מתואם (adjusted) היכן שהחברה מדווחת כך. האמור אינו מהווה ייעוץ השקעות.</p>
   </div>
 </section>
@@ -1457,14 +1487,16 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">11</span><span class="label">Decision</span><span class="rule"></span></div>
-      <h2>החלטה: Safran כליבה, Copa כתוספת, LATAM כרקע</h2>
-      <p class="sec-lead">ההמלצה היא לאמץ את <strong>Safran</strong> כרעיון הליבה האיכותי, ולשקול את <strong>Copa</strong> כפוזיציה משלימה ומבוקרת לחשיפה לאמריקה הלטינית. LATAM נשארת רקע והשוואה בלבד.</p>
+      <h2>החלטה: Safran כליבה, Copa כתוספת</h2><!-- LATAM הוסתר זמנית. מקור: "החלטה: Safran כליבה, Copa כתוספת, LATAM כרקע" -->
+      <p class="sec-lead">ההמלצה היא לאמץ את <strong>Safran</strong> כרעיון הליבה האיכותי, ולשקול את <strong>Copa</strong> כפוזיציה משלימה ומבוקרת לחשיפה לאמריקה הלטינית.</p><!-- LATAM הוסתר זמנית. מקור הוסיף כאן: "LATAM נשארת רקע והשוואה בלבד." -->
     </div>
 
     <div class="dmatrix reveal" style="margin-bottom:34px">
       <div class="dm s"><div class="dm-role">Core</div><div class="dm-tick">SAFRAN</div><div class="dm-desc">איכותית יותר, פחות רגישה לדלק, מרוויחה מהבסיס המותקן ומאחזקה.</div></div>
       <div class="dm c"><div class="dm-role">Complement</div><div class="dm-tick">COPA</div><div class="dm-desc">זולה, רווחית, ממונפת נמוך ובעלת חפיר רשת, אך חשופה מאוד לדלק.</div></div>
+      <!-- LATAM הוסתר זמנית (מיקוד בשתי מניות) — לא נמחק:
       <div class="dm l"><div class="dm-role">Context</div><div class="dm-tick">LATAM</div><div class="dm-desc">טובה יותר מבעבר, אך פחות נקייה כרעיון השקעה.</div></div>
+      -->
     </div>
 
     <!-- scenarios signature -->
@@ -1595,7 +1627,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <footer class="footer">
   <div class="wrap">
     <p class="disclaimer"><b>האמור אינו מהווה ייעוץ השקעות.</b> המסמך מבוסס על נתונים שנכללו במצגת התזה בלבד, לרבות נתוני IATA, Airbus, EIA ודיווחי החברות, ואינו מהווה המלצה לפעולה.</p>
-    <p class="fmeta">תזת תעופה גלובלית · SAFRAN · COPA · LATAM · ועדת השקעות</p>
+    <p class="fmeta">תזת תעופה גלובלית · SAFRAN · COPA · ועדת השקעות</p><!-- LATAM הוסתר זמנית. מקור: "תזת תעופה גלובלית · SAFRAN · COPA · LATAM · ועדת השקעות" -->
   </div>
 </footer>
 
