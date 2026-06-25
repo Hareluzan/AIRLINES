@@ -1,0 +1,8 @@
+name = "airlines"
+compatibility_date = "2026-06-25"
+
+# אתר סטטי (index.html יחיד) שמוגש דרך Cloudflare Workers static assets.
+# אין Worker script — פריסת assets בלבד מתוך תיקיית public/.
+[assets]
+directory = "./public"
+not_found_handling = "single-page-application"
