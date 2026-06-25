@@ -311,7 +311,9 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 html:not(.js) .reveal{opacity:1;transform:none}
-@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section{padding:48px 0}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:10px}.brand span{display:none}}
+@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section{padding:48px 0}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:10px}.brand span{display:none}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}}
+body{max-width:100%;overflow-x:hidden}
+table,svg,img{max-width:100%}
 @media(max-width:560px){.g4{grid-template-columns:1fr 1fr}.hero-stats{gap:20px}.three{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 :focus-visible{outline:2px solid var(--hud);outline-offset:3px;border-radius:4px}
@@ -425,6 +427,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
     <div class="nav-links" id="navLinks">
       <a href="#thesis">תזה</a>
       <a href="#demand">כלכלת החוויות</a>
+      <a href="#rearm">התחמשות אירופה</a>
       <a href="#macro">מאקרו</a>
       <a href="#fuel">דלק ונפט</a>
       <a href="#supply">היצע וביקוש</a>
@@ -532,10 +535,52 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
   </div>
 </section>
 
+<section class="section" id="rearm">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="num">03</span><span class="label" style="color:var(--neg)">Defense Demand</span><span class="rule"></span></div>
+      <h2>התחמשות אירופה: שכבת ביקוש שנייה</h2>
+      <p class="sec-lead">לצד כלכלת החוויות שמזינה את הביקוש האזרחי, פועלת שכבת ביקוש שנייה ועצמאית: <strong>ההתחמשות האירופית</strong>. המלחמה באוקראינה הפכה את תקציבי הביטחון ביבשת, וזו אינה עלייה חולפת אלא שינוי מבני רב-שנתי. שתי שכבות הביקוש האלה מתנקזות בסופו של דבר ל-Safran, שיש לה גם רגל אזרחית וגם רגל ביטחונית.</p>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-bottom:30px">
+      <div class="ef-out copa" style="background:linear-gradient(135deg,var(--hud-soft),var(--card))">
+        <h4 style="color:var(--hud)"><span class="tick" style="background:var(--hud-soft);color:var(--hud)">CIVIL</span>ביקוש אזרחי</h4>
+        <p>כלכלת החוויות, יותר נסיעות ופנאי, יותר טיסות, יותר שעות מנוע ואנונת אחזקה. מזין את הליבה האזרחית של Safran דרך CFM.</p>
+      </div>
+      <div class="ef-out" style="background:linear-gradient(135deg,rgba(227,101,101,.10),var(--card));border:1px solid rgba(227,101,101,.3)">
+        <h4 style="color:var(--neg)"><span class="tick" style="background:rgba(227,101,101,.16);color:var(--neg)">DEFENSE</span>ביקוש ביטחוני</h4>
+        <p>ההתחמשות האירופית, תקציבים גדלים על אלקטרוניקה, ניווט, מל"טים ומנועי קרב. מזין את חטיבת הביטחון של Safran, שצמחה פלוס13.5% ברבעון.</p>
+      </div>
+    </div>
+
+    <div class="grid g4 reveal" style="margin-bottom:14px">
+      <div class="readout neg"><div class="rv">€800<small>B</small></div><div class="rk">תוכנית ReArm Europe לגיוס הוצאות ביטחון עד 2030, כולל כלי הלוואות SAFE של €150B</div></div>
+      <div class="readout"><div class="rv">+20<small>%</small></div><div class="rk">עליית הוצאות הביטחון של בעלות הברית האירופיות ב-2025 מול 2024</div></div>
+      <div class="readout accent"><div class="rv">5<small>%</small></div><div class="rsub">עד 2035</div><div class="rk">יעד נאט"ו החדש מתוצר (3.5% ליבה plus 1.5% רחב), כל 32 החברות</div></div>
+      <div class="readout"><div class="rv">€68.5<small>B</small></div><div class="rk">תקציב הביטחון של צרפת ל-2026, השוק הביתי של Safran</div></div>
+    </div>
+    <div class="card pad-lg reveal" style="margin-bottom:24px">
+      <div class="card-title"><span class="tk" style="background:var(--neg)"></span>תקציב הביטחון של האיחוד האירופי, מיליארדי אירו</div>
+      <div class="gmetric" style="margin-top:4px">
+        <div class="gm-top"><span class="gm-name">2021</span><span class="gm-r"><span class="gm-pct flat">€218B</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="57"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2025</span><span class="gm-r"><span class="gm-vals">€218B → €381B</span><span class="gm-pct up">+75%</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="100"></div></div>
+      </div>
+      <div class="lev-note"><b>למה זה חשוב למשקיע:</b> מניות הביטחון האירופיות הכו בעוצמה את המדדים הרחבים ואת המתחרות האמריקאיות מאז 2022. עבור Safran זו רגל שנייה לצד הסיפור האזרחי, שמוסיפה גיוון, נראות הזמנות וביקוש מובנה רב-שנתי. את הפירוט של חטיבות הביטחון והחלל אפשר לראות בפרק 08.</div>
+    </div>
+
+    <div class="callout reveal"><div class="mk">∑</div><p>שתי שכבות ביקוש מבניות, אזרחית וביטחונית, נפגשות בחברה אחת. זו בדיוק הסיבה לכך ש-Safran מגוונת מספיק כדי להיות רעיון הליבה.</p></div>
+  </div>
+</section>
+
 <section class="section" id="macro">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">03</span><span class="label">Macro</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">04</span><span class="label">Macro</span><span class="rule"></span></div>
       <h2>למה עכשיו: הדלק פגע בתמחור, אבל ההיצע עדיין מוגבל</h2>
       <p class="sec-lead">הטריגר השלילי היה זינוק חד בדלק הסילוני והורדת תחזיות הרווח לענף. הנקודה אינה לנחש מחיר נפט יומי, אלא שהשוק הקרין זעזוע דלק חריף על כל הענף בזמן שהמגבלה בצד ההיצע לא נעלמה.</p>
     </div>
@@ -568,7 +613,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="fuel">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">04</span><span class="label">Fuel &amp; Oil</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">05</span><span class="label">Fuel &amp; Oil</span><span class="rule"></span></div>
       <h2>הדלק הוא הסיכון המרכזי, אבל גם מקור האפסייד</h2>
       <p class="sec-lead">ב-2026 זינוק הדלק היה הסיבה המרכזית להורדת התחזיות. אם הדלק יורד או מתייצב בסביבה שבה ההיצע מוגבל, חלק מההקלה יכול להישאר אצל החברות ולא לעבור כולו ללקוחות. זה בדיוק מקור האסימטריה.</p>
     </div>
@@ -641,7 +686,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="supply">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">05</span><span class="label">Supply</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">06</span><span class="label">Supply</span><span class="rule"></span></div>
       <h2>הבעיה המבנית: ביקוש עולה, היצע תקוע, וזו דווקא רוח גבית</h2>
       <p class="sec-lead">עיכובי מסירות ומחסור במנועים נתפסים כשליליים, אך הם יוצרים משמעת קיבולת ומחזקים את הערך של תחזוקה וחלפים. צי מבוגר יותר ממשיך לטוס ודורש אחזקה אינטנסיבית יותר, וזו בדיוק הכנסת ה-aftermarket של Safran.</p>
     </div>
@@ -684,7 +729,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="chain">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">06</span><span class="label">Value Chain</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">07</span><span class="label">Value Chain</span><span class="rule"></span></div>
       <h2>הערך נמצא במחזור החיים של המנוע</h2>
       <p class="sec-lead">מנוע סילון אינו מכירה חד פעמית, הוא מייצר שנים של שירותים, חלפים וביקורי מוסך. שוק התחזוקה כולו נמצא בסופר-מחזור.</p>
     </div>
@@ -769,7 +814,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="safran">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">07</span><span class="label" style="color:var(--safran)">Core Holding</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">08</span><span class="label" style="color:var(--safran)">Core Holding</span><span class="rule"></span></div>
       <h2>Safran: אנונת אחזקה תעופתית עם חסמי כניסה עמוקים</h2>
     </div>
     <div class="co-head reveal">
@@ -905,25 +950,9 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       </div>
     </div>
 
-    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--neg)"></span>רוח גבית מבנית: ההתחמשות האירופית כתזה משנית</h3>
-    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">המלחמה באוקראינה הפכה את תקציבי הביטחון באירופה. זו אינה עלייה חולפת אלא שינוי מבני רב-שנתי, שמיטיב ישירות עם חטיבת הביטחון של Safran, בעיקר באלקטרוניקה, ניווט ומנועי קרב.</p>
-    <div class="grid g4 reveal" style="margin-bottom:14px">
-      <div class="readout neg"><div class="rv">€800<small>B</small></div><div class="rk">תוכנית ReArm Europe לגיוס הוצאות ביטחון עד 2030, כולל כלי הלוואות SAFE של €150B</div></div>
-      <div class="readout"><div class="rv">+20<small>%</small></div><div class="rk">עליית הוצאות הביטחון של בעלות הברית האירופיות ב-2025 מול 2024</div></div>
-      <div class="readout accent"><div class="rv">5<small>%</small></div><div class="rsub">עד 2035</div><div class="rk">יעד נאט"ו החדש מתוצר (3.5% ליבה plus 1.5% רחב), כל 32 החברות</div></div>
-      <div class="readout"><div class="rv">€68.5<small>B</small></div><div class="rk">תקציב הביטחון של צרפת ל-2026, השוק הביתי של Safran</div></div>
-    </div>
-    <div class="card pad-lg reveal" style="margin-bottom:24px">
-      <div class="card-title"><span class="tk" style="background:var(--neg)"></span>תקציב הביטחון של האיחוד האירופי, מיליארדי אירו</div>
-      <div class="gmetric" style="margin-top:4px">
-        <div class="gm-top"><span class="gm-name">2021</span><span class="gm-r"><span class="gm-pct flat">€218B</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="57"></div></div>
-      </div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2025</span><span class="gm-r"><span class="gm-vals">€218B → €381B</span><span class="gm-pct up">+75%</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="100"></div></div>
-      </div>
-      <div class="lev-note"><b>למה זה חשוב למשקיע:</b> מניות הביטחון האירופיות הכו בעוצמה את המדדים הרחבים ואת המתחרות האמריקאיות מאז 2022. עבור Safran זו רגל שנייה לצד הסיפור האזרחי, שמוסיפה גיוון, נראות הזמנות וביקוש מובנה רב-שנתי.</div>
+    <div class="callout reveal" style="border-color:rgba(227,101,101,.28);background:linear-gradient(120deg,rgba(227,101,101,.08),transparent 70%);margin-bottom:24px">
+      <div class="mk" style="background:rgba(227,101,101,.14);color:var(--neg);border-color:rgba(227,101,101,.35)">↑</div>
+      <p><b>ההתחמשות האירופית מוצגת כתזת מאקרו רוחבית בפרק 03 למעלה.</b> היא הרוח הגבית מאחורי הצמיחה של פלוס13.5% במגזר הציוד והביטחון, ובמיוחד באלקטרוניקה, בניווט העמיד ובמנועי הקרב.</p>
     </div>
 
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk"></span>שיתופי פעולה ומהלכים אסטרטגיים אחרונים</h3>
@@ -955,7 +984,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="copa">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">08</span><span class="label" style="color:var(--copa)">Complement</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">09</span><span class="label" style="color:var(--copa)">Complement</span><span class="rule"></span></div>
       <h2>Copa: חפיר רשת, יחידות כלכליות חזקות ותמחור נמוך</h2>
     </div>
     <div class="co-head reveal">
@@ -1055,10 +1084,10 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       </div>
     </div>
     <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>צבר הזמנות וצמיחת צי: עסקת ענק חדשה</h3>
-    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">באפריל 2026 חתמה Copa על הזמנה ל<strong>עד 60 מטוסי Boeing 737 MAX</strong> (40 הזמנות מוצקות plus 20 אופציות) בהיקף של כ-<strong>13.5 מיליארד דולר</strong> במחירון, יחד עם Boeing ועם GE Aerospace. המסירות צפויות בין 2030 ל-2034, והן מאפשרות ל-Copa להכפיל את הצי. זו הצבעת אמון אגרסיבית על צמיחת אמריקה הלטינית.</p>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">באפריל 2026 חתמה Copa על הזמנה ל<strong>עד 60 מטוסי Boeing 737 MAX</strong> (40 הזמנות מוצקות plus 20 אופציות) בהיקף של כ-<strong>13.5 מיליארד דולר</strong> במחירון, יחד עם Boeing ועם GE Aerospace. ההזמנה הזו, בתוספת צבר ההזמנות הקיים, מאפשרת ל-Copa להוסיף <strong>מעל 100 מטוסים חדשים</strong> תוך שמונה שנים, ולהגיע לצי של <strong>מעל 200 מטוסים עד 2034</strong> גם אחרי פרישת מטוסים ישנים, צמיחה של כ-60% בגודל הצי. המסירות צפויות בין 2030 ל-2034, והן הצבעת אמון אגרסיבית על צמיחת אמריקה הלטינית.</p>
     <div class="grid g4 reveal" style="margin-bottom:16px">
       <div class="readout accent"><div class="rv">$13.5<small>B</small></div><div class="rk">הזמנת עד 60 מטוסי 737 MAX, אפריל 2026</div></div>
-      <div class="readout"><div class="rv">200<small>+</small></div><div class="rsub">מ-126 היום</div><div class="rk">יעד גודל צי עד 2034, יותר מהכפלה</div></div>
+      <div class="readout"><div class="rv">200<small>+</small></div><div class="rsub">מ-126 היום</div><div class="rk">יעד גודל צי עד 2034, מעל 100 מטוסים חדשים, כ-פלוס60%</div></div>
       <div class="readout"><div class="rv">27<small>M</small></div><div class="rsub">20.9M ב-2026</div><div class="rk">יעד נוסעים עד סוף העשור</div></div>
       <div class="readout"><div class="rv">85<small>+20</small></div><div class="rk">הזמנות מוצקות plus אופציות 737 MAX, נכון לסוף 2025</div></div>
     </div>
@@ -1069,7 +1098,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
         <div class="gm-track"><div class="gm-fill" data-w="63"></div></div>
       </div>
       <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">יעד 2034</span><span class="gm-r"><span class="gm-vals">126 → 200+</span><span class="gm-pct up">יותר מהכפלה</span></span></div>
+        <div class="gm-top"><span class="gm-name">יעד 2034</span><span class="gm-r"><span class="gm-vals">126 → 200+</span><span class="gm-pct up">כ-פלוס60%</span></span></div>
         <div class="gm-track"><div class="gm-fill" data-w="100"></div></div>
       </div>
       <div class="lev-note">גיל צי ממוצע צעיר במיוחד לאזור, כ-9.5 שנים, וצי בעל משפחה אחת (כל-737) מאז 2020, מה שמוזיל אחזקה, הכשרת צוותים ומלאי חלפים. מסירות הדור החדש מורידות עוד את גיל הצי הממוצע.</div>
@@ -1077,6 +1106,18 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
     <div class="callout reveal" style="border-color:rgba(124,157,255,.3);background:linear-gradient(120deg,var(--safran-soft),transparent 70%);margin-bottom:24px">
       <div class="mk" style="background:var(--safran-soft);color:var(--safran);border-color:rgba(124,157,255,.35)">↔</div>
       <p>החוט שמחבר את שני הרעיונות: כל מטוסי ה-737 MAX של Copa מונעים במנועי <b>LEAP של CFM</b>. כלומר 60 מטוסים הם כ-120 מנועי LEAP, שכל אחד מהם הוא אנונת חלפים ושירות עתידית ל-Safran. הצמיחה של המפעילה מזינה ישירות את ספק שרשרת הערך.</p>
+    </div>
+
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>מבנה מימון הצי: בעלות מול חכירה</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px">בניגוד למפעילות לואו קוסט רבות שמסתמכות על חכירה תפעולית, <strong>Copa מחזיקה בבעלות את מרבית הצי</strong>. זהו חותם של חוזק מאזני: כשהמטוסים הם נכס במאזן ולא רק התחייבות חכירה, החברה גמישה יותר ועמידה יותר ללחצים.</p>
+    <div class="grid g4 reveal" style="margin-bottom:14px">
+      <div class="readout accent"><div class="rv">45</div><div class="rsub">רבעון 3, 2025</div><div class="rk">מטוסים ללא שעבוד כלל, בבעלות מלאה וחופשיים מחוב</div></div>
+      <div class="readout"><div class="rv">~125</div><div class="rk">סך הצי, כמעט כולו בבעלות, מיעוט בחכירה תפעולית</div></div>
+      <div class="readout"><div class="rv">$2.2<small>B</small></div><div class="rk">סך החוב, כולו מימון מטוסים, 53.7% בריבית קבועה</div></div>
+      <div class="readout pos"><div class="rv">~0.6<small>x</small></div><div class="rk">מינוף נטו ל-EBITDA, מהנמוכים בענף</div></div>
+    </div>
+    <div class="card pad-lg reveal" style="margin-bottom:24px;background:linear-gradient(135deg,var(--copa-soft),var(--card))">
+      <div class="lev-note" style="margin-top:0"><b>סימן לאיכות, לא רק למספר:</b> Copa אף נוהגת לרכוש מטוסים מחברות החכירה ולהמיר חכירה תפעולית לבעלות, מה שמקטין עוד את החשיפה לחכירה. המבנה הנכסי הזה, עם מינוף נמוך וכ-45 מטוסים חופשיים משעבוד, הוא בדיוק מה שמאפשר לחברה לממן את תוכנית הצמיחה של 13.5 מיליארד דולר, לשמר דיבידנד של כ-4.4%, ולספוג זינוק דלק בלי לסכן את היציבות. זו הליבה של תזת המאזן.</div>
     </div>
 
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>פרופיל אסטרטגי ואירועים מרכזיים</h3>
@@ -1100,6 +1141,42 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       </div>
     </div>
 
+    <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>מחיר הדלק הסילוני בפרספקטיבה היסטורית</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">כדי לדעת איפה אנחנו עומדים, הנה מחיר הדלק הסילוני (חוף המפרץ בארה"ב, דולר לגלון) בשנים האחרונות. התמונה תומכת באסימטריה: <strong>היום המחיר מוגבה</strong> אחרי זינוק חד ב-2026, בעוד הרמה המנורמלת רב-שנתית נמוכה משמעותית, וקו החוזים העתידיים מצביע על חזרה לכיוון הזה.</p>
+    <div class="grid g3 reveal" style="margin-bottom:18px">
+      <div class="readout neg"><div class="rv">~$3.5</div><div class="rsub">אפריל 2026: $3.93</div><div class="rk">מחיר נוכחי (יוני 2026), מוגבה אחרי שיבוש מצר הורמוז</div></div>
+      <div class="readout accent"><div class="rv">~$2.5</div><div class="rsub">בסיס הסימולטור ~$2.85</div><div class="rk">רמה מנורמלת רב-שנתית, 2023 עד 2025</div></div>
+      <div class="readout"><div class="rv">$2.3<small>-2.8</small></div><div class="rk">לאן אפשר לחזור: יעד נורמליזציה לפי עקומת החוזים, אם המתיחות שוככת</div></div>
+    </div>
+    <div class="card pad-lg reveal" style="margin-bottom:6px">
+      <div class="card-title"><span class="tk" style="background:var(--copa)"></span>ממוצע שנתי, דולר לגלון (חוף המפרץ)</div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2021, התאוששות</span><span class="gm-r"><span class="gm-pct flat">$1.90</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="48" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2022, משבר אנרגיה</span><span class="gm-r"><span class="gm-pct" style="color:var(--neg)">שיא $3.90</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="98" style="background:linear-gradient(90deg,var(--neg),#C24A4A)"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2023</span><span class="gm-r"><span class="gm-pct flat">$2.83</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="71" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2024</span><span class="gm-r"><span class="gm-pct flat">$2.50</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="63" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2025</span><span class="gm-r"><span class="gm-pct flat">$2.35</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="59" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">2026, היום, אחרי זינוק</span><span class="gm-r"><span class="gm-vals">$2.26 → $3.93</span><span class="gm-pct" style="color:var(--copa)">~$3.50</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="88" style="background:linear-gradient(90deg,var(--copa),#C98D1C)"></div></div>
+      </div>
+      <div class="lev-note warnote"><b>הקריאה לתזה:</b> 2022 ו-2026 הן שנות זינוק חריגות, לא הנורמה. מאז 2023 הרמה התייצבה סביב $2.3 עד $2.8. הזינוק של 2026 (פלוס74% בחודשיים בגלל מצר הורמוז) הוא בדיוק הטריגר הזמני שיצר את ההזדמנות. Copa, שאינה מגדרת, חשופה במלואה לכל כיוון, ולכן הסימולטור למטה ממחיש את הרגישות. ל-Safran, כספק שרשרת הערך, אין חשיפה ישירה מהותית.</div>
+    </div>
+
     <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>סימולטור רגישות: כמה מחיר הדלק הסילוני פוגע ב-Copa</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">מחיר הדלק הסילוני היום עומד על כ-$2.85 לגלון. גררו את המחוון כדי לראות כיצד שינוי במחיר הדלק נע דרך כלכלת היחידה של Copa אל מרווח היחידה ואל הרווח. מכיוון ש-Copa אינה מגדרת, השינוי עובר כמעט במלואו לרווחיות.</p>
     <div class="fsim reveal">
@@ -1110,7 +1187,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       <div class="fslider-wrap">
         <input type="range" min="1.50" max="6.00" step="0.01" value="2.85" class="fslider" id="fsimSlider" aria-label="מחיר דלק סילוני לגלון">
         <div class="fticks">
-          <div class="ftick now" style="left:30%"><div class="tl"></div><div class="tt">עכשיו $2.85</div></div>
+          <div class="ftick now" style="left:30%"><div class="tl"></div><div class="tt">בסיס ~$2.85</div></div>
           <div class="ftick be" style="left:88.8%"><div class="tl"></div><div class="tt">נקודת איזון ~$5.50</div></div>
         </div>
       </div>
@@ -1123,8 +1200,6 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
         <div class="seg s-exfuel" id="segExfuel">ללא דלק</div>
         <div class="seg s-fuel" id="segFuel">דלק</div>
         <div class="seg s-margin" id="segMargin">מרווח</div>
-        <div class="rasm-edge"></div>
-        <div class="rasm-tag">RASM</div>
       </div>
       <div class="fsim-grid">
         <div class="fsim-cell"><div class="cv" id="cFuelCasm" style="color:var(--copa)">2.80</div><div class="ck">עלות דלק ליחידה (סנט)</div></div>
@@ -1149,7 +1224,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="fundamentals">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">09</span><span class="label">Fundamentals</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">10</span><span class="label">Fundamentals</span><span class="rule"></span></div>
       <h2>המספרים מאחורי התזה: ביצועים, החזר הון ותחזית</h2>
       <p class="sec-lead">הנתונים כאן לקוחים מהדוחות הרשמיים האחרונים, שנת 2025 המלאה והרבעון הראשון של 2026. בשתי החברות הרווח צומח מהר יותר מההכנסה, ההון חוזר למשקיעים, וההנהלות עצמן מנחות צמיחה קדימה. דווקא הפער בין צמיחת הרווח לצמיחת ההכנסה הוא המינוף התפעולי.</p>
     </div>
@@ -1229,7 +1304,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 <section class="section" id="decision">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="sec-eyebrow"><span class="num">10</span><span class="label">Decision</span><span class="rule"></span></div>
+      <div class="sec-eyebrow"><span class="num">11</span><span class="label">Decision</span><span class="rule"></span></div>
       <h2>החלטה: Safran כליבה, Copa כתוספת, לא סל</h2>
       <p class="sec-lead"><strong>Safran היא רעיון ההשקעה המרכזי</strong>, האחזקה האיכותית בעלת המשקל הגדול יותר, בזכות החפיר, אנונת האחזקה, הגיוון לביטחון וחלל והחשיפה הנמוכה לדלק. <strong>Copa היא פוזיציה נישתית וצדדית</strong> במשקל קטן יותר, המוצדקת ביציבות התמחור, באיכות החברה ובשליטה בהאב בפנמה, אך מבוקרת בגלל רגישות הדלק. שתי נקודות נבחרות, ולא סל חברות תעופה.</p>
     </div>
