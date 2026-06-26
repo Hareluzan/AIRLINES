@@ -314,6 +314,20 @@ html:not(.js) .reveal{opacity:1;transform:none}
 @media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section{padding:48px 0}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:10px}.brand span{display:none}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}}
 body{max-width:100%;overflow-x:hidden}
 table,svg,img{max-width:100%}
+.xcompare{border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,rgba(124,157,255,.05),var(--card));margin-bottom:24px;overflow:hidden}
+.xcompare>summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:15px;color:var(--ink)}
+.xcompare>summary::-webkit-details-marker{display:none}
+.xcompare>summary:hover{background:rgba(124,157,255,.06)}
+.xcompare .xc-ic{width:26px;height:26px;border-radius:7px;background:var(--safran-soft);color:var(--safran);border:1px solid rgba(124,157,255,.3);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:15px;flex-shrink:0;transition:transform .25s}
+.xcompare[open] .xc-ic{transform:rotate(45deg)}
+.xcompare .xc-body{padding:0 18px 18px}
+.xcompare .xc-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-dim);font-weight:400}
+.cfb{display:flex;gap:8px;align-items:stretch;margin:6px 0 14px;flex-wrap:wrap}
+.cfb .cfb-step{flex:1;min-width:120px;border-radius:11px;padding:13px 14px;border:1px solid var(--line)}
+.cfb .cfb-v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:21px;direction:ltr;text-align:right;margin-bottom:3px}
+.cfb .cfb-k{font-size:11.5px;color:var(--ink-mid);line-height:1.4}
+.cfb .cfb-op{display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--ink-dim);flex:0 0 16px;min-width:16px}
+@media(max-width:880px){.cfb .cfb-op{display:none}.cfb .cfb-step{min-width:calc(50% - 8px)}}
 @media(max-width:560px){.g4{grid-template-columns:1fr 1fr}.hero-stats{gap:20px}.three{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 :focus-visible{outline:2px solid var(--hud);outline-offset:3px;border-radius:4px}
@@ -1114,6 +1128,27 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
     </div>
     <div class="callout reveal" style="margin-bottom:24px"><div class="mk">✓</div><p>זו בדיוק ההצדקה לבחירה הנקודתית: לא קונים סל חברות תעופה לטיניות, אלא את המפעילה האחת עם המרווח הגבוה ביותר, המינוף הנמוך ביותר, והדייקנות הטובה ביותר.</p></div>
 
+    <details class="xcompare reveal">
+      <summary><span style="display:flex;align-items:center;gap:11px"><span class="xc-ic">+</span><span>השוואה מנורמלת מול בנצ'מרקים גלובליים: Delta, United, IAG<br><span class="xc-hint">יחסים שמנטרלים גודל, לחצו להרחבה</span></span></span></summary>
+      <div class="xc-body">
+        <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin:0 0 14px">השוואה זו מנטרלת את גודל החברה במכוון, ומתמקדת ביחסי יחידה ובמרווחים. זה גם פותר את בעיית ה-ROE וה-ROA, שמטעים בתעופה (ROA נמוך מובנה בגלל עתירות נכסים, ו-ROE מנופח על ידי מינוף). לכן ההשוואה הנכונה היא יחס העלות ללא דלק להכנסה ליחידה, ומרווח היחידה שנובע ממנו, ולא סנט גולמי.</p>
+        <table class="valtable">
+          <thead><tr><th>מדד</th><th style="background:rgba(214,158,46,.12)">CPA</th><th>Delta</th><th>United</th><th>IAG</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">מינוף נטו (נמוך עדיף)</td><td class="n" style="background:rgba(214,158,46,.08)">0.7x</td><td class="n">2.4x</td><td class="n">2.0x</td><td class="n" style="color:var(--pos)">0.5x</td></tr>
+            <tr><td class="metric-name">עלות ללא דלק חלקי הכנסה ליחידה (נמוך עדיף)</td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">49%</td><td class="n">74%</td><td class="n">74%</td><td class="n">82%</td></tr>
+            <tr><td class="metric-name">מרווח יחידה חלקי הכנסה ליחידה (גבוה עדיף)</td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">51%</td><td class="n">26%</td><td class="n">26%</td><td class="n">18%</td></tr>
+            <tr><td class="metric-name">מרווח תפעולי (גבוה עדיף)</td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">24.6%</td><td class="n">4.6%</td><td class="n">4.2%</td><td class="n">4.9%</td></tr>
+            <tr><td class="metric-name">מרווח תזרים חופשי (גבוה עדיף)</td><td class="n" style="background:rgba(214,158,46,.08)">-5.2%</td><td class="n">8.6%</td><td class="n" style="color:var(--pos)">19.9%</td><td class="n">לא פורסם</td></tr>
+            <tr><td class="metric-name">ROIC מדווח</td><td class="n" style="background:rgba(214,158,46,.08)">לא פורסם</td><td class="n" style="color:var(--pos)">12.2%</td><td class="n">לא פורסם</td><td class="n">לא פורסם</td></tr>
+            <tr><td class="metric-name">דיבידנד למניה, שנתי</td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">$6.84</td><td class="n">$0.86</td><td class="n">אין</td><td class="n">€0.098</td></tr>
+          </tbody>
+        </table>
+        <div class="lev-note"><b>מה רואים:</b> Copa מצטיינת ברווחיות מנורמלת ויחידות כלכליות, ולא בגלל שהיא גדולה יותר. מרווח תפעולי 24.6% מול 4% עד 5% אצל הגדולות, מרווח יחידה 51% מהכנסה ליחידה מול 18% עד 26%, ויחס העלות ללא דלק הנמוך ביותר. החולשה היחידה היא מרווח התזרים החופשי, שבו United מובילה, אבל אצל Copa זה שלילי רק בגלל השקעת הצי (כפי שמוצג בבלוק התזרים). Delta היא היחידה שדיווחה ROIC, ו-IAG עם המינוף הנמוך ביותר אך מרווח היחידה החלש ביותר.</div>
+        <p class="fn-note" style="margin-top:12px">הערת השוואתיות: הגדרות RASM, TRASM ו-PRASK והתאמות IFRS מול GAAP שונות בין חברות. הקריאה הנקייה ביותר היא יחס העלות ללא דלק להכנסה ליחידה. נתוני הרבעון הראשון 2026. דיבידנד לא בר השוואה ישירה בין מטבעות ומספרי מניות.</p>
+      </div>
+    </details>
+
     <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>צבר הזמנות וצמיחת צי: עסקת ענק חדשה</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">באפריל 2026 חתמה Copa על הזמנה ל<strong>עד 60 מטוסי Boeing 737 MAX</strong> (40 הזמנות מוצקות plus 20 אופציות) בהיקף של כ-<strong>13.5 מיליארד דולר</strong> במחירון, יחד עם Boeing ועם GE Aerospace. ההזמנה הזו, בתוספת צבר ההזמנות הקיים, מאפשרת ל-Copa להוסיף <strong>מעל 100 מטוסים חדשים</strong> תוך שמונה שנים, ולהגיע לצי של <strong>מעל 200 מטוסים עד 2034</strong> גם אחרי פרישת מטוסים ישנים, צמיחה של כ-60% בגודל הצי. המסירות צפויות בין 2030 ל-2034, והן הצבעת אמון אגרסיבית על צמיחת אמריקה הלטינית.</p>
     <div class="grid g4 reveal" style="margin-bottom:16px">
@@ -1149,6 +1184,42 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
     </div>
     <div class="card pad-lg reveal" style="margin-bottom:24px;background:linear-gradient(135deg,var(--copa-soft),var(--card))">
       <div class="lev-note" style="margin-top:0"><b>סימן לאיכות, לא רק למספר:</b> Copa אף נוהגת לרכוש מטוסים מחברות החכירה ולהמיר חכירה תפעולית לבעלות, מה שמקטין עוד את החשיפה לחכירה. המבנה הנכסי הזה, עם מינוף נמוך, כ-45 מטוסים ו-15 מנועי חילוף חופשיים משעבוד, הוא בדיוק מה שמאפשר לחברה לממן את תוכנית הצמיחה של 13.5 מיליארד דולר, לשמר דיבידנד של כ-4.4%, ולספוג זינוק דלק בלי לסכן את היציבות. זו הליבה של תזת המאזן.</div>
+    </div>
+
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>איכות התזרים: למה ה-FCF השלילי הוא בחירת צמיחה</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px">ברבעון הראשון התזרים החופשי (FCF) היה שלילי קל, אבל זה אינו סימן לחולשה, אלא תוצאה ישירה של השקעה אגרסיבית בצמיחה. התזרים מהפעילות עצמו היה <strong>חזק מאוד וצמח בכ-75%</strong>, והשלילה נובעת כמעט כולה ממקדמות על מטוסי ה-737 MAX שיסופקו רק ב-2030 עד 2034.</p>
+    <div class="card pad-lg reveal" style="margin-bottom:14px">
+      <div class="card-title"><span class="tk" style="background:var(--pos)"></span>תזרים מפעילות (OCF), מיליוני דולר, צמיחה מדהימה</div>
+      <div class="gmetric" style="margin-top:4px">
+        <div class="gm-top"><span class="gm-name">רבעון 1, 2025</span><span class="gm-r"><span class="gm-pct flat">$205M</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="57"></div></div>
+      </div>
+      <div class="gmetric">
+        <div class="gm-top"><span class="gm-name">רבעון 1, 2026</span><span class="gm-r"><span class="gm-vals">$205M → $360M</span><span class="gm-pct up">+75%</span></span></div>
+        <div class="gm-track"><div class="gm-fill" data-w="100"></div></div>
+      </div>
+      <div class="cfb">
+        <div class="cfb-step" style="border-color:rgba(70,194,140,.35);background:rgba(70,194,140,.06)">
+          <div class="cfb-v" style="color:var(--pos)">+$360M</div>
+          <div class="cfb-k">תזרים מפעילות, חזק ובריא</div>
+        </div>
+        <div class="cfb-op">−</div>
+        <div class="cfb-step" style="border-color:rgba(214,158,46,.35);background:rgba(214,158,46,.06)">
+          <div class="cfb-v" style="color:var(--copa)">$408M</div>
+          <div class="cfb-k">השקעה בצמיחה: רכוש קבוע $163M plus מקדמות על מטוסים עתידיים $245M</div>
+        </div>
+        <div class="cfb-op">=</div>
+        <div class="cfb-step" style="border-color:rgba(227,101,101,.35);background:rgba(227,101,101,.06)">
+          <div class="cfb-v" style="color:var(--neg)">-$54M</div>
+          <div class="cfb-k">תזרים חופשי שלילי קל, כולו בגלל הצמיחה</div>
+        </div>
+      </div>
+      <div class="grid g3" style="gap:12px;margin-bottom:6px">
+        <div class="readout" style="padding:14px"><div class="rv" style="font-size:19px">$116M</div><div class="rk">החזר לבעלים: דיבידנד $71M plus בייבאק $45M</div></div>
+        <div class="readout" style="padding:14px"><div class="rv" style="font-size:19px">פלוס$155M</div><div class="rk">משיכת חוב חדש, מימון חלקי של הצמיחה במינוף זול כנגד נכס</div></div>
+        <div class="readout pos" style="padding:14px"><div class="rv" style="font-size:19px">$1,524M</div><div class="rk">כרית מזומן והשקעות שסופגת בקלות את ההשקעה</div></div>
+      </div>
+      <div class="lev-note"><b>התשובה לשאלת הדיבידנד והבייבאק:</b> ההחזר לבעלים, כ-116 מיליון דולר, מכוסה בנוחות על ידי התזרים התפעולי לבדו, פי שלושה ויותר, עוד לפני שנוגעים בכרית של 1.5 מיליארד דולר. ה-FCF השלילי הוא <b>בחירה אסטרטגית</b>, להשקיע היום במטוסים שיגדילו את הצי בכ-60%, ולא אילוץ. כל עוד תוכנית הצי פעילה, ה-FCF יהיה תנודתי ולעיתים שלילי, אך עם מינוף של 0.7x בלבד החברה יכולה לממן צמיחה, לחלק דיבידנד של כ-4.4% ולבצע בייבאק בו זמנית.</div>
     </div>
 
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>פרופיל אסטרטגי ואירועים מרכזיים</h3>
@@ -1325,7 +1396,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
           <li><span class="gl-k">CASM ללא דלק</span><span class="gl-v">~5.7 סנט</span></li>
           <li><span class="gl-k">מקדם תפוסה</span><span class="gl-v">~87%</span></li>
         </ul>
-        <div class="lev-note warnote"><b>סיכון הדלק בפעולה, אך זמני:</b> לרבעון השני של 2026 החברה מנחה מרווח תפעולי של 8% עד 12% בלבד, בשל עלייה צפויה של 80% עד 90% במחיר הדלק והחזר חלקי של כ-50% בלבד דרך מחירים (כי ההזמנות כבר נסגרו מראש). אבל לכל השנה החברה מצפה לקזז <b>עד 100%</b> מעליית הדלק עד סוף השנה, ככל שהתמחור נשמר. כלומר הלחץ זמני, לא מבני. זו בדיוק החשיפה שהסימולטור בפרק Copa ממחיש.</div>
+        <div class="lev-note warnote"><b>סיכון הדלק בפעולה, אך זמני:</b> לרבעון השני של 2026 החברה צופה מרווח תפעולי של 8% עד 12% בלבד, בשל עלייה צפויה של 80% עד 90% במחיר הדלק והחזר חלקי של כ-50% בלבד דרך מחירים (כי ההזמנות כבר נסגרו מראש). אבל לכל השנה החברה מצפה לקזז <b>עד 100%</b> מעליית הדלק עד סוף השנה, ככל שהתמחור נשמר. כלומר הלחץ זמני, לא מבני. זו בדיוק החשיפה שהסימולטור בפרק Copa ממחיש.</div>
       </div>
     </div>
     <p class="src-note">מקורות: דיווחי Safran ו-Copa לשנת 2025 המלאה ולרבעון הראשון 2026. נתוני 2024 מוצגים להשוואה. הנתונים נמסרו על בסיס מתואם (adjusted) היכן שהחברה מדווחת כך. האמור אינו מהווה ייעוץ השקעות.</p>
@@ -1513,7 +1584,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
     copa:{
       bull:{price:'$209',move:'+39% אפסייד, בתוספת דיבידנד',cls:'up',note:'תרחיש שורי: דלק יורד או יציב, הדיסקאונט נסגר ביחס לחפיר ולרווחיות, צמיחת קיבולת נמשכת.'},
       base:{price:'$162',move:'+8% אפסייד, בתוספת דיבידנד',cls:'up',note:'תרחיש בסיס: עמידה ביעד מרווח של 22% עד 24%, צמיחת קיבולת דו ספרתית ותשואת דיבידנד יציבה.'},
-      bear:{price:'$91',move:'−39% דאונסייד',cls:'down',note:'תרחיש דובי: זינוק דלק מתמשך פוגע במרווח, כפי שמשתקף בהנחיית הרבעון השני 2026, plus סיכון אזורי.'}
+      bear:{price:'$91',move:'−39% דאונסייד',cls:'down',note:'תרחיש דובי: זינוק דלק מתמשך פוגע במרווח, כפי שמשתקף בתחזית הרבעון השני 2026, plus סיכון אזורי.'}
     }
   };
   document.querySelectorAll('.scen').forEach(function(card){
@@ -1641,7 +1712,7 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       txt='<span class="stag">רווחי ובריא.</span> מחיר הדלק תומך במרווח יחידה חזק, בקנה אחד עם יעד מרווח תפעולי שנתי של 22% עד 24%.';
     } else if(margin>=0){
       statusEl.classList.add('warn');
-      txt='<span class="stag">לחץ על המרווח.</span> הדלק מכרסם ברווחיות. זה בדיוק תרחיש הרבעון השני 2026, שבו Copa מנחה מרווח של 8% עד 12% בלבד. החברה מקזזת חלקית דרך מחירים, ולכל השנה מצפה לקזז עד 100%.';
+      txt='<span class="stag">לחץ על המרווח.</span> הדלק מכרסם ברווחיות. זה בדיוק תרחיש הרבעון השני 2026, שבו Copa צופה מרווח של 8% עד 12% בלבד. החברה מקזזת חלקית דרך מחירים, ולכל השנה מצפה לקזז עד 100%.';
     } else {
       statusEl.classList.add('bad');
       txt='<span class="stag">מתחת לאיזון.</span> במחיר זה עלות הדלק מוחקת את מרווח היחידה. כאן בולטת החשיפה של Copa, שאינה מגדרת דלק, מול מצרף כמו Safran שכמעט אינו חשוף.';
