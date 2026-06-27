@@ -256,6 +256,7 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .scen-tab.base.on{background:rgba(201,162,75,.15);color:var(--base);border-color:rgba(201,162,75,.4)}
 .scen-tab.bear.on{background:rgba(227,101,101,.15);color:var(--neg);border-color:rgba(227,101,101,.4)}
 .scen-out .so-target{font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;direction:ltr;color:var(--ink)}
+.scen-out .so-bridge{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-mid);margin-bottom:5px;direction:ltr;letter-spacing:.2px}
 .scen-out .so-target small{font-size:18px;color:var(--ink-dim)}
 .scen-out .so-move{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;margin-top:8px;direction:ltr}
 .scen-out .so-move.up{color:var(--pos)}
@@ -1588,17 +1589,17 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
       <div class="mk" style="background:var(--safran-soft);color:var(--safran);border-color:rgba(124,157,255,.35)">↔</div>
       <p>החוט שמחבר את שני הרעיונות: כל מטוסי ה-737 MAX של Copa מונעים במנועי <b>LEAP של CFM</b>. כלומר 60 מטוסים הם כ-120 מנועי LEAP, שכל אחד מהם הוא אנונת חלפים ושירות עתידית ל-Safran. הצמיחה של המפעילה מזינה ישירות את ספק שרשרת הערך.</p>
     </div>
-    <h3 class="card-title reveal" style="font-size:15px"><span class="tk"></span>תרחישי מחיר יעד</h3>
-    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:22px;font-size:14px">בחרו תרחיש כדי לראות את מחיר היעד ואת פוטנציאל התשואה. הסמן על הסרגל מציין את המחיר הנוכחי.</p>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk"></span>תרחישי מחיר יעד, מבוססי הנחות</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:22px;font-size:14px">כל מחיר יעד כאן מחושב מהנחה גלויה: רווח חזוי כפול מכפיל, ולא מספר ידני. הנחות Safran על בסיס רווח מתואם 2027 (לא GAAP, בגלל עיוות הגידור), הנחות Copa על בסיס רווח עתידי ובמכפיל נמוך יותר בגלל הרגישות לדלק והמחזוריות. בחרו תרחיש כדי לראות את שרשרת ההנחה עד מחיר היעד.</p>
     <div class="scen-grid reveal">
       <div class="scen s" data-stock="safran">
-        <div class="scen-head"><span class="sh-tick">SAFRAN</span><span class="sh-now">NOW · €333.80</span></div>
+        <div class="scen-head"><span class="sh-tick">SAFRAN</span><span class="sh-now">NOW</span></div>
         <div class="scen-body">
-          <div class="tape" data-min="265" data-max="450" data-now="333.80">
-            <div class="tape-now" style="bottom:37.2%"></div>
-            <div class="tape-mark bull sel" data-scn="bull" style="bottom:100%"><span class="tm-dot"></span></div>
-            <div class="tape-mark base" data-scn="base" style="bottom:61.1%"><span class="tm-dot"></span></div>
-            <div class="tape-mark bear" data-scn="bear" style="bottom:0%"><span class="tm-dot"></span></div>
+          <div class="tape">
+            <div class="tape-now"></div>
+            <div class="tape-mark bull sel" data-scn="bull"><span class="tm-dot"></span></div>
+            <div class="tape-mark base" data-scn="base"><span class="tm-dot"></span></div>
+            <div class="tape-mark bear" data-scn="bear"><span class="tm-dot"></span></div>
           </div>
           <div class="scen-detail">
             <div class="scen-tabs">
@@ -1607,21 +1608,22 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
               <button class="scen-tab bear" data-scn="bear">Bear</button>
             </div>
             <div class="scen-out">
-              <div class="so-target"><span class="t-price">€450</span></div>
-              <div class="so-move up"><span class="t-move">+35% אפסייד</span></div>
-              <div class="so-note"><span class="t-note">תרחיש שורי: המשך צמיחת aftermarket ומסירות LEAP, עם תזרים חזק.</span></div>
+              <div class="so-bridge"><span class="t-bridge"></span></div>
+              <div class="so-target"><span class="t-price"></span></div>
+              <div class="so-move up"><span class="t-move"></span></div>
+              <div class="so-note"><span class="t-note"></span></div>
             </div>
           </div>
         </div>
       </div>
       <div class="scen c" data-stock="copa">
-        <div class="scen-head"><span class="sh-tick">COPA</span><span class="sh-now">NOW · ~$150</span></div>
+        <div class="scen-head"><span class="sh-tick">COPA</span><span class="sh-now">NOW</span></div>
         <div class="scen-body">
-          <div class="tape" data-min="91" data-max="209" data-now="150">
-            <div class="tape-now" style="bottom:50%"></div>
-            <div class="tape-mark bull sel" data-scn="bull" style="bottom:100%"><span class="tm-dot"></span></div>
-            <div class="tape-mark base" data-scn="base" style="bottom:60.2%"><span class="tm-dot"></span></div>
-            <div class="tape-mark bear" data-scn="bear" style="bottom:0%"><span class="tm-dot"></span></div>
+          <div class="tape">
+            <div class="tape-now"></div>
+            <div class="tape-mark bull sel" data-scn="bull"><span class="tm-dot"></span></div>
+            <div class="tape-mark base" data-scn="base"><span class="tm-dot"></span></div>
+            <div class="tape-mark bear" data-scn="bear"><span class="tm-dot"></span></div>
           </div>
           <div class="scen-detail">
             <div class="scen-tabs">
@@ -1630,14 +1632,16 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
               <button class="scen-tab bear" data-scn="bear">Bear</button>
             </div>
             <div class="scen-out">
-              <div class="so-target"><span class="t-price">$209</span></div>
-              <div class="so-move up"><span class="t-move">+39% אפסייד, בתוספת דיבידנד</span></div>
-              <div class="so-note"><span class="t-note">תרחיש שורי: דיסקאונט נסגר ביחס לחפיר ולרווחיות, עם מאזן חזק.</span></div>
+              <div class="so-bridge"><span class="t-bridge"></span></div>
+              <div class="so-target"><span class="t-price"></span></div>
+              <div class="so-move up"><span class="t-move"></span></div>
+              <div class="so-note"><span class="t-note"></span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <p class="fn-note reveal" style="margin-top:16px">התרחישים אינם DCF ואינם תחזית ודאית. הם ניתוח רגישות מבוסס הנחות רווח (EPS) ומכפיל. שינוי קטן בהנחות עשוי לשנות משמעותית את מחיר היעד. כל ההנחות גלויות וניתנות לעריכה בראש קוד התרחישים.</p>
     <h3 class="card-title reveal" style="margin-top:44px;font-size:15px"><span class="tk" style="background:var(--neg)"></span>סיכונים מרכזיים</h3>
     <div class="risk-grid reveal">
       <div class="risk-chip"><span class="rc-n">01</span><span>עליית דלק מחודשת</span></div>
@@ -1747,38 +1751,68 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
     sections.forEach(function(s){ if(s.id) no.observe(s); });
   }
 
-  // scenario data
-  var SCEN={
+  // ===== scenario assumptions (EDIT HERE) =====
+  // every target price is COMPUTED: target = EPS x multiple. nothing is hardcoded.
+  var ASSUMPTIONS = {
     safran:{
-      bull:{price:'€450',move:'+35% אפסייד',cls:'up',note:'תרחיש שורי: המשך צמיחת aftermarket ומסירות LEAP, מרווח מתרחב ותזרים חזק, עם המשך החזר הון.'},
-      base:{price:'€378',move:'+13% אפסייד',cls:'up',note:'תרחיש בסיס: עמידה ביעדי 2026 וצמיחה תפעולית של כ-10% עד 13% בשנה, מכפיל מתואם נשמר סביב 28×.'},
-      bear:{price:'€265',move:'−21% דאונסייד',cls:'down',note:'תרחיש דובי: האטה בתנועה האזרחית או שיבוש מסירות שפוגע בהכנסות החלפים והשירות.'}
+      cur:'€', price:334,
+      bull:{eps:12.5, mult:34, note:'תרחיש שורי: האצה ב-aftermarket ובמסירות LEAP, וחזרה למכפיל הפרמיה ההיסטורי.'},
+      base:{eps:11.5, mult:31, note:'תרחיש בסיס: עמידה ביעדי הצמיחה, מכפיל איכות סביב הממוצע ההיסטורי.'},
+      bear:{eps:10.0, mult:24, note:'תרחיש דובי: עיכובי מסירות או האטה אזרחית, עם דה-רייטינג במכפיל.'},
+      div:3.35
     },
     copa:{
-      bull:{price:'$209',move:'+39% אפסייד, בתוספת דיבידנד',cls:'up',note:'תרחיש שורי: דלק יורד או יציב, הדיסקאונט נסגר ביחס לחפיר ולרווחיות, צמיחת קיבולת נמשכת.'},
-      base:{price:'$162',move:'+8% אפסייד, בתוספת דיבידנד',cls:'up',note:'תרחיש בסיס: עמידה ביעד מרווח של 22% עד 24%, צמיחת קיבולת דו ספרתית ותשואת דיבידנד יציבה.'},
-      bear:{price:'$91',move:'−39% דאונסייד',cls:'down',note:'תרחיש דובי: זינוק דלק מתמשך פוגע במרווח, כפי שמשתקף בתחזית הרבעון השני 2026, plus סיכון אזורי.'}
+      cur:'$', price:150,
+      bull:{eps:19.0, mult:10.5, note:'תרחיש שורי: דלק יורד או יציב, סגירת הדיסקאונט וצמיחת קיבולת.'},
+      base:{eps:17.5, mult:9.0, note:'תרחיש בסיס: מכפיל סביב הממוצע ההיסטורי של Copa, מרווח תפעולי 22% עד 24%.'},
+      bear:{eps:13.5, mult:7.0, note:'תרחיש דובי: זינוק דלק מתמשך פוגע במרווח, עם דה-רייטינג מחזורי.'},
+      div:6.84
     }
   };
+  function snTrim(n){ return (Math.round(n*100)/100).toString(); }
+  function snTarget(a,scn){ return Math.round(a[scn].eps*a[scn].mult); }
+  function snCompute(stock,scn){
+    var a=ASSUMPTIONS[stock], s=a[scn];
+    var target=snTarget(a,scn);
+    var mv=(target-a.price)/a.price*100;
+    var up=mv>=0;
+    var moveTxt=(up?'פלוס':'מינוס')+Math.abs(Math.round(mv))+'% '+(up?'אפסייד':'דאונסייד');
+    var dy=a.div/a.price*100;
+    if(dy>=2 && up){ moveTxt+=', plus דיבידנד כ-'+snTrim(Math.round(dy*10)/10)+'%'; }
+    var bridge=a.cur+snTrim(s.eps)+' EPS × '+snTrim(s.mult)+'x =';
+    return {target:a.cur+target, bridge:bridge, move:moveTxt, cls:(up?'up':'down'), note:s.note};
+  }
   document.querySelectorAll('.scen').forEach(function(card){
     var stock=card.getAttribute('data-stock');
+    var a=ASSUMPTIONS[stock];
     var tabs=card.querySelectorAll('.scen-tab');
     var marks=card.querySelectorAll('.tape-mark');
+    var bridgeEl=card.querySelector('.t-bridge');
     var priceEl=card.querySelector('.t-price');
     var moveEl=card.querySelector('.t-move');
     var noteEl=card.querySelector('.t-note');
     var moveWrap=card.querySelector('.so-move');
+    var nowEl=card.querySelector('.sh-now');
+    var tB=snTarget(a,'bull'), tA=snTarget(a,'base'), tR=snTarget(a,'bear');
+    var hi=Math.max(tB,tA,tR), lo=Math.min(tB,tA,tR);
+    function pos(v){ var pp=(hi===lo)?50:(v-lo)/(hi-lo)*100; return Math.max(0,Math.min(100,pp)); }
+    if(nowEl){ nowEl.textContent='NOW · '+a.cur+a.price; }
+    var nowLine=card.querySelector('.tape-now'); if(nowLine){ nowLine.style.bottom=pos(a.price).toFixed(1)+'%'; }
+    var pm={bull:tB,base:tA,bear:tR};
+    marks.forEach(function(m){ m.style.bottom=pos(pm[m.getAttribute('data-scn')]).toFixed(1)+'%'; });
     function apply(scn){
-      var d=SCEN[stock][scn]; if(!d) return;
-      priceEl.textContent=d.price;
+      var d=snCompute(stock,scn); if(!d) return;
+      if(bridgeEl){ bridgeEl.textContent=d.bridge; }
+      priceEl.textContent=d.target;
       moveEl.textContent=d.move;
       noteEl.textContent=d.note;
       moveWrap.classList.remove('up','down'); moveWrap.classList.add(d.cls);
-      tabs.forEach(function(t){ t.classList.remove('on','bull','base','bear'); t.classList.add(t.getAttribute('data-scn')); if(t.getAttribute('data-scn')===scn) t.classList.add('on'); });
+      tabs.forEach(function(t){ t.classList.remove('on','bull','base','bear'); t.classList.add(t.getAttribute('data-scn')); if(t.getAttribute('data-scn')===scn){ t.classList.add('on'); } });
       marks.forEach(function(m){ m.classList.toggle('sel', m.getAttribute('data-scn')===scn); });
     }
     tabs.forEach(function(t){ t.addEventListener('click',function(){ apply(t.getAttribute('data-scn')); }); });
     marks.forEach(function(m){ m.addEventListener('click',function(){ apply(m.getAttribute('data-scn')); }); });
+    apply('bull');
   });
 
   // brent draw path
