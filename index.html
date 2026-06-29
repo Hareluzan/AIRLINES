@@ -26,6 +26,7 @@ body{background:var(--bg);color:var(--ink);font-family:'Heebo',sans-serif;font-w
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(1100px 600px at 78% -8%, rgba(124,157,255,.10), transparent 60%),radial-gradient(900px 520px at 8% 12%, rgba(79,209,197,.06), transparent 55%)}
 body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.4;background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(circle at 50% 30%, black, transparent 80%);mask-image:radial-gradient(circle at 50% 30%, black, transparent 80%)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+#pageProgress{position:fixed;top:0;right:0;width:0;height:3px;z-index:120;background:var(--hud);box-shadow:0 0 10px rgba(79,209,197,.45);transition:width .08s linear;pointer-events:none}
 .mono{font-family:'JetBrains Mono',monospace;font-feature-settings:"tnum" 1;direction:ltr;unicode-bidi:isolate;display:inline-block}
 .nav{position:fixed;top:0;right:0;left:0;width:100%;z-index:80;background:rgba(10,14,24,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.18)}
 .nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:18px;overflow:hidden}
@@ -44,6 +45,10 @@ body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opa
 .view-switch button[aria-pressed="true"]{background:var(--hud-soft);color:var(--hud)}
 body.presentation-mode .research-only{display:none!important}
 body.research-mode .presentation-only{display:none!important}
+body:not(.market-mode) .market-only{display:none!important}
+body.market-mode .hero,body.market-mode .section:not(.market-only){display:none!important}
+body.market-mode .nav-links a:not(.market-only){display:none!important}
+body.market-mode .market-only{display:block!important}
 body.presentation-mode .section{padding:56px 0}
 body.presentation-mode .co-leader{display:none}
 .hero{position:relative;padding:74px 0 56px;overflow:hidden}
@@ -81,15 +86,48 @@ h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(34px,5.6
 .role .metric{margin-top:12px;padding-top:12px;border-top:1px solid var(--line-soft);display:flex;align-items:baseline;gap:8px}
 .role .metric .mv{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--ink)}
 .role .metric .ml{font-size:11.5px;color:var(--ink-dim)}
-.section{padding:64px 0;border-top:1px solid var(--line-soft);position:relative}
-.sec-head{max-width:62ch;margin-bottom:36px}
-.sec-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.sec-eyebrow .num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:var(--hud);border:1px solid var(--hud);border-radius:7px;padding:3px 9px;direction:ltr}
-.sec-eyebrow .label{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-dim)}
-.sec-eyebrow .rule{flex:1;height:1px;background:var(--line)}
+.section{padding:64px 0;border-bottom:1px solid var(--line-soft);position:relative;background:rgba(15,20,31,.18)}
+.section.band-alt{background:linear-gradient(180deg,rgba(29,38,65,.38),rgba(19,24,38,.44))}
+.sec-head{max-width:900px;margin-bottom:38px;display:grid;grid-template-columns:58px minmax(0,1fr);column-gap:18px;row-gap:7px}
+.sec-eyebrow{display:contents}
+.sec-eyebrow .num{grid-column:1;grid-row:1 / span 2;align-self:start;font-family:'JetBrains Mono',monospace;font-size:40px;line-height:.95;font-weight:700;color:var(--hud);direction:ltr}
+.sec-eyebrow .label{grid-column:2;grid-row:1;align-self:end;display:flex;align-items:center;gap:11px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-dim)}
+.sec-eyebrow .label::after{content:"";width:72px;height:1px;background:var(--line)}
+.sec-eyebrow .rule{display:none}
+.sec-head h2{grid-column:2;grid-row:2}
+.sec-head>.sec-lead{grid-column:2;grid-row:3;margin-top:7px}
 h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4vw,38px);line-height:1.18;letter-spacing:-.3px}
 .sec-lead{margin-top:16px;font-size:16px;color:var(--ink-mid);line-height:1.66}
 .sec-lead strong{color:var(--ink);font-weight:700}
+.subchapter{--sc-color:var(--hud);position:relative;display:grid;grid-template-columns:46px minmax(0,1fr);gap:15px;align-items:start;margin:54px 0 24px;padding-top:22px;border-top:1px solid var(--line)}
+.subchapter::before{content:"";position:absolute;top:-1px;right:0;width:78px;height:2px;background:var(--sc-color)}
+.subchapter.safran{--sc-color:var(--safran)}
+.subchapter.copa{--sc-color:var(--copa)}
+.subchapter .sc-index{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--sc-color);line-height:1.2;direction:ltr}
+.subchapter .sc-kicker{display:block;margin-bottom:4px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.7px;text-transform:uppercase;color:var(--sc-color)}
+.subchapter h3{margin:0;font-family:'Frank Ruhl Libre',serif;font-size:clamp(21px,2.5vw,28px);line-height:1.2;color:var(--ink)}
+.subchapter p{max-width:76ch;margin:7px 0 0;font-size:14px;line-height:1.6;color:var(--ink-mid)}
+.geo-panel{--geo-accent:var(--hud);margin:0 0 30px;padding:22px;background:rgba(23,30,48,.86);border:1px solid var(--line);border-radius:var(--r)}
+.geo-panel.safran{--geo-accent:var(--safran)}
+.geo-panel.copa{--geo-accent:var(--copa)}
+.geo-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:20px}
+.geo-title h4{margin:0;font-size:16px;color:var(--ink)}
+.geo-title p{margin:5px 0 0;font-size:12.5px;line-height:1.5;color:var(--ink-dim)}
+.geo-badge{flex:none;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.2px;color:var(--geo-accent);border:1px solid var(--line);border-radius:7px;padding:5px 8px}
+.geo-years{display:grid;gap:12px}
+.geo-row{display:grid;grid-template-columns:54px minmax(0,1fr);align-items:center;gap:12px}
+.geo-year{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--ink-mid);direction:ltr}
+.geo-track{display:flex;height:34px;overflow:hidden;border-radius:8px;background:var(--line-soft);direction:ltr}
+.geo-seg{display:flex;align-items:center;justify-content:center;min-width:0;color:#F7FAFF;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;border-left:1px solid rgba(15,20,31,.42)}
+.geo-seg:first-child{border-left:0}
+.geo-legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line-soft)}
+.geo-key{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ink-mid)}
+.geo-swatch{width:9px;height:9px;border-radius:2px;background:var(--swatch);flex:none}
+.geo-takeaway{margin-top:17px;padding:14px 16px;border-right:3px solid var(--geo-accent);background:rgba(255,255,255,.025);font-size:13px;line-height:1.65;color:var(--ink-mid)}
+.geo-takeaway b{color:var(--ink)}
+.geo-source{margin:12px 0 0;font-size:10.5px;line-height:1.5;color:var(--ink-faint)}
+.geo-source a{color:var(--hud);text-decoration:none}
+.geo-source a:hover{text-decoration:underline}
 .callout{margin:30px 0;background:linear-gradient(120deg,var(--hud-soft),transparent 70%);border:1px solid rgba(79,209,197,.28);border-radius:var(--r);padding:20px 22px;display:flex;gap:15px;align-items:flex-start}
 .callout .mk{flex-shrink:0;width:30px;height:30px;border-radius:8px;background:var(--hud-soft);display:grid;place-items:center;color:var(--hud);font-weight:800;font-family:'JetBrains Mono',monospace;border:1px solid rgba(79,209,197,.35)}
 .callout p{font-size:16px;color:var(--ink);font-weight:500;line-height:1.55}
@@ -195,7 +233,8 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .seg{display:flex;flex-direction:column;gap:14px}
 .seg-row .seg-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
 .seg-row .seg-name{font-size:13px;color:var(--ink-mid)}
-.seg-row .seg-val{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--ink);direction:ltr}
+.seg-row .seg-val{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--ink);direction:ltr;white-space:nowrap}
+.seg-row .seg-val small{font-size:10px;font-weight:600;color:var(--ink-dim);margin-left:4px}
 .seg-track{height:12px;background:var(--line-soft);border-radius:6px;overflow:hidden}
 .seg-fill{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--safran),#5C7FE0);transition:width 1.1s cubic-bezier(.16,1,.3,1)}
 .seg-fill.f2{background:linear-gradient(90deg,#5B6C9E,#46557F)}
@@ -326,12 +365,14 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .ifc-toggle{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card-2);color:var(--ink-dim);border-radius:7px;padding:7px 10px;font-family:'Heebo',sans-serif;font-size:11.5px;font-weight:600;cursor:pointer}
 .ifc-toggle[aria-pressed="true"]{color:var(--ink);border-color:var(--metric-color);background:color-mix(in srgb,var(--metric-color) 11%,var(--card-2))}
 .ifc-swatch{width:9px;height:9px;border-radius:2px;background:var(--metric-color);flex-shrink:0}
-.ifc-body{height:330px;position:relative;direction:ltr;padding:20px 8px 32px 54px;border-bottom:1px solid var(--line);overflow:hidden}
+.ifc-body{height:330px;position:relative;direction:ltr;padding:20px 48px 32px 54px;border-bottom:1px solid var(--line);overflow:hidden}
 .ifc-yaxis{position:absolute;left:0;top:20px;bottom:32px;width:48px;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--ink-faint)}
 .ifc-ylabel{position:absolute;right:5px;transform:translateY(50%);white-space:nowrap}
-.ifc-gridlines{position:absolute;left:54px;right:8px;top:20px;bottom:32px;pointer-events:none}
+.ifc-paxis{position:absolute;right:0;top:20px;bottom:32px;width:40px;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--ink-faint)}
+.ifc-plabel{position:absolute;left:5px;transform:translateY(50%);white-space:nowrap}
+.ifc-gridlines{position:absolute;left:54px;right:48px;top:20px;bottom:32px;pointer-events:none}
 .ifc-gridline{position:absolute;left:0;right:0;border-top:1px solid var(--line-soft)}
-.ifc-groups{position:absolute;left:54px;right:8px;top:20px;bottom:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ifc-groups{position:absolute;left:54px;right:48px;top:20px;bottom:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .ifc-year-group{min-width:0;display:flex;flex-direction:column}
 .ifc-bars{height:278px;display:flex;align-items:flex-end;justify-content:center;gap:5px;padding:24px 3px 0}
 .ifc-bar-wrap{height:100%;flex:1;max-width:34px;position:relative;min-width:6px}
@@ -341,11 +382,57 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .ifc-seg-wc{width:100%;background:repeating-linear-gradient(135deg,rgba(223,229,240,.82) 0 2px,var(--bar-color) 2px 5px);opacity:.68;border-bottom:1px solid rgba(223,229,240,.55)}
 .ifc-value{position:absolute;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;color:var(--ink-mid);white-space:nowrap;direction:ltr;line-height:1}
 .ifc-year{height:32px;padding-top:7px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--ink-dim)}
+.ifc-line-layer{position:absolute;left:54px;right:48px;top:20px;bottom:32px;pointer-events:none;z-index:4}
+.ifc-line-svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible;z-index:1}
+.ifc-line-path{fill:none;stroke:var(--line-color);stroke-width:3.1;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.96;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--line-color) 45%,transparent))}
+.ifc-line-dot{position:absolute;z-index:2;width:10px;height:10px;border-radius:50%;background:var(--line-color);border:2px solid var(--line-color);box-shadow:0 0 0 1px color-mix(in srgb,var(--line-color) 70%,transparent);transform:translate(-50%,-50%)}
+.ifc-line-value{position:absolute;transform:translate(-50%,-18px);font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:800;color:var(--line-color);white-space:nowrap;direction:ltr;text-shadow:0 1px 2px var(--bg)}
 .ifc-wc-key{display:flex;align-items:flex-start;gap:8px;margin-top:12px;font-size:11.5px;line-height:1.5;color:var(--ink-dim)}
 .ifc-wc-key .ifc-pattern{width:14px;height:14px;flex-shrink:0;border-radius:3px;background:repeating-linear-gradient(135deg,rgba(223,229,240,.82) 0 2px,var(--hud) 2px 5px);opacity:.72}
 .fleet-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 .peer-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media(max-width:680px){.ifc-head{align-items:flex-start;flex-direction:column}.ifc-body{height:310px;padding-left:43px}.ifc-yaxis{width:39px}.ifc-gridlines,.ifc-groups{left:43px}.ifc-groups{gap:4px}.ifc-bars{height:258px;gap:2px;padding-left:1px;padding-right:1px}.ifc-bar-wrap{max-width:25px}.ifc-value{font-size:6.8px}.ifc[data-count="2"] .ifc-bar-wrap:nth-child(2) .ifc-value,.ifc[data-count="3"] .ifc-bar-wrap:nth-child(3) .ifc-value,.ifc[data-count="4"] .ifc-bar-wrap:nth-child(4) .ifc-value,.ifc[data-count="5"] .ifc-bar-wrap:nth-child(even) .ifc-value{transform:translate(-50%,-10px)}.ifc-year{font-size:8.5px}.ifc-toggle{padding:6px 8px;font-size:10.5px}}
+.market-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.market-card{background:linear-gradient(135deg,var(--card),rgba(17,24,39,.72));border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative;overflow:hidden}
+.market-card::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:var(--hud)}
+.market-card.safran::before{background:var(--safran)}
+.market-card.copa::before{background:var(--copa)}
+.market-card h3{font-family:'JetBrains Mono',monospace;font-size:22px;letter-spacing:.2px;direction:ltr;margin-bottom:3px}
+.market-card .m-sub{font-size:12px;color:var(--ink-dim);margin-bottom:18px}
+.market-kpi{background:var(--card);border:1px solid var(--line-soft);border-radius:12px;padding:14px;min-height:92px}
+.market-kpi .mk-v{font-family:'JetBrains Mono',monospace;font-size:21px;font-weight:800;color:var(--ink);direction:ltr;line-height:1.1}
+.market-kpi .mk-k{font-size:11.5px;color:var(--ink-dim);line-height:1.35;margin-top:6px}
+.market-kpi.warn .mk-v{font-size:15px;color:var(--copa);white-space:normal;direction:rtl}
+.market-date{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-dim);border:1px solid var(--line);border-radius:20px;padding:5px 10px;background:var(--card)}
+.market-date::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--hud)}
+.market-table{width:100%;border-collapse:collapse;font-size:13px}
+.market-table th{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-dim);font-family:'JetBrains Mono',monospace;text-align:right;padding:0 0 9px;border-bottom:1px solid var(--line)}
+.market-table td{padding:11px 0;border-bottom:1px solid var(--line-soft);color:var(--ink-mid);vertical-align:top}
+.market-table td.n{font-family:'JetBrains Mono',monospace;color:var(--ink);direction:ltr;text-align:left;white-space:nowrap}
+.market-table tr:last-child td{border-bottom:none}
+.market-tag{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:5px 9px;font-size:11.5px;color:var(--ink-mid);margin:0 0 6px 6px}
+.market-tag.ok{border-color:rgba(79,209,197,.28);color:var(--hud);background:var(--hud-soft)}
+.market-tag.wait{border-color:rgba(240,172,52,.25);color:var(--copa);background:var(--copa-soft)}
+.market-chart{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-height:420px}
+.market-chart-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:16px}
+.market-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.market-toggle,.market-file{border:1px solid var(--line);background:var(--card-2);color:var(--ink-mid);font-family:'Heebo',sans-serif;font-size:12px;font-weight:700;border-radius:9px;padding:7px 10px;cursor:pointer}
+.market-toggle[aria-pressed="true"]{background:var(--hud-soft);border-color:rgba(79,209,197,.34);color:var(--hud)}
+.market-file{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+.market-file input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.market-chart-box{position:relative;height:310px;border:1px solid var(--line-soft);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);overflow:hidden}
+.market-chart-box svg{width:100%;height:100%;display:block}
+.market-empty{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;color:var(--ink-dim);font-size:13px;line-height:1.6;pointer-events:none}
+.market-empty b{color:var(--ink)}
+.market-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;font-size:11.5px;color:var(--ink-dim)}
+.market-legend span{display:inline-flex;align-items:center;gap:6px}
+.market-legend i{width:18px;height:3px;border-radius:3px;background:var(--hud);display:inline-block}
+.market-corr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.market-corr .corr-cell{border:1px solid var(--line-soft);border-radius:11px;padding:12px;background:rgba(255,255,255,.02)}
+.market-corr .corr-v{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--ink);direction:ltr}
+.market-corr .corr-k{font-size:11px;color:var(--ink-dim);margin-top:4px}
+.market-note{font-size:12px;color:var(--ink-dim);line-height:1.55;margin-top:13px;border-top:1px solid var(--line-soft);padding-top:12px}
+.market-status{font-size:11.5px;color:var(--ink-dim);font-family:'JetBrains Mono',monospace;direction:ltr;text-align:left}
+@media(max-width:680px){.ifc-head{align-items:flex-start;flex-direction:column}.ifc-body{height:310px;padding-left:43px;padding-right:36px}.ifc-yaxis{width:39px}.ifc-paxis{width:32px;font-size:7.5px}.ifc-gridlines,.ifc-groups,.ifc-line-layer{left:43px;right:36px}.ifc-groups{gap:4px}.ifc-bars{height:258px;gap:2px;padding-left:1px;padding-right:1px}.ifc-bar-wrap{max-width:25px}.ifc-value{font-size:6.8px}.ifc-line-dot{width:7px;height:7px}.ifc-line-value{font-size:6.8px;transform:translate(-50%,-16px)}.ifc[data-count="2"] .ifc-bar-wrap:nth-child(2) .ifc-value,.ifc[data-count="3"] .ifc-bar-wrap:nth-child(3) .ifc-value,.ifc[data-count="4"] .ifc-bar-wrap:nth-child(4) .ifc-value,.ifc[data-count="5"] .ifc-bar-wrap:nth-child(even) .ifc-value{transform:translate(-50%,-10px)}.ifc-year{font-size:8.5px}.ifc-toggle{padding:6px 8px;font-size:10.5px}}
 .dmatrix{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
 .dm{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;text-align:center;position:relative;overflow:hidden}
 .dm::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
@@ -382,7 +469,7 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 html:not(.js) .reveal{opacity:1;transform:none}
-@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw,.fc-grid,.fc-more-grid{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section,body.presentation-mode .section{padding:48px 0}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:8px}.brand span{display:none}.nav-links{flex:1}.nav-links a{padding:7px 9px}.view-switch button{padding:5px 7px;font-size:11px}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}.fc-head{flex-direction:column}.fc-grid{gap:22px}.fc-more-grid{gap:20px}}
+@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw,.fc-grid,.fc-more-grid,.market-kpis,.market-corr{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section,body.presentation-mode .section{padding:48px 0}.sec-head{grid-template-columns:48px minmax(0,1fr);column-gap:14px}.sec-eyebrow .num{font-size:33px}.subchapter{margin-top:44px}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:8px}.brand span{display:none}.nav-links{flex:1}.nav-links a{padding:7px 9px}.view-switch button{padding:5px 7px;font-size:11px}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}.fc-head{flex-direction:column}.fc-grid{gap:22px}.fc-more-grid{gap:20px}.geo-head{flex-direction:column}.geo-badge{align-self:flex-start}.market-chart-head{flex-direction:column}.market-chart-box{height:280px}}
 @media(max-width:600px){.nav-inner{padding:0 12px}.brand{gap:0}.brand b{display:none}.nav-links a{padding:7px 8px}}
 body{max-width:100%;overflow-x:hidden}
 table,svg,img{max-width:100%}
@@ -401,7 +488,7 @@ table,svg,img{max-width:100%}
 .cfb .cfb-k{font-size:11.5px;color:var(--ink-mid);line-height:1.4}
 .cfb .cfb-op{display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--ink-dim);flex:0 0 16px;min-width:16px}
 @media(max-width:880px){.cfb .cfb-op{display:none}.cfb .cfb-step{min-width:calc(50% - 8px)}}
-@media(max-width:560px){.g4{grid-template-columns:1fr 1fr}.hero-stats{gap:20px}.three{grid-template-columns:1fr}.brand b{font-size:12.5px}.view-switch button{padding:5px 6px}}
+@media(max-width:560px){.g4{grid-template-columns:1fr 1fr}.hero-stats{gap:20px}.three{grid-template-columns:1fr}.brand b{font-size:12.5px}.view-switch button{padding:5px 6px}.sec-head{grid-template-columns:38px minmax(0,1fr);column-gap:11px}.sec-eyebrow .num{font-size:28px}.sec-eyebrow .label{font-size:9.5px;letter-spacing:1.3px}.sec-eyebrow .label::after{width:34px}.subchapter{grid-template-columns:36px minmax(0,1fr);gap:11px;margin-top:38px;padding-top:18px}.subchapter .sc-index{font-size:18px}.subchapter h3{font-size:21px}.geo-panel{padding:17px}.geo-row{grid-template-columns:44px minmax(0,1fr);gap:8px}.geo-track{height:30px}.geo-seg{font-size:9px}.geo-legend{gap:8px 12px}.geo-key{font-size:10.5px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 :focus-visible{outline:2px solid var(--hud);outline-offset:3px;border-radius:4px}
 .spine{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr 20px 1fr;align-items:stretch;margin:30px 0 4px}
@@ -504,9 +591,11 @@ Presentation Path (7-10 minutes):
 01 Thesis -> 02 Why Now -> 03 Supply -> 04 Value Chain
 -> 05 Safran -> 06 Copa -> 07 Valuation, Risks & Monitoring
 Use "Research" mode for supporting diligence and Q&A.
+Use "Market Data" mode for live market checks, price momentum and correlation work.
 -->
 <body class="presentation-mode">
 
+<div id="pageProgress" aria-hidden="true"></div>
 <nav class="nav">
   <div class="nav-inner">
     <div class="brand">
@@ -517,6 +606,7 @@ Use "Research" mode for supporting diligence and Q&A.
     <div class="view-switch" role="group" aria-label="רמת פירוט">
       <button type="button" data-view="presentation" aria-pressed="true">הצגה</button>
       <button type="button" data-view="research" aria-pressed="false">מחקר</button>
+      <button type="button" data-view="market" aria-pressed="false">נתוני שוק</button>
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#thesis">הרעיון</a>
@@ -529,6 +619,7 @@ Use "Research" mode for supporting diligence and Q&A.
       <a href="#safran">Safran</a>
       <a href="#copa">Copa</a>
       <a href="#decision">תרחישים וסיכונים</a>
+      <a class="market-only" href="#market">נתוני שוק</a>
     </div>
   </div>
 </nav>
@@ -597,7 +688,7 @@ Use "Research" mode for supporting diligence and Q&A.
   </div>
 </section>
 
-<section class="section research-only" id="demand">
+<section class="section research-only band-alt" id="demand">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">R1</span><span class="label" style="color:var(--hud)">Demand Diligence</span><span class="rule"></span></div>
@@ -674,7 +765,7 @@ Use "Research" mode for supporting diligence and Q&A.
   </div>
 </section>
 
-<section class="section" id="macro">
+<section class="section band-alt" id="macro">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">02</span><span class="label">Why Now</span><span class="rule"></span></div>
@@ -802,7 +893,7 @@ Use "Research" mode for supporting diligence and Q&A.
   </div>
 </section>
 
-<section class="section" id="supply">
+<section class="section band-alt" id="supply">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">04</span><span class="label">Supply Constraint</span><span class="rule"></span></div>
@@ -932,7 +1023,7 @@ Use "Research" mode for supporting diligence and Q&A.
   </div>
 </section>
 
-<section class="section" id="safran">
+<section class="section band-alt" id="safran">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">06</span><span class="label" style="color:var(--safran)">Quality Case</span><span class="rule"></span></div>
@@ -948,11 +1039,36 @@ Use "Research" mode for supporting diligence and Q&A.
       </div>
       <span class="co-role s">Quality</span>
     </div>
+    <div class="grid g2 reveal" style="align-items:start;margin-bottom:26px">
+      <div class="card pad-lg">
+        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>מגזרי פעילות, מיליארדי אירו 2025</div>
+        <div class="seg">
+          <div class="seg-row"><div class="seg-top"><span class="seg-name">הנעה · Propulsion</span><span class="seg-val">€15.7B <small>50%</small></span></div><div class="seg-track"><div class="seg-fill" data-w="100"></div></div></div>
+          <div class="seg-row"><div class="seg-top"><span class="seg-name">ציוד וביטחון · Equipment &amp; Defense</span><span class="seg-val">€12.3B <small>39%</small></span></div><div class="seg-track"><div class="seg-fill f2" data-w="78"></div></div></div>
+          <div class="seg-row"><div class="seg-top"><span class="seg-name">פנים מטוס · Aircraft Interiors</span><span class="seg-val">€3.4B <small>11%</small></span></div><div class="seg-track"><div class="seg-fill f3" data-w="22"></div></div></div>
+        </div>
+        <p class="fn-note" style="text-align:right;margin-top:18px">ליבת התזה בהנעה, כ-50% מהפעילות, בגלל זרם האחזקה והחלפים על כל מנוע מותקן. ה-Equipment מספק גם תכולה במטוסי רחב גוף, שם אין ל-Safran מנוע. האחוזים מחושבים מתוך סכום המגזרים המוצגים ובעיגול.</p>
+      </div>
+      <div class="card pad-lg" style="background:linear-gradient(135deg,var(--safran-soft),var(--card))">
+        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>החפיר העמוק</div>
+        <ul style="list-style:none">
+          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0;border-bottom:1px solid var(--line-soft)">זרם חלפים ושירותים לכל מנוע מותקן, עם נעילת לקוח לאורך חיי המנוע</li>
+          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0;border-bottom:1px solid var(--line-soft)">מבנה אוליגופולי, CFM מול פראט אנד וויטני בצרי גוף בלבד</li>
+          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0;border-bottom:1px solid var(--line-soft)">הסמכה רגולטורית של FAA ו-EASA</li>
+          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0">קניין רוחני בחומרים, מטלורגיה וחלקים חמים של המנוע</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout reveal" style="margin-bottom:26px"><div class="mk">⊕</div><p>Safran אינה מניית תעופה רגילה. היא חשיפה לחלפים, שירותים ומנועים, עם חסמי כניסה טכנולוגיים ורגולטוריים.</p></div>
     <div class="grid g4 reveal" style="margin-bottom:26px">
       <div class="readout"><div class="rv">€31.3<small>B</small></div><div class="rsub">+15% מ-2024</div><div class="rk">הכנסות 2025</div></div>
-      <div class="readout accent"><div class="rv">€5.2<small>B</small></div><div class="rsub">+26% מ-2024</div><div class="rk">רווח תפעולי חוזר, שולי 16.6%</div></div>
+      <div class="readout accent"><div class="rv">€5.2<small>B</small></div><div class="rsub">+26% מ-2024</div><div class="rk">רווח תפעולי, שולי 16.6%</div></div>
       <div class="readout"><div class="rv">€3.92<small>B</small></div><div class="rk">תזרים חופשי (FCF) 2025</div></div>
       <div class="readout"><div class="rv">1,802</div><div class="rsub">+28% מ-2024</div><div class="rk">מסירות LEAP 2025 (דרך CFM)</div></div>
+    </div>
+    <div class="subchapter safran reveal">
+      <span class="sc-index">01</span>
+      <div><span class="sc-kicker">Financials &amp; Outlook</span><h3>דוחות, תזרים וקונצנזוס קדימה</h3><p>מתחילים בביצוע ההיסטורי, מפרידים בין תזרים תפעולי להון חוזר, ואז בודקים אילו הנחות כבר נמצאות בתחזיות השוק.</p></div>
     </div>
     <div class="card pad-lg reveal history-card" style="margin-bottom:26px">
       <div class="card-title"><span class="tk" style="background:var(--safran)"></span>ביצועים פיננסיים, 2021 עד 2025, מיליוני אירו</div>
@@ -1020,7 +1136,7 @@ Use "Research" mode for supporting diligence and Q&A.
       <text x="46" y="32.0" text-anchor="start" font-size="8.5" fill="#6E7894">שולי תפעול</text>
       </svg>
       <div class="legacy-history-legend" style="display:flex;flex-wrap:wrap;gap:16px;margin:10px 0 2px;font-size:12px;color:var(--ink-mid)"><span>נתוני הגרף הישן</span></div>
-      <div class="lev-note"><b>המסקנה החדה:</b> בין 2021 ל-2025 ההכנסות צמחו בכ-20% בשנה והרווח התפעולי החוזר בכ-30% בשנה. התזרים התפעולי המדווח יותר מהוכפל ל-€5.72B, אך €1.07B ממנו הגיע מרוח גבית בהון החוזר; לפני השינוי בהון החוזר התזרים היה €4.65B. זהו מזומן אמיתי ממקדמות לקוחות, אך הוא תלוי בעיתוי ואינו בסיס נכון לבדו להערכת קצב הצמיחה.</div>
+      <div class="lev-note"><b>המסקנה החדה:</b> בין 2021 ל-2025 ההכנסות צמחו בכ-20% בשנה והרווח התפעולי בכ-30% בשנה. התזרים התפעולי המדווח יותר מהוכפל ל-€5.72B, אך €1.07B ממנו הגיע מרוח גבית בהון החוזר; לפני השינוי בהון החוזר התזרים היה €4.65B. זהו מזומן אמיתי ממקדמות לקוחות, אך הוא תלוי בעיתוי ואינו בסיס נכון לבדו להערכת קצב הצמיחה.</div>
       <p class="src-note">מקור: דוחות Safran הרשמיים לשנים 2021-2025. הכנסות, רווח תפעולי ורווח נקי מוצגים על בסיס מתואם; התזרים מוצג לפני ואחרי שינוי בהון החוזר. כל הנתונים באירו.</p>
       <div class="fc-panel" id="safran-forecast" style="--fc-color:var(--safran)">
         <div class="fc-head">
@@ -1050,8 +1166,9 @@ Use "Research" mode for supporting diligence and Q&A.
             </div>
           </div>
         </div>
-        <div class="lev-note" style="margin-top:16px;background:rgba(124,157,255,.07);border-color:rgba(124,157,255,.24)"><b>גשר המס שמסביר את הקפיצה:</b> הרווח למניה המתואם של €7.60 ב-2025 כולל היטל מס צרפתי חד-פעמי של €377 מיליון, כ-€0.90 למניה. בנטרולו מתקבל בסיס של כ-€8.50; מול תחזית FactSet של €10.19 ל-2026 מדובר בצמיחה של כ-20%, ולא בקפיצה תפעולית של 34%. זה מתיישב עם מעבר מרווח תפעולי חוזר של €5.20 מיליארד ב-2025 להנחיית החברה של €6.1-6.2 מיליארד ב-2026, בתמיכת הרכישה העצמית של מניות.</div>
+        <div class="lev-note" style="margin-top:16px;background:rgba(124,157,255,.07);border-color:rgba(124,157,255,.24)"><b>גשר המס שמסביר את הקפיצה:</b> הרווח למניה המתואם של €7.60 ב-2025 כולל היטל מס צרפתי חד-פעמי של €377 מיליון, כ-€0.90 למניה. בנטרולו מתקבל בסיס של כ-€8.50; מול תחזית FactSet של €10.19 ל-2026 מדובר בצמיחה של כ-20%, ולא בקפיצה תפעולית של 34%. זה מתיישב עם מעבר מרווח תפעולי של €5.20 מיליארד ב-2025 להנחיית החברה של €6.1-6.2 מיליארד ב-2026, בתמיכת הרכישה העצמית של מניות.</div>
         <p class="fc-note"><b>מה השוק מניח:</b> ההכנסות צפויות לצמוח בכ-11% בשנה עד 2028. הרווח למניה מציג צמיחה שנתית מדווחת של כ-22%, אך בנטרול בסיס המס החריג של 2025 הצמיחה המשתמעת היא כ-18%. לכן הצמיחה נשענת על שילוב של שיפור תפעולי, נרמול מס וצמצום מספר המניות, ולא רק על מינוף תפעולי. פספוס במסירות LEAP או בצמיחת שוק החלפים והשירותים יפגע גם ברווח וגם במכפיל.</p>
+        <p class="fc-note"><b>בסיס הקונצנזוס:</b> זו תחזית אנליסטים להכנסות ול-EPS מתואם, לא בהכרח צמיחה אורגנית כהגדרת החברה. המודל נשען בעיקר על מסירות LEAP, צמיחת aftermarket, שעות טיסה, מרווחים, מס, רכישה עצמית ו-FX.</p>
         <p class="src-note">מקורות: תוצאות Safran הרשמיות ל-2025 והנחיות החברה ל-2026; קונצנזוס FactSet להכנסות ולרווח למניה המתואם בשנים 2026E-2028E, נכון ליוני 2026. עוגן התמחור נותר תחזית FactSet של €12.30 למניה ל-2027.</p>
         <details class="fc-more">
           <summary>עוגנים תפעוליים רשמיים והקצאת הון</summary>
@@ -1060,11 +1177,11 @@ Use "Research" mode for supporting diligence and Q&A.
               <h4>2026 GUIDANCE</h4>
               <ul class="glist">
                 <li><span class="gl-k">צמיחת הכנסות</span><span class="gl-v">12%-15%</span></li>
-                <li><span class="gl-k">רווח תפעולי חוזר</span><span class="gl-v">€6.1-6.2B</span></li>
+                <li><span class="gl-k">רווח תפעולי</span><span class="gl-v">€6.1-6.2B</span></li>
                 <li><span class="gl-k">תזרים חופשי</span><span class="gl-v">€4.4-4.6B</span></li>
                 <li><span class="gl-k">מסירות LEAP</span><span class="gl-v">+~15%</span></li>
               </ul>
-              <p class="fc-note">העוגן התפעולי הרשמי: רווח תפעולי חוזר של €5.20B ב-2025, הנחיה של €6.1-6.2B ב-2026 ויעד של €7.0-7.5B ב-2028. אמצע תחזית ה-FCF גבוה בכ-7% מקונצנזוס השוק הישן, והחברה מכוונת לכ-€21B תזרים חופשי מצטבר בשנים 2024-2028.</p>
+              <p class="fc-note">העוגן התפעולי הרשמי: רווח תפעולי של €5.20B ב-2025, הנחיה של €6.1-6.2B ב-2026 ויעד של €7.0-7.5B ב-2028. אמצע תחזית ה-FCF גבוה בכ-7% מקונצנזוס השוק הישן, והחברה מכוונת לכ-€21B תזרים חופשי מצטבר בשנים 2024-2028.</p>
             </div>
             <div class="fc-more-block">
               <h4>CAPITAL ALLOCATION</h4>
@@ -1103,11 +1220,15 @@ Use "Research" mode for supporting diligence and Q&A.
             <tr><td class="metric-name">מרווח FCF ממונף <span style="font-size:8.5px;font-family:'JetBrains Mono',monospace;background:rgba(227,101,101,.18);color:var(--neg);padding:1px 5px;border-radius:4px">צמיחה</span><span class="en-m">Levered FCF margin</span></td><td class="n" style="background:rgba(227,101,101,.06);color:var(--neg)">-5.5%</td><td class="n">6.2%</td><td class="n">14.4%</td></tr>
           </tbody>
         </table>
-        <div class="lev-note warnote"><b>זהירות, קרא נכון את המספרים:</b> ה-ROE של 57% והמרווח הנקי של 23% (וגם התשואה על הנכסים) <b>מנופחים זמנית</b> על ידי קפיצת הרווח הנקי החריגה של 2025, אותו שערוך גידור מטבע חיובי שראינו בגרף. העלייה של 440% ב-ROE ושל 494% במרווח הנקי מול הממוצע ההיסטורי היא ארטיפקט חשבונאי, לא שיפור תפעולי. אל תציג אותה כרווחיות בת-קיימא. ה-FCF השלילי, כמו אצל Copa, הוא השקעה במחזור צמיחה.</div>
+        <div class="lev-note warnote"><b>קריאת הנתונים:</b> ה-ROE של 57%, המרווח הנקי של 23% והתשואה על הנכסים <b>מנופחים זמנית</b> על ידי קפיצת הרווח הנקי החריגה של 2025, אותו שערוך גידור מטבע חיובי שראינו בגרף. העלייה החדה מול הממוצע ההיסטורי משקפת בעיקר ארטיפקט חשבונאי, לא שיפור תפעולי מתמשך. מרווח ה-FCF הממונף השלילי הוא מדד TTM חיצוני ואינו מחליף את ה-FCF הרשמי של החברה, שהיה חיובי ב-2025.</div>
         <div class="lev-note"><b>מה כן נקי ובר-קיימא:</b> Safran מנצחת את חציון הסקטור בכל רמות הרווח, הגולמי, התפעולי וה-EBITDA, ובו זמנית <b>משתפרת מול עצמה</b>: המרווח התפעולי גבוה בכ-20% מהממוצע לחמש שנים. זה בדיוק העומק שחסר: רמה גבוהה לצד מגמת שיפור, על בסיס מדדים נקיים מרעש ה-FX.</div>
       </div>
     </details>
-    <h3 class="card-title reveal" style="margin-top:34px;font-size:15px"><span class="tk" style="background:var(--safran)"></span>מול מי נכון לבחון את <bdi dir="ltr">Safran</bdi>?</h3>
+    <div class="subchapter safran reveal">
+      <span class="sc-index">02</span>
+      <div><span class="sc-kicker">Peers &amp; Benchmark</span><h3>קבוצת ההשוואה: GE ו-Thales</h3><p>אחרי שמבינים את מבנה הפעילות והחפיר, בודקים מול מי נכון להשוות: GE במנועים ו-aftermarket, ו-Thales כחלופת ביטחון אירופית.</p></div>
+    </div>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--safran)"></span>מול מי נכון לבחון את <bdi dir="ltr">Safran</bdi>?</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px"><bdi dir="ltr">GE Aerospace</bdi> היא ההשוואה הישירה במנועים וב-aftermarket, וגם השותפה של <bdi dir="ltr">Safran</bdi> ב-<bdi dir="ltr">CFM</bdi>. <bdi dir="ltr">Thales</bdi> אינה מתחרה ישירה במנועים, אלא חלופת השקעה אירופית באוויוניקה, ביטחון וחלל. ההפרדה הזו מונעת השוואת חברות שונות כאילו היו אותה חשיפה.</p>
     <div class="grid peer-grid reveal" style="gap:12px;margin-bottom:14px">
       <div class="readout s" style="padding:17px">
@@ -1126,7 +1247,7 @@ Use "Research" mode for supporting diligence and Q&A.
         <div class="rk"><bdi dir="ltr"><b style="color:var(--ink)">Thales</b></bdi> · חשיפה נקייה יותר לביטחון, אלקטרוניקה וסייבר</div>
       </div>
     </div>
-    <div class="lev-note reveal" style="margin-bottom:14px;background:rgba(124,157,255,.07);border-color:rgba(124,157,255,.28)"><b>מסקנת הבחירה:</b> Safran אינה הזולה ביותר, זו Thales, ואינה בעלת המרווח הגבוה ביותר, זו GE. היא הבחירה המתאימה ביותר לתזה משום שהיא משלבת צמיחה ותזרים גבוהים עם החשיפה הישירה ביותר למחזור צרי-הגוף ולזרם ההכנסות החוזר של CFM, בתמחור נמוך מ-GE אך גבוה מ-Thales.</div>
+    <div class="lev-note reveal" style="margin-bottom:14px;background:rgba(124,157,255,.07);border-color:rgba(124,157,255,.28)"><b>מסקנת הבחירה:</b> Safran אינה הזולה ביותר, זו Thales, ואינה בעלת המרווח הגבוה ביותר, זו GE. היא הבחירה המתאימה ביותר לתזה משום שהיא משלבת צמיחה ותזרים גבוהים עם החשיפה הישירה ביותר למחזור צרי-הגוף ולזרם ההכנסות החוזר של CFM. אומדני השוק מציבים אותה תמחורית בין השתיים, אך ההחלטה אינה נשענת על פער מכפילים שלא נורמל לאותה שנת תחזית.</div>
     <details class="xcompare reveal" style="margin-bottom:26px">
       <summary><span style="display:flex;align-items:center;gap:11px"><span class="xc-ic">+</span><span>טבלת השוואה מלאה בין שלוש החברות<br><span class="xc-hint"><bdi dir="ltr">Safran · GE Aerospace · Thales</bdi> · פעילות, צמיחה, תחזית, תמחור וסיכון</span></span></span></summary>
       <div class="xc-body">
@@ -1137,51 +1258,74 @@ Use "Research" mode for supporting diligence and Q&A.
             <tr><td class="metric-name">הכנסות 2025</td><td class="n" style="background:rgba(124,157,255,.06)">€31.3B</td><td class="n">$42.3B מתואם</td><td class="n">€22.1B</td></tr>
             <tr><td class="metric-name">צמיחת הכנסות 2025</td><td class="n" style="background:rgba(124,157,255,.06)">14.8% אורגני</td><td class="n">21% מתואם</td><td class="n">8.8% אורגני</td></tr>
             <tr><td class="metric-name">רבעון 1, 2026</td><td class="n" style="background:rgba(124,157,255,.06)">€8.62B<br><span class="en-m">+23% organic</span></td><td class="n">$11.6B מתואם<br><span class="en-m">+29%</span></td><td class="n">€5.32B<br><span class="en-m">+9.7% organic</span></td></tr>
-            <tr><td class="metric-name">תחזית 2026</td><td style="background:rgba(124,157,255,.06)">צמיחת הכנסות <span class="mono">12%-15%</span>; רווח חוזר <span class="mono">€6.1-6.2B</span>; FCF <span class="mono">€4.4-4.6B</span></td><td>מנועים מסחריים: צמיחה סביב <span class="mono">15%</span>; רווח תפעולי <span class="mono">$9.6-9.9B</span></td><td>צמיחה אורגנית <span class="mono">6%-7%</span>; מרווח EBIT מתואם <span class="mono">12.6%-12.8%</span></td></tr>
+            <tr><td class="metric-name">תחזית 2026</td><td style="background:rgba(124,157,255,.06)">צמיחת הכנסות <span class="mono">12%-15%</span>; רווח תפעולי <span class="mono">€6.1-6.2B</span>; FCF <span class="mono">€4.4-4.6B</span></td><td>מנועים מסחריים: צמיחה סביב <span class="mono">15%</span>; רווח תפעולי <span class="mono">$9.6-9.9B</span></td><td>צמיחה אורגנית <span class="mono">6%-7%</span>; מרווח EBIT מתואם <span class="mono">12.6%-12.8%</span></td></tr>
             <tr><td class="metric-name">מנוע הרווח</td><td style="background:rgba(124,157,255,.06)">CFM56, LEAP, חלפים, ביקורי מוסך ושירותי מנועים</td><td>בסיס מותקן גדול, שירותים, CFM ומנועי רחבי-גוף עצמאיים</td><td>תקציבי ביטחון, מכ"מים, אוויוניקה, תקשורת וסייבר</td></tr>
-            <tr><td class="metric-name">תמחור יחסי, בקירוב</td><td class="n" style="background:rgba(124,157,255,.06)"><span class="mono">~27×</span> על <span class="mono">2027E</span> מתואם</td><td class="n"><span class="mono">~37×-39×</span> קדימה</td><td class="n"><span class="mono">~18.5×</span> קדימה</td></tr>
+            <tr><td class="metric-name">P/E מוצג, בקירוב</td><td class="n" style="background:rgba(124,157,255,.06)"><span class="mono">27.2×</span> על <span class="mono">2027E</span> מתואם</td><td class="n"><span class="mono">~37×-39×</span> אומדן שוק קדימה</td><td class="n"><span class="mono">~18.5×</span> אומדן שוק קדימה</td></tr>
             <tr><td class="metric-name">הסיכון המרכזי</td><td>מכפיל מלא, שרשרת אספקה וקצב מסירות LEAP</td><td>התמחור הגבוה ביותר וביצוע תעשייתי במנועים חדשים</td><td>תלות בתקציבי ממשלות וביצוע פרויקטים גדולים</td></tr>
           </tbody>
         </table>
-        <div class="lev-note"><b>זהירות בהשוואת המכפילים:</b> Safran מוצגת על EPS מתואם ל-2027, בעוד מכפילי GE ו-Thales הם אומדני שוק קדימה ועלולים להשתמש בשנת תחזית ובהתאמות שונות. לכן הם משמשים להשוואת כיוון, לא כיחס מדויק לחלוטין.</div>
+        <div class="lev-note"><b>הסתייגות מתודולוגית:</b> עוגן התמחור היחיד של Safran בדשבורד הוא EPS מתואם ל-2027 ומכפיל 27.2. מכפילי GE ו-Thales הם אומדני שוק קדימה ועלולים להשתמש בשנת תחזית ובהתאמות שונות, ולכן הם מוצגים להקשר בלבד ואינם נכנסים לחישוב מחיר היעד.</div>
         <p class="src-note">מקורות תפעוליים: תוצאות 2025 ורבעון 1, 2026 של Safran, GE Aerospace ו-Thales. נתוני התמחור מקורבים ל-26 ביוני 2026 ודורשים עדכון לפני הצגה.</p>
       </div>
     </details>
-    <div class="grid g2 reveal" style="align-items:start;margin-bottom:26px">
-      <div class="card pad-lg">
-        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>מגזרי פעילות, מיליארדי אירו 2025</div>
-        <div class="seg">
-          <div class="seg-row"><div class="seg-top"><span class="seg-name">הנעה · Propulsion</span><span class="seg-val">€15.7B</span></div><div class="seg-track"><div class="seg-fill" data-w="100"></div></div></div>
-          <div class="seg-row"><div class="seg-top"><span class="seg-name">ציוד וביטחון · Equipment &amp; Defense</span><span class="seg-val">€12.3B</span></div><div class="seg-track"><div class="seg-fill f2" data-w="78"></div></div></div>
-          <div class="seg-row"><div class="seg-top"><span class="seg-name">פנים מטוס · Aircraft Interiors</span><span class="seg-val">€3.4B</span></div><div class="seg-track"><div class="seg-fill f3" data-w="22"></div></div></div>
+    <div class="geo-panel safran research-only reveal" id="safran-geography">
+      <div class="geo-head">
+        <div class="geo-title">
+          <h4>פיזור הכנסות לפי המיקום הגיאוגרפי של הלקוח</h4>
+          <p>הכנסות מתואמות · אחוז מהכנסות הקבוצה · 2024 מול 2025</p>
         </div>
-        <p class="fn-note" style="text-align:right;margin-top:18px">ליבת התזה בהנעה, בגלל זרם האחזקה והחלפים על כל מנוע מותקן. ה-Equipment מספק גם תכולה במטוסי רחב גוף, שם אין ל-Safran מנוע.</p>
+        <span class="geo-badge">RESEARCH · GEOGRAPHY</span>
       </div>
-      <div class="card pad-lg" style="background:linear-gradient(135deg,var(--safran-soft),var(--card))">
-        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>החפיר העמוק</div>
-        <ul style="list-style:none">
-          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0;border-bottom:1px solid var(--line-soft)">זרם חלפים ושירותים לכל מנוע מותקן, עם נעילת לקוח לאורך חיי המנוע</li>
-          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0;border-bottom:1px solid var(--line-soft)">מבנה אוליגופולי, CFM מול פראט אנד וויטני בצרי גוף בלבד</li>
-          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0;border-bottom:1px solid var(--line-soft)">הסמכה רגולטורית של FAA ו-EASA</li>
-          <li style="font-size:13.5px;color:var(--ink-mid);padding:9px 0">קניין רוחני בחומרים, מטלורגיה וחלקים חמים של המנוע</li>
-        </ul>
+      <div class="geo-years" role="img" aria-label="פיזור הכנסות Safran לפי אזור בשנים 2024 ו-2025">
+        <div class="geo-row">
+          <span class="geo-year">2024</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:19%;background:#7C9DFF" title="צרפת: 19%">19%</span>
+            <span class="geo-seg" style="width:23%;background:#4FD1C5" title="אירופה ללא צרפת: 23%">23%</span>
+            <span class="geo-seg" style="width:33%;background:#F0AC34" title="אמריקה: 33%">33%</span>
+            <span class="geo-seg" style="width:16%;background:#46C28C" title="אסיה-פסיפיק: 16%">16%</span>
+            <span class="geo-seg" style="width:9%;background:#B98CF5" title="אפריקה והמזרח התיכון: 9%">9%</span>
+          </div>
+        </div>
+        <div class="geo-row">
+          <span class="geo-year">2025</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:19%;background:#7C9DFF" title="צרפת: 19%">19%</span>
+            <span class="geo-seg" style="width:23%;background:#4FD1C5" title="אירופה ללא צרפת: 23%">23%</span>
+            <span class="geo-seg" style="width:29%;background:#F0AC34" title="אמריקה: 29%">29%</span>
+            <span class="geo-seg" style="width:19%;background:#46C28C" title="אסיה-פסיפיק: 19%">19%</span>
+            <span class="geo-seg" style="width:10%;background:#B98CF5" title="אפריקה והמזרח התיכון: 10%">10%</span>
+          </div>
+        </div>
       </div>
+      <div class="geo-legend">
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#7C9DFF"></span>צרפת</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#4FD1C5"></span>אירופה ללא צרפת</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#F0AC34"></span>אמריקה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#46C28C"></span>אסיה-פסיפיק</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#B98CF5"></span>אפריקה והמזרח התיכון</span>
+      </div>
+      <div class="geo-takeaway"><b>הקריאה האנליטית:</b> הפיזור הגיאוגרפי רחב ויציב. חלקה של אמריקה ירד מ-33% ל-29%, בעוד אסיה-פסיפיק עלתה מ-16% ל-19%; ארה"ב לבדה היוותה 22% מהכנסות 2025 לעומת 25% ב-2024. עם זאת, פיזור גיאוגרפי אינו פיזור לקוחות: שני לקוחות, שכל אחד מהם מעל 10% מההכנסות, ייצרו יחד €9.53 מיליארד, כ-30% מהקבוצה, ושני שלישים מסכום זה היו במגזר ההנעה.</div>
+      <p class="geo-source">מקור: <a href="https://www.safran-group.com/download/media/450394" target="_blank" rel="noopener">Safran, consolidated financial statements 2025, notes 4.2-4.3</a>.</p>
     </div>
-    <div class="callout reveal"><div class="mk">⊕</div><p>Safran אינה מניית תעופה רגילה. היא חשיפה לחלפים, שירותים ומנועים, עם חסמי כניסה טכנולוגיים ורגולטוריים.</p></div>
 
-    <h3 class="card-title reveal" style="margin-top:38px;font-size:15px"><span class="tk" style="background:var(--safran)"></span>באיזה רווח נכון לתמחר את Safran?</h3>
-    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">Safran מדווחת לפי IFRS, ושערוכי ספר גידור המטבע יוצרים תנודתיות חדה ברווח המדווח שאינה משקפת את הפעילות השוטפת. לכן אני מתמחר על בסיס EPS מתואם, רווח תפעולי חוזר ותזרים חופשי. המכפיל העתידי המתואם רלוונטי; מכפיל או PEG המבוססים על הרווח המדווח אינם בסיס השוואה נקי.</p>
+    <div class="subchapter safran reveal">
+      <span class="sc-index">03</span>
+      <div><span class="sc-kicker">Earnings Quality &amp; Valuation</span><h3>איכות הרווח והתמחור</h3><p>מנטרלים את רעש הגידור, בוחרים בסיס EPS עקבי ומפרידים בין מכפיל השוק הנוכחי לבין מכפיל היעד בתרחיש.</p></div>
+    </div>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--safran)"></span>באיזה רווח נכון לתמחר את Safran?</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">Safran מדווחת לפי IFRS, ושערוכי ספר גידור המטבע יוצרים תנודתיות חדה ברווח המדווח שאינה משקפת את הפעילות השוטפת. לכן אני מתמחר על בסיס EPS מתואם, רווח תפעולי ותזרים חופשי. כל חישובי התמחור בדשבורד מעוגנים ב-EPS מתואם של €12.30 ל-2027: במחיר ייחוס של €334 מתקבל מכפיל של 27.2. מכפיל או PEG המבוססים על הרווח המדווח אינם בסיס השוואה נקי.</p>
     <div class="grid g3 reveal" style="margin-bottom:14px">
       <div class="readout neg"><div class="rv">€17.17</div><div class="rsub">2024: €(1.60)</div><div class="rk">EPS מדווח לפי IFRS: תנודתיות משערוכי גידור</div></div>
       <div class="readout accent"><div class="rv">€7.60</div><div class="rsub">2024: €7.37</div><div class="rk">EPS מתואם: בסיס עקבי לניתוח הפעילות</div></div>
-      <div class="readout"><div class="rv">~27<small>×</small></div><div class="rsub">€334 / €12.30 ב-2027E</div><div class="rk">מכפיל עתידי על EPS מתואם</div></div>
+      <div class="readout"><div class="rv">27.2<small>×</small></div><div class="rsub">€334 / €12.30 ב-2027E</div><div class="rk">מכפיל הבסיס האחיד בדשבורד</div></div>
     </div>
-    <div class="lev-note reveal"><b>המסקנה המתודולוגית:</b> Safran אינה זולה על בסיס הרווח הכלכלי. זו תזת איכות במכפיל מלא, ולכן השאלה היא האם צמיחת ה-aftermarket, מסירות LEAP והתזרים מצדיקים מכפיל של כ-27, ולא האם המכפיל המדווח נראה חד-ספרתי.</div>
+    <div class="lev-note reveal"><b>המסקנה המתודולוגית:</b> Safran אינה זולה על בסיס הרווח הכלכלי. תרחיש הבסיס שומר על מכפיל 27.2 ללא התרחבות מכפיל, ולכן מחיר היעד כמעט זהה למחיר הייחוס. זו תזת איכות שבה רוב הצמיחה כבר מתומחרת; אפסייד מהותי דורש רווח גבוה מהקונצנזוס, ולא רק עמידה בו.</div>
     <details class="fc-more reveal">
       <summary>פירוט חשבונאות הגידור ולמה ה-PEG המדווח אינו שימושי</summary>
       <div class="warn" style="margin-top:12px;border-color:rgba(124,157,255,.35);background:linear-gradient(120deg,var(--safran-soft),transparent 70%)">
         <div class="wk" style="background:var(--safran-soft);color:var(--safran);border-color:rgba(124,157,255,.4)">!</div>
-        <div><h4 style="color:var(--safran)">הגשר מהרווח המדווח לרווח הכלכלי</h4><p>השנים 2027 ו-2028 מגודרות במלואן בשער יורו-דולר של 1.12, עם חשיפה נטו של עד 17 מיליארד דולר בשנה. שערוך הנגזרים יכול ליצור קפיצות והפסדים ברווח המדווח בלי שינוי מקביל בביצוע התפעולי או בתזרים. לכן אין להשתמש ב-PEG או במכפיל המבוססים על EPS מדווח. העוגן התפעולי הוא רווח חוזר של 5.2 מיליארד יורו ב-2025 מול יעד של 7.0 עד 7.5 מיליארד יורו ב-2028.</p></div>
+        <div><h4 style="color:var(--safran)">הגשר מהרווח המדווח לרווח הכלכלי</h4><p>השנים 2027 ו-2028 מגודרות במלואן בשער יורו-דולר של 1.12, עם חשיפה נטו של עד 17 מיליארד דולר בשנה. שערוך הנגזרים יכול ליצור קפיצות והפסדים ברווח המדווח בלי שינוי מקביל בביצוע התפעולי או בתזרים. לכן אין להשתמש ב-PEG או במכפיל המבוססים על EPS מדווח. העוגן התפעולי הוא רווח תפעולי של 5.2 מיליארד יורו ב-2025 מול יעד של 7.0 עד 7.5 מיליארד יורו ב-2028.</p></div>
       </div>
     </details>
 
@@ -1194,16 +1338,20 @@ Use "Research" mode for supporting diligence and Q&A.
             <tr><td class="metric-name">מחיר</td><td class="n">~€334</td><td class="n sector">-</td></tr>
             <tr><td class="metric-name">שווי שוק</td><td class="n">~€140B</td><td class="n sector">-</td></tr>
             <tr><td class="metric-name">EV/EBITDA עתידי</td><td class="n">17.67</td><td class="n sector">12.09</td></tr>
-            <tr><td class="metric-name">מכפיל רווח מתואם</td><td class="n">~27× <span class="disc-tag prem">פרמיית איכות</span></td><td class="n sector">28.6×</td></tr>
+            <tr><td class="metric-name">P/E מתואם, 2027E</td><td class="n">27.2× <span class="disc-tag prem">פרמיית איכות</span></td><td class="n sector">28.6×*</td></tr>
             <tr><td class="metric-name">PEG על בסיס EPS מדווח</td><td class="n">לא רלוונטי</td><td class="n sector">-</td></tr>
           </tbody>
         </table>
-        <p class="fn-note" style="text-align:right;margin-top:14px">להשוואה: GE Aerospace נסחרת גבוה יותר, סביב 37x עד 39x מכפיל רווח עתידי.</p>
+        <p class="fn-note" style="text-align:right;margin-top:14px">* חציון הסקטור ואומדן GE מבוססים על נתוני שוק קדימה שאינם מנורמלים בהכרח ל-2027E; עוגן החישוב של Safran נשאר 27.2× על EPS מתואם ל-2027 בלבד.</p>
       </div>
       <div class="caveat" style="margin-top:0;grid-template-columns:1fr">
         <div class="cav q"><div class="cav-tag">Caveat · הסתייגות כנה</div><p>עוצמת Safran במנועים נשענת במידה רבה על שותפות CFM עם GE, שמובילה רכיבים מרכזיים בליבת הלחץ הגבוה. מחוץ למסגרת CFM היו ל-Safran כישלונות אזרחיים בעבר, ואין לה מנוע רחב גוף עצמאי.</p></div>
         <div class="cav a"><div class="cav-tag">Response · תשובה</div><p>CFM היא שותפות 50/50 עמוקה, חוזית ונעולה הדדית. Safran מחזיקה 50% באחד הנכסים החשובים בעולם מנועי הסילון, והבסיס המותקן מייצר לה חלק מובנה בזרם האחזקה לעשורים.</p></div>
       </div>
+    </div>
+    <div class="subchapter safran reveal">
+      <span class="sc-index">04</span>
+      <div><span class="sc-kicker">Growth Drivers</span><h3>מנועי הצמיחה והגיוון העסקי</h3><p>מסירות LEAP ושירותי מנועים הן הליבה; CFM, ציוד, ביטחון וחלל מוסיפים שכבות צמיחה וגיוון שצריך לבחון בנפרד.</p></div>
     </div>
     <div class="card pad-lg reveal" style="margin-bottom:14px">
       <div class="card-title"><span class="tk" style="background:var(--pos)"></span>מנועי הצמיחה, רבעון ראשון 2026</div>
@@ -1246,11 +1394,11 @@ Use "Research" mode for supporting diligence and Q&A.
         <tbody>
           <tr><td class="metric-name">הכנסות 2025</td><td class="n saf">€31.3B</td><td class="n ge">$42.3B</td></tr>
           <tr><td class="metric-name">צמיחת הכנסות</td><td class="n saf">+15%</td><td class="n ge">+21% מתואם</td></tr>
-          <tr><td class="metric-name">שולי רווח תפעולי</td><td class="n saf">16.6% חוזר</td><td class="n ge">21.4% מתואם (CES 26.6%)</td></tr>
+          <tr><td class="metric-name">שולי רווח תפעולי</td><td class="n saf">16.6%</td><td class="n ge">21.4% מתואם (CES 26.6%)</td></tr>
           <tr><td class="metric-name">תזרים חופשי (FCF)</td><td class="n saf">€3.9B</td><td class="n ge">$7.7B</td></tr>
           <tr><td class="metric-name">צבר הזמנות</td><td class="n saf">גבוה</td><td class="n ge">$190B</td></tr>
           <tr><td class="metric-name">מנועי רחב גוף עצמאיים</td><td class="n saf">אין, ציוד בלבד</td><td class="n ge">GEnx, GE9X, GE90</td></tr>
-          <tr><td class="metric-name">מכפיל רווח עתידי מתואם</td><td class="n saf">~27×</td><td class="n ge">~37×-39×</td></tr>
+          <tr><td class="metric-name">P/E מוצג</td><td class="n saf">27.2× על 2027E מתואם</td><td class="n ge">~37×-39× אומדן שוק קדימה</td></tr>
         </tbody>
       </table>
       <p class="fn-note" style="text-align:right;margin-top:14px">שתיהן רוכבות על אותו סופר-מחזור aftermarket. GE גדולה, רווחית ומגוונת יותר, אך יקרה יותר. Safran היא הדרך מחוץ לארה״ב לאחוז בחצי מזיכיון ה-CFM/LEAP במכפיל נמוך יותר, עם עסק ציוד וביטחון רחב.</p>
@@ -1327,6 +1475,10 @@ Use "Research" mode for supporting diligence and Q&A.
       <div class="readout"><div class="rv">$671.6<small>M</small></div><div class="rsub">+10% מ-2024</div><div class="rk">רווח נקי 2025</div></div>
       <div class="readout accent"><div class="rv">22.6<small>%</small></div><div class="rk">שולי תפעול 2025</div></div>
       <div class="readout"><div class="rv">88</div><div class="rsub">32 מדינות</div><div class="rk">יעדים</div></div>
+    </div>
+    <div class="subchapter copa reveal">
+      <span class="sc-index">01</span>
+      <div><span class="sc-kicker">Financials &amp; Balance Sheet</span><h3>דוחות, תחזיות וחוסן מאזני</h3><p>בוחנים את ההתאוששות מאז 2021, את איכות התזרים, את ציפיות הקונצנזוס ואת יכולת המאזן לספוג דלק והשקעות צי.</p></div>
     </div>
     <div class="card pad-lg reveal history-card" style="margin-bottom:26px">
       <div class="card-title"><span class="tk" style="background:var(--copa)"></span>ביצועים פיננסיים, 2021 עד 2025, מיליוני דולר</div>
@@ -1415,6 +1567,7 @@ Use "Research" mode for supporting diligence and Q&A.
           </div>
         </div>
         <p class="fc-note"><b>מה השוק מניח:</b> ב-2026 ההכנסות צפויות לעלות בכ-20.6%, אך ה-EPS בכ-0.4% בלבד. כלומר הקונצנזוס כבר מגלם שחיקת מרווחים; התאוששות הרווח נדחית ל-2027. זו נקודת המעקב המרכזית, לא רק קצב צמיחת הקיבולת.</p>
+        <p class="fc-note"><b>בסיס הקונצנזוס:</b> ב-Copa זה אינו “צמיחה אורגנית” במובן תעשייתי, אלא מודל של קיבולת, צי מטוסים, תפוסה, RASM, CASM, מחיר דלק, תחרות ומטבעות באמריקה הלטינית.</p>
         <p class="src-note">מקור: קונצנזוס אנליסטים, יוני 2026. תחזית EPS ל-2027 מבוססת על 9 אנליסטים; תחזית 2028 על 4 בלבד ולכן מוצגת כאינדיקציה, לא כעוגן התמחור המרכזי.</p>
         <details class="fc-more">
           <summary>הנחיות הנהלה, מאזן והחזר הון</summary>
@@ -1465,6 +1618,10 @@ Use "Research" mode for supporting diligence and Q&A.
       <div class="lev-note" style="margin-top:0"><b>המשמעות למשקיע:</b> בסיס בעלות של כ-78% מספק נכסים, בטוחות ושליטה בצי, בעוד רכיב החכירה שומר גמישות. מנגד, המעבר מ-127 למעל 200 מטוסים הופך את ה-Capex, מקדמות המטוסים ומימון ה-737 MAX למבחן מרכזי של התזה. המינוף הנמוך מאפשר את ההתרחבות, אך יש לעקוב שהקיבולת החדשה מתורגמת ל-RASM ולתזרים ולא רק לגידול בצי.</div>
       <p class="src-note">הערת בסיס: חלוקת הבעלות והחכירה היא ל-125 מטוסים נכון ל-31 בדצמבר 2025; סך הצי 127 נכון לסוף רבעון 1, 2026. יעד 2034 כולל צמיחה והחלפה של מטוסים ותיקים.</p>
     </div>
+    <div class="subchapter copa reveal">
+      <span class="sc-index">02</span>
+      <div><span class="sc-kicker">Moat &amp; Unit Economics</span><h3>החפיר, היחידות הכלכליות והתמחור</h3><p>האב בפנמה, צי אחיד ומשמעת עלויות נבחנים דרך RASM, CASM, מרווח היחידה והמכפיל שהשוק מוכן לשלם.</p></div>
+    </div>
     <div class="card pad-lg reveal" style="background:linear-gradient(135deg,var(--copa-soft),var(--card));margin-bottom:24px">
       <div class="card-title"><span class="tk" style="background:var(--copa)"></span>למה אמריקה הלטינית, ולמה Copa היא הדרך הנכונה</div>
       <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin-bottom:16px">האזור צומח מהר יותר מצפון אמריקה הבשלה, אך גם מסוכן יותר: מטבעות תנודתיים, הכנסה פנויה נמוכה ותחרות לואו קוסט. לכן לא קונים את האזור כגוש, אלא את המפעילה עם החפיר הברור, המאזן החזק והיחידות הכלכליות הטובות. Copa היא בדיוק זו.</p>
@@ -1501,15 +1658,21 @@ Use "Research" mode for supporting diligence and Q&A.
         </svg>
         <p class="fn-note" style="text-align:right;margin-top:8px">צי 737 אחיד, כ-375 טיסות יומיות, hub ממוקד. צריך לבנות hub שלם, לא רק לפתוח קו אחד.</p>
       </div>
-      <div class="card pad-lg">
-        <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אמינות תפעולית וצי</div>
-        <div class="grid g2" style="gap:12px;margin-bottom:14px">
-          <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">127</div><div class="rsub">סוף רבעון 1, 2026</div><div class="rk">מטוסי Boeing 737</div></div>
-          <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">~375</div><div class="rk">טיסות יומיות</div></div>
-          <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">89.0<small>%</small></div><div class="rk">ביצוע בזמן</div></div>
-          <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">99.80<small>%</small></div><div class="rk">השלמת טיסות</div></div>
+      <div>
+        <div class="card pad-lg" style="margin-bottom:14px">
+          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אמינות תפעולית וצי</div>
+          <div class="grid g2" style="gap:12px;margin-bottom:14px">
+            <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">127</div><div class="rsub">סוף רבעון 1, 2026</div><div class="rk">מטוסי Boeing 737</div></div>
+            <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">~375</div><div class="rk">טיסות יומיות</div></div>
+            <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">89.0<small>%</small></div><div class="rk">ביצוע בזמן</div></div>
+            <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">99.80<small>%</small></div><div class="rk">השלמת טיסות</div></div>
+          </div>
+          <p style="font-size:12.5px;color:var(--ink-dim);line-height:1.5">החפיר: צומת גיאוגרפי טבעי בין אמריקות, אפקט רשת מתחזק, מנהיגות עלות וחסמי כניסה גבוהים.</p>
         </div>
-        <p style="font-size:12.5px;color:var(--ink-dim);line-height:1.5">החפיר: צומת גיאוגרפי טבעי בין אמריקות, אפקט רשת מתחזק, מנהיגות עלות וחסמי כניסה גבוהים.</p>
+        <div class="card pad-lg" style="background:linear-gradient(135deg,var(--copa-soft),var(--card))">
+          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אפקט הרשת</div>
+          <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin:0">פנמה יושבת בצומת טבעי בין אמריקות. יותר יעדים יוצרים יותר חיבורים, יותר תנועה, ועוד הצדקה לפתיחת יעדים נוספים. החברה מחברת ערים שאין ביניהן מספיק ביקוש לטיסה ישירה.</p>
+        </div>
       </div>
     </div>
     <div class="card pad-lg reveal" style="margin-bottom:24px">
@@ -1520,6 +1683,7 @@ Use "Research" mode for supporting diligence and Q&A.
         <div class="ub exfuel"><span class="ub-val">5.8</span><div class="ub-bar" data-h="52"></div><span class="ub-lab">CASM ללא דלק</span><span class="ub-sub">יעילות מבנית נקייה</span></div>
       </div>
       <div class="unit-result"><span class="ur-eq">RASM 11.2 − CASM 8.6 =</span><span class="ur-v">2.6</span><span class="ur-eq">מרווח יחידה</span></div>
+      <div class="lev-note" style="margin-top:16px;background:var(--copa-soft);border-color:rgba(240,172,52,.3)"><b>חשוב לדעת: כלכלה למטוס</b> - על בסיס צי ממוצע פעיל מוערך ב-2025, כל מטוס ייצר בשנה כ-$31 מיליון הכנסות, כ-$7 מיליון רווח תפעולי וכ-$5.7 מיליון רווח נקי. לפי צי סוף שנה של 125 מטוסים הנתון למטוס נמוך מעט יותר, ולכן זה מדד סדר גודל ולא תחליף ל-RASM/CASM.</div>
       <p class="fn-note" style="margin-top:16px">רווח נקי לנוסע: כ-<strong style="color:var(--copa)">$35</strong>, מול ממוצע ענפי של כ-$4.50 לנוסע לפי IATA ל-2026.</p>
     </div>
     <div class="grid g2 reveal" style="align-items:start;margin-bottom:24px">
@@ -1538,17 +1702,63 @@ Use "Research" mode for supporting diligence and Q&A.
         </table>
       </div>
       <div>
-        <div class="card pad-lg" style="background:linear-gradient(135deg,var(--copa-soft),var(--card));margin-bottom:16px">
-          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אפקט הרשת</div>
-          <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6">פנמה יושבת בצומת טבעי בין אמריקות. יותר יעדים יוצרים יותר חיבורים, יותר תנועה, ועוד הצדקה לפתיחת יעדים נוספים. החברה מחברת ערים שאין ביניהן מספיק ביקוש לטיסה ישירה.</p>
-        </div>
         <div class="warn" style="margin-top:0">
           <div class="wk">!</div>
           <div><h4>סיכון מרכזי: דלק לא מגודר</h4><p>Copa אינה מגדרת דלק מעל 10 שנים. לכן היא <b>רגישה מאוד</b> לעלייה מחודשת בדלק. זו הסיבה לחלק מהדיסקאונט.</p></div>
         </div>
       </div>
     </div>
-    <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>Copa מול מתחרות ישירות: רווחיות שמתפצלת</h3>
+    <div class="geo-panel copa research-only reveal" id="copa-geography">
+      <div class="geo-head">
+        <div class="geo-title">
+          <h4>פיזור הכנסות לפי נקודת המכירה</h4>
+          <p>הכנסות תפעוליות · אחוז מההכנסות האזוריות · 2023 עד 2025</p>
+        </div>
+        <span class="geo-badge">RESEARCH · POINT OF SALE</span>
+      </div>
+      <div class="geo-years" role="img" aria-label="פיזור הכנסות Copa לפי נקודת מכירה בשנים 2023 עד 2025">
+        <div class="geo-row">
+          <span class="geo-year">2023</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:38.9%;background:#F0AC34" title="צפון אמריקה: 38.9%">38.9%</span>
+            <span class="geo-seg" style="width:36.1%;background:#4FD1C5" title="דרום אמריקה: 36.1%">36.1%</span>
+            <span class="geo-seg" style="width:23.3%;background:#7C9DFF" title="מרכז אמריקה: 23.3%">23.3%</span>
+            <span class="geo-seg" style="width:1.6%;background:#B98CF5" title="הקריביים: 1.6%"></span>
+          </div>
+        </div>
+        <div class="geo-row">
+          <span class="geo-year">2024</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:40.5%;background:#F0AC34" title="צפון אמריקה: 40.5%">40.5%</span>
+            <span class="geo-seg" style="width:35.9%;background:#4FD1C5" title="דרום אמריקה: 35.9%">35.9%</span>
+            <span class="geo-seg" style="width:22%;background:#7C9DFF" title="מרכז אמריקה: 22.0%">22.0%</span>
+            <span class="geo-seg" style="width:1.5%;background:#B98CF5" title="הקריביים: 1.5%"></span>
+          </div>
+        </div>
+        <div class="geo-row">
+          <span class="geo-year">2025</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:42.9%;background:#F0AC34" title="צפון אמריקה: 42.9%">42.9%</span>
+            <span class="geo-seg" style="width:36.1%;background:#4FD1C5" title="דרום אמריקה: 36.1%">36.1%</span>
+            <span class="geo-seg" style="width:19.6%;background:#7C9DFF" title="מרכז אמריקה: 19.6%">19.6%</span>
+            <span class="geo-seg" style="width:1.4%;background:#B98CF5" title="הקריביים: 1.4%"></span>
+          </div>
+        </div>
+      </div>
+      <div class="geo-legend">
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#F0AC34"></span>צפון אמריקה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#4FD1C5"></span>דרום אמריקה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#7C9DFF"></span>מרכז אמריקה, כולל פנמה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#B98CF5"></span>הקריביים</span>
+      </div>
+      <div class="geo-takeaway"><b>הקריאה האנליטית:</b> משקל צפון אמריקה עלה מ-38.9% ב-2023 ל-42.9% ב-2025, בעוד דרום אמריקה נשארה יציבה סביב 36% ומרכז אמריקה ירדה ל-19.6%. אבל זו חלוקה לפי <b>נקודת המכירה</b>, לא לפי מסלול הטיסה או מוצא הנוסע. בנפרד, החברה מציינת שכשליש מהנוסעים מתחילים או מסיימים את נסיעתם בפנמה, ורוב הנוסעים הנותרים עוברים דרך ההאב בקונקשן.</div>
+      <p class="geo-source">מקור: <a href="https://www.sec.gov/Archives/edgar/data/1345105/000134510526000019/cpa-20251231.htm" target="_blank" rel="noopener">Copa Holdings, Form 20-F לשנת 2025, revenue by region and note 7.3</a>.</p>
+    </div>
+    <div class="subchapter copa reveal">
+      <span class="sc-index">03</span>
+      <div><span class="sc-kicker">Peer Comparison</span><h3>מתחרות ישירות ובנצ'מרקים גלובליים</h3><p>מפרידים בין יתרון שנובע מגודל לבין יתרון אמיתי ביחידות הכלכליות, במרווחים, במינוף ובאמינות התפעולית.</p></div>
+    </div>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>Copa מול מתחרות ישירות: רווחיות שמתפצלת</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px">לא מספיק להשוות לחציון הסקטור, צריך להשוות למתחרות בשמן. וכאן התמונה ברורה: הרווחיות באמריקה הלטינית <strong>מתפצלת לשניים</strong>. בצד אחד LATAM, Copa ו-Avianca, רווחיות ומזמינות מטוסים. בצד השני Aeroméxico (רווח שצנח 43%), Viva (הכנסה שירדה) וחברות שעברו הקפאת הליכים. Copa יושבת בראש הצד הרווחי, עם המרווח הגבוה והעקבי ביותר והמינוף הנמוך ביותר.</p>
     <div class="grid g3 reveal" style="margin-bottom:14px">
       <div class="readout accent"><div class="rv">22.6<small>%</small></div><div class="rsub">LATAM ~16.8%, Avianca 7.2%</div><div class="rk">מרווח תפעולי Copa, הגבוה באזור</div></div>
@@ -1593,6 +1803,10 @@ Use "Research" mode for supporting diligence and Q&A.
     </details>
 
     <div class="research-only">
+    <div class="subchapter copa reveal">
+      <span class="sc-index">04</span>
+      <div><span class="sc-kicker">Fleet, Cash Flow &amp; Capital</span><h3>צי, תזרים והקצאת הון</h3><p>הזמנות המטוסים הן גם מנוע צמיחה וגם מבחן הון: בעלות מול חכירה, Capex, מקדמות, מינוף והיכולת להמשיך להחזיר הון.</p></div>
+    </div>
     <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>צבר הזמנות וצמיחת צי: עסקת ענק חדשה</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">באפריל 2026 חתמה Copa על הזמנה ל<strong>עד 60 מטוסי Boeing 737 MAX</strong> (40 הזמנות מוצקות ו-20 אופציות) בהיקף של כ-<strong>13.5 מיליארד דולר</strong> במחירון, יחד עם Boeing ועם GE Aerospace. ההזמנה הזו, בתוספת צבר ההזמנות הקיים, מאפשרת ל-Copa להוסיף <strong>מעל 100 מטוסים חדשים</strong> תוך שמונה שנים, ולהגיע לצי של <strong>מעל 200 מטוסים עד 2034</strong> גם אחרי פרישת מטוסים ישנים, צמיחה של כ-60% בגודל הצי. המסירות צפויות בין 2030 ל-2034, והן הצבעת אמון אגרסיבית על צמיחת אמריקה הלטינית.</p>
     <div class="grid g4 reveal" style="margin-bottom:16px">
@@ -1682,7 +1896,11 @@ Use "Research" mode for supporting diligence and Q&A.
       </div>
     </div>
 
-    <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>מחיר הדלק הסילוני בפרספקטיבה היסטורית</h3>
+    <div class="subchapter copa reveal">
+      <span class="sc-index">05</span>
+      <div><span class="sc-kicker">Fuel Sensitivity</span><h3>דלק ורגישות הרווח</h3><p>מחיר הדלק נבחן מול ההיסטוריה ובסימולטור תפעולי, כדי להבין מה כבר מתומחר ומהו סדר הגודל של הפגיעה או ההקלה ברווח.</p></div>
+    </div>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>מחיר הדלק הסילוני בפרספקטיבה היסטורית</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">הסדרה הרשמית של EIA מראה שני דברים במקביל: הזינוק של 2026 היה חריג, והירידה ביוני הייתה חדה, אבל המחיר האחרון עדיין גבוה משמעותית מממוצע 2025. לכן זו אסימטריית טיימינג עם מרווח ביטחון, לא הנחה שהדלק כבר חזר לנורמה.</p>
     <div class="grid g3 reveal" style="margin-bottom:18px">
       <div class="readout neg"><div class="rv">$3.94</div><div class="rsub">ממוצע מאי 2026</div><div class="rk">שיא חודשי בזמן שיבוש מצר הורמוז</div></div>
@@ -1764,7 +1982,7 @@ Use "Research" mode for supporting diligence and Q&A.
   </div>
 </section>
 
-<section class="section" id="decision">
+<section class="section band-alt" id="decision">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">08</span><span class="label">Valuation &amp; Risk</span><span class="rule"></span></div>
@@ -1783,6 +2001,7 @@ Use "Research" mode for supporting diligence and Q&A.
     </div>
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk"></span>תרחישי מחיר יעד, מבוססי הנחות</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:22px;font-size:14px">כל מחיר יעד כאן מחושב מהנחה גלויה: רווח חזוי כפול מכפיל, ולא מספר ידני. שתי החברות מוצגות על בסיס אחיד של FY2027E. ב-Safran נעשה שימוש ברווח מתואם, כדי לנטרל את רעש שערוך הגידור; ל-Copa מוקצה מכפיל נמוך יותר בגלל הרגישות לדלק והמחזוריות. תרחיש הבסיס מעוגן בקונצנזוס, והתרחישים הדובי והשורי מציגים רגישות של הרווח והמכפיל.</p>
+    <div class="lev-note reveal" style="margin-top:-6px;margin-bottom:22px"><b>בדיקת סבירות מול ההיסטוריה:</b> ממוצע מכפיל 5 שנים משמש כאן כבדיקת גבולות, לא כמחיר יעד עצמאי. התקופה כוללת קורונה, התאוששות, ריבית גבוהה, דלק ושערוכי FX, ולכן העוגן המרכזי נשאר EPS 2027E כפול מכפיל תרחיש.</div>
     <div class="scen-grid reveal">
       <div class="scen s" data-stock="safran">
         <div class="scen-head"><span class="sh-tick">SAFRAN</span><span class="sh-now">NOW</span></div>
@@ -1860,10 +2079,426 @@ Use "Research" mode for supporting diligence and Q&A.
     <h3 class="card-title reveal" style="margin-top:44px;font-size:15px"><span class="tk"></span>שלושה מספרים לזכור</h3>
     <div class="three reveal">
       <div class="tn"><div class="tn-v">$193<small>B</small></div><div class="tn-k">שוק התחזוקה (MRO) עד 2030, האנונה של Safran</div></div>
-      <div class="tn"><div class="tn-v">€3.92<small>B</small></div><div class="tn-k">FCF של Safran ב-2025, מכפיל מתואם ~27×</div></div>
+      <div class="tn"><div class="tn-v">€3.92<small>B</small></div><div class="tn-k">FCF של Safran ב-2025; P/E מתואם ל-2027E של 27.2×</div></div>
       <div class="tn"><div class="tn-v">9.2<small>×</small></div><div class="tn-k">מכפיל רווח עוקב של Copa, מינוף ~0.7x ודיבידנד ~4.4%</div></div>
     </div>
     <div class="callout reveal" style="margin-top:34px"><div class="mk">✓</div><p>המסקנה אינה “לקנות תעופה”. היא לבחור חברה רק לאחר שהמאקרו עבר דרך כלכלת הענף, החפיר, הדוחות, התזרים, המאזן והתמחור.</p></div>
+  </div>
+</section>
+
+<section class="section band-alt market-only" id="market">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow"><span class="num">M</span><span class="label">Market Data</span><span class="rule"></span></div>
+      <h2>נתוני שוק ותעודת מניה</h2>
+      <p class="sec-lead">זהו מסך עבודה נפרד לשאלות שוק בזמן הראיון: מחיר, שווי, דיבידנד, מומנטום, החזקות מוסדיים וקורלציה לנפט. הוא לא מחליף את התזה הפונדמנטלית, אלא משלים אותה בבדיקת תמחור, סנטימנט ותזמון.</p>
+    </div>
+
+    <div class="callout reveal" style="margin-top:0">
+      <div class="mk">!</div>
+      <p>אזור זה הוא שכבת שוק נפרדת בלבד. הנתונים כאן מגיעים מקבצי מחיר ומצילומי Market Snapshot, ואינם מחליפים את עוגני התזה, התרחישים, המחקר הפונדמנטלי או חישובי מחיר היעד. המטרה: לבדוק תמחור שוק, מומנטום, סחירות וקורלציה.</p>
+    </div>
+
+    <div class="grid g2 reveal" style="align-items:start;margin-bottom:24px">
+      <div class="market-card safran">
+        <span class="market-date">Market data · 29 Jun 2026</span>
+        <h3>SAFRAN</h3>
+        <div class="m-sub">SAF FP / SAF.PA · Euronext Paris · מטבע הצגה: אירו</div>
+        <div class="market-kpis">
+          <div class="market-kpi"><div class="mk-v">€336.50</div><div class="mk-k">מחיר אחרון בצילום השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">€138.71B</div><div class="mk-k">שווי שוק לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">418.3M</div><div class="mk-k">מניות מונפקות</div></div>
+          <div class="market-kpi"><div class="mk-v">19.4×</div><div class="mk-k">P/E מדווח TTM, לא מכפיל התזה</div></div>
+          <div class="market-kpi"><div class="mk-v">32.67×</div><div class="mk-k">FWD P/E לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">0.97%</div><div class="mk-k">תשואת דיבידנד לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">€350.83</div><div class="mk-k">יעד מחיר שנה לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">1.23</div><div class="mk-k">Beta לפי מקור השוק</div></div>
+        </div>
+        <p class="market-note">הקריאה: Safran נסחרת כמניית איכות במכפיל מלא. בדיקת השוק צריכה להתמקד בשאלה האם המומנטום והתמחור עדיין תומכים באפסייד, או שכבר מתמחרים את רוב צמיחת ה-aftermarket.</p>
+      </div>
+
+      <div class="market-card copa">
+        <span class="market-date">Market data · 29 Jun 2026</span>
+        <h3>COPA</h3>
+        <div class="m-sub">CPA US · NYSE · מטבע הצגה: דולר</div>
+        <div class="market-kpis">
+          <div class="market-kpi"><div class="mk-v">$155.53</div><div class="mk-k">מחיר אחרון בצילום השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">$6.40B</div><div class="mk-k">שווי שוק לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">29.83M</div><div class="mk-k">Float לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">9.06×</div><div class="mk-k">P/E מדווח TTM</div></div>
+          <div class="market-kpi"><div class="mk-v">$7.19</div><div class="mk-k">דיבידנד שנתי מוערך</div></div>
+          <div class="market-kpi"><div class="mk-v">4.63%</div><div class="mk-k">תשואת דיבידנד מוערכת</div></div>
+          <div class="market-kpi"><div class="mk-v">39.5%</div><div class="mk-k">Payout לפי מקור השוק</div></div>
+          <div class="market-kpi"><div class="mk-v">65.8%</div><div class="mk-k">אחזקה מוסדית</div></div>
+        </div>
+        <p class="market-note">הקריאה: Copa נסחרת בדיסקאונט בגלל מחזוריות ודלק. בדיקת השוק צריכה לבדוק אם הדיסקאונט מתכווץ כשהדלק נרגע, או שהמניה עדיין מתמחרת תרחיש לחץ.</p>
+      </div>
+    </div>
+
+    <details class="xcompare reveal" open style="margin-bottom:24px">
+      <summary>תעודת שוק מורחבת: מכפילים, סחירות, בעלות ותחזיות <span class="xc-hint">Market Snapshot</span><span class="xc-ic">+</span></summary>
+      <div class="xc-body">
+        <div class="grid g2" style="align-items:start">
+          <div class="card pad-lg" style="border-top:2px solid var(--safran)">
+            <h3 class="card-title" style="font-size:15px"><span class="tk" style="background:var(--safran)"></span>Safran · צילום שוק נוסף</h3>
+            <table class="market-table">
+              <tbody>
+                <tr><td>טווח יומי</td><td class="n">€329.20-€336.50</td></tr>
+                <tr><td>טווח 52 שבועות</td><td class="n">€262.60-€350.80</td></tr>
+                <tr><td>שווי פעילות (EV)</td><td class="n">€134.26B</td></tr>
+                <tr><td>מזומן / חוב</td><td class="n">€6.79B / €5.33B</td></tr>
+                <tr><td>P/E מדווח / FWD P/E</td><td class="n">19.4× / 32.67×</td></tr>
+                <tr><td>P/S / P/B / P/FCF</td><td class="n">3.98× / 8.38× / 27.72×</td></tr>
+                <tr><td>דיבידנד</td><td class="n">0.97%</td></tr>
+                <tr><td>יעד מחיר שנה</td><td class="n">€350.83 · +4.26%</td></tr>
+                <tr><td>דירוג וקונצנזוס</td><td class="n">Moderate Buy · 13 אנליסטים</td></tr>
+                <tr><td>תחזית FY</td><td class="n">EPS €10.18 · הכנסות €35.82B</td></tr>
+                <tr><td>תאריך דוח הבא</td><td class="n">Jul 28, 2026</td></tr>
+              </tbody>
+            </table>
+            <p class="market-note">הערה מתודולוגית: P/E מדווח ו-FWD P/E ממקור שוק אינם אותו בסיס כמו מכפיל התרחישים בתזה, שמבוסס על EPS מתואם ל-2027E. לכן הם מוצגים כהקשר שוק ולא כעוגן מחיר יעד.</p>
+          </div>
+
+          <div class="card pad-lg" style="border-top:2px solid var(--copa)">
+            <h3 class="card-title" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>Copa · צילום שוק נוסף</h3>
+            <table class="market-table">
+              <tbody>
+                <tr><td>שווי פעילות (EV)</td><td class="n">$7.48B</td></tr>
+                <tr><td>הכנסות / רווח נקי</td><td class="n">$3.77B / $707M</td></tr>
+                <tr><td>P/E / FWD P/E / PEG</td><td class="n">9.06× / 7.88× / 0.62×</td></tr>
+                <tr><td>P/S / P/B / EV/EBITDA</td><td class="n">1.70× / 2.21× / 6.05×</td></tr>
+                <tr><td>מרווח גולמי / תפעולי / נקי</td><td class="n">31.6% / 22.7% / 18.8%</td></tr>
+                <tr><td>ROA / ROE / ROIC</td><td class="n">11.2% / 26.4% / 14.1%</td></tr>
+                <tr><td>Quick / Current / Debt-to-Equity</td><td class="n">1.06× / 1.16× / 0.84×</td></tr>
+                <tr><td>Insider / מוסדיים</td><td class="n">27.5% / 65.8%</td></tr>
+                <tr><td>Short Float / Short Interest</td><td class="n">4.92% / 1.47M</td></tr>
+                <tr><td>RSI / Beta / ATR</td><td class="n">67.4 / 0.95 / 5.72</td></tr>
+                <tr><td>יעד מחיר / המלצה</td><td class="n">$170.21 / 1.33</td></tr>
+                <tr><td>תאריך דוח אחרון</td><td class="n">May 13, 2026 AMC</td></tr>
+              </tbody>
+            </table>
+            <p class="market-note">הערה מתודולוגית: נתוני השורט, בעלות מוסדית ו-RSI מגיעים מצילום שוק עדכני יותר מקובץ ValueSense. קובץ המחירים עדיין משמש לגרף ההיסטורי, מפני שהוא נותן סדרה יומית נקייה.</p>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <div class="grid g2 reveal" style="align-items:start;margin-bottom:24px">
+      <div class="card pad-lg">
+        <h3 class="card-title" style="font-size:15px"><span class="tk"></span>ביצועים, מומנטום ובעלות</h3>
+        <p class="sec-lead" style="margin-top:0;margin-bottom:16px;font-size:14px">הטבלה הזו מיועדת לעדכון ממקור שוק סמוך למועד הראיון. היא עונה על שאלות קצרות שוועדה יכולה לשאול: האם הרעיון כבר רץ, האם יש מומנטום, האם המניה צפופה אצל מוסדיים, ומה התנודתיות.</p>
+        <table class="market-table">
+          <thead><tr><th>מדד</th><th>Safran</th><th>Copa</th></tr></thead>
+          <tbody>
+            <tr><td>ביצוע מתחילת שנה</td><td class="n">+13.1%</td><td class="n">+29.0%</td></tr>
+            <tr><td>ביצוע 3 חודשים</td><td class="n">+20.9%</td><td class="n">+40.2%</td></tr>
+            <tr><td>ביצוע שנה אחורה</td><td class="n">+23.6%</td><td class="n">+44.0%</td></tr>
+            <tr><td>ביצוע 5 שנים</td><td class="n">+182.9%</td><td class="n">+106.9%</td></tr>
+            <tr><td>RSI 14 יום</td><td class="n">75.7</td><td class="n">67.4</td></tr>
+            <tr><td>סטיית תקן / תנודתיות 90 יום</td><td class="n">43.7%</td><td class="n">56.9%</td></tr>
+            <tr><td>אחזקות מוסדיים</td><td class="n">לעדכון</td><td class="n">65.8%</td></tr>
+            <tr><td>המלצות אנליסטים אחרונות</td><td class="n">Moderate Buy</td><td class="n">Recom 1.33</td></tr>
+          </tbody>
+        </table>
+        <p class="market-note">מקורות: Safran מחושב מקובץ המחירים ומצילום השוק; Copa משלב את קובץ ValueSense לגרף ההיסטורי ואת צילום השוק למדדי מומנטום ובעלות. הבדלים קטנים נובעים מתאריך מקור שונה.</p>
+      </div>
+
+      <div class="card pad-lg">
+        <h3 class="card-title" style="font-size:15px"><span class="tk" style="background:var(--hud)"></span>מה לבדוק מול מחיר הנפט?</h3>
+        <div class="market-tag ok">Safran: חשיפה תפעולית ישירה נמוכה לדלק</div>
+        <div class="market-tag wait">Copa: חשיפה גבוהה כי אינה מגדרת דלק</div>
+        <div class="market-tag wait">בדיקה נכונה: תשואות יומיות, לא רמות מחיר</div>
+        <table class="market-table" style="margin-top:14px">
+          <tbody>
+            <tr><td>שאלה 1</td><td>האם Copa עולה כאשר הנפט יורד, או שהשוק עדיין מתמחר סיכון דלק?</td></tr>
+            <tr><td>שאלה 2</td><td>האם Safran פחות רגישה לנפט, כפי שמצופה מספק שרשרת ערך ולא חברת תעופה?</td></tr>
+            <tr><td>שאלה 3</td><td>האם שתי המניות זזות יחד בגלל גורם תעופה כללי, או שהמנועים הפונדמנטליים שונים?</td></tr>
+          </tbody>
+        </table>
+        <p class="market-note">הצגה חדה לראיון: אם המתאם של Copa לנפט שלילי ומובהק יותר משל Safran, זה מחזק את ההבחנה בין מפעילת תעופה רגישה לדלק לבין ספקית aftermarket עם חשיפה עקיפה בלבד.</p>
+      </div>
+    </div>
+
+    <div class="market-chart reveal">
+      <div class="market-chart-head">
+        <div>
+          <h3 class="card-title" style="font-size:15px;margin-bottom:6px"><span class="tk"></span>גרף מחיר וקורלציה לנפט</h3>
+          <p class="sec-lead" style="margin:0;font-size:14px">הגרף נטען כברירת מחדל מנתוני המחיר שצורפו, ומציג 247 ימי מסחר משותפים מ-30 ביוני 2025 עד 26 ביוני 2026. אפשר להעלות CSV חלופי עם עמודות Date, Safran, Copa, Oil.</p>
+        </div>
+        <div class="market-controls">
+          <label class="market-file">טען CSV<input id="marketCsvInput" type="file" accept=".csv,text/csv"></label>
+          <button class="market-toggle" type="button" data-market-series="safran" aria-pressed="true">Safran</button>
+          <button class="market-toggle" type="button" data-market-series="copa" aria-pressed="true">Copa</button>
+          <button class="market-toggle" type="button" data-market-series="oil" aria-pressed="true">Oil</button>
+        </div>
+      </div>
+      <div class="market-chart-box">
+        <svg id="marketChartSvg" viewBox="0 0 800 310" role="img" aria-label="גרף מחיר מנורמל מול נפט"></svg>
+        <div class="market-empty" id="marketEmpty"><span><b>מוכן לנתוני מחיר.</b><br>פורמט מומלץ: Date, Safran, Copa, Oil. אפשר להשתמש ב-WTI, Brent או Jet Fuel, כל עוד מציינים מקור ותאריך.</span></div>
+      </div>
+      <div class="market-legend" id="marketLegend">
+        <span><i style="background:var(--safran)"></i>Safran</span>
+        <span><i style="background:var(--copa)"></i>Copa</span>
+        <span><i style="background:var(--hud)"></i>Oil</span>
+      </div>
+      <div class="market-corr" id="marketCorr">
+        <div class="corr-cell"><div class="corr-v">--</div><div class="corr-k">Safran מול נפט</div></div>
+        <div class="corr-cell"><div class="corr-v">--</div><div class="corr-k">Copa מול נפט</div></div>
+        <div class="corr-cell"><div class="corr-v">--</div><div class="corr-k">Safran מול Copa</div></div>
+      </div>
+      <p class="market-note">חשוב: הגרף אינו מציג מחיר מוחלט בציר האנכי. הוא מציג אינדקס מנורמל, כאשר 100 הוא מחיר כל סדרה בתחילת התקופה. המחירים האחרונים מופיעים ליד קצה כל קו ובכרטיסי תעודת השוק.</p>
+      <div class="market-status" id="marketCsvStatus">Default data: 247 common trading days · 2025-06-30 to 2026-06-26</div>
+      <script type="text/plain" id="marketDefaultCsv">
+Date,Safran,Copa,Oil
+2025-06-30,275.9,109.97,65.11
+2025-07-01,264.9,109.1,65.45
+2025-07-02,266.3,111.18,67.45
+2025-07-03,270.0,111.64,67.0
+2025-07-07,274.7,111.25,67.93
+2025-07-08,275.0,109.34,68.33
+2025-07-09,279.6,108.71,68.38
+2025-07-10,276.0,113.65,66.57
+2025-07-11,279.5,110.38,68.45
+2025-07-14,281.2,110.49,65.81
+2025-07-15,279.9,109.31,65.37
+2025-07-16,280.0,108.71,66.38
+2025-07-17,283.8,109.26,67.54
+2025-07-18,285.3,108.13,67.34
+2025-07-21,283.1,107.44,67.2
+2025-07-22,275.5,109.09,66.21
+2025-07-23,278.6,110.3,65.25
+2025-07-24,279.1,110.3,66.03
+2025-07-25,277.5,110.12,65.16
+2025-07-28,275.8,109.03,66.71
+2025-07-29,281.7,110.79,69.21
+2025-07-30,280.8,110.27,70.0
+2025-07-31,289.5,110.66,69.26
+2025-08-01,280.3,108.99,67.33
+2025-08-04,287.7,110.16,66.29
+2025-08-05,287.5,110.16,65.16
+2025-08-06,290.1,112.12,64.35
+2025-08-07,291.2,116.31,63.88
+2025-08-08,291.2,117.76,63.88
+2025-08-11,287.2,116.93,63.09
+2025-08-12,290.6,120.69,62.48
+2025-08-13,289.4,119.28,61.93
+2025-08-14,293.6,116.49,63.96
+2025-08-15,291.8,117.28,62.8
+2025-08-18,293.0,116.44,63.42
+2025-08-19,292.1,115.05,62.35
+2025-08-20,289.2,114.47,63.21
+2025-08-21,292.5,113.79,63.52
+2025-08-22,290.5,116.96,63.66
+2025-08-25,289.9,116.11,64.8
+2025-08-26,288.0,117.9,63.25
+2025-08-27,287.2,117.22,64.15
+2025-08-28,287.8,120.01,64.6
+2025-08-29,284.9,117.34,64.01
+2025-09-02,279.5,116.27,65.59
+2025-09-03,281.6,117.52,63.97
+2025-09-04,280.9,118.1,63.48
+2025-09-05,278.2,117.82,61.87
+2025-09-08,279.4,115.06,62.26
+2025-09-09,280.0,114.11,62.63
+2025-09-10,280.9,114.93,63.67
+2025-09-11,285.2,117.14,62.37
+2025-09-12,285.6,118.24,62.69
+2025-09-15,288.5,116.12,63.02
+2025-09-16,283.8,116.21,64.52
+2025-09-17,279.8,117.92,64.05
+2025-09-18,284.8,118.69,63.57
+2025-09-19,291.6,119.75,62.68
+2025-09-22,294.4,119.96,62.64
+2025-09-23,291.6,122.34,63.41
+2025-09-24,292.6,119.45,64.99
+2025-09-25,292.2,117.36,64.98
+2025-09-26,296.0,117.63,65.72
+2025-09-29,295.8,119.18,63.45
+2025-09-30,300.1,118.82,62.37
+2025-10-01,298.4,117.59,61.78
+2025-10-02,303.6,119.94,60.48
+2025-10-03,303.1,120.66,60.88
+2025-10-06,298.1,120.98,61.69
+2025-10-07,298.7,120.55,61.73
+2025-10-08,303.8,124.68,62.55
+2025-10-09,303.0,124.37,61.51
+2025-10-10,297.3,121.69,58.9
+2025-10-13,298.1,122.66,59.07
+2025-10-14,299.5,128.07,58.27
+2025-10-15,296.7,127.45,58.27
+2025-10-16,302.8,125.07,57.46
+2025-10-17,296.9,124.8,57.54
+2025-10-20,303.1,127.14,57.52
+2025-10-21,308.1,127.23,57.82
+2025-10-22,304.1,125.7,58.5
+2025-10-23,307.8,125.34,61.79
+2025-10-24,304.5,126.3,61.5
+2025-10-27,303.6,125.33,61.31
+2025-10-28,305.3,123.73,60.15
+2025-10-29,303.6,123.82,60.48
+2025-10-30,305.4,123.93,60.57
+2025-10-31,307.9,125.21,60.98
+2025-11-03,310.3,125.68,61.05
+2025-11-04,309.7,123.88,60.56
+2025-11-05,306.9,127.67,59.6
+2025-11-06,302.8,125.35,59.43
+2025-11-07,301.1,125.23,59.75
+2025-11-10,309.0,125.4,60.03
+2025-11-11,308.9,127.27,60.99
+2025-11-12,310.2,127.06,58.49
+2025-11-13,306.9,125.52,58.64
+2025-11-14,304.4,124.94,59.95
+2025-11-17,305.9,123.67,59.91
+2025-11-18,299.2,123.21,60.74
+2025-11-19,298.8,126.44,59.44
+2025-11-20,300.3,113.11,59.14
+2025-11-21,289.4,115.76,58.06
+2025-11-24,282.5,117.94,58.84
+2025-11-25,286.3,119.77,57.95
+2025-11-26,289.1,119.83,58.65
+2025-11-28,290.3,120.19,58.55
+2025-12-01,286.1,119.41,59.32
+2025-12-02,290.2,121.3,58.64
+2025-12-03,296.7,120.57,58.95
+2025-12-04,294.0,118.24,59.67
+2025-12-05,292.9,118.99,60.08
+2025-12-08,295.0,117.33,58.63
+2025-12-09,294.8,117.47,58.08
+2025-12-10,294.0,116.0,58.3
+2025-12-11,291.3,118.44,57.45
+2025-12-12,291.3,119.97,57.24
+2025-12-15,293.0,119.07,56.82
+2025-12-16,293.7,118.1,55.27
+2025-12-17,293.7,118.35,55.94
+2025-12-18,301.4,119.96,56.15
+2025-12-19,306.3,124.12,56.66
+2025-12-22,302.2,123.72,58.01
+2025-12-23,300.4,121.95,58.38
+2025-12-24,299.3,121.6,58.35
+2025-12-29,294.3,120.65,58.08
+2025-12-30,297.4,120.22,57.95
+2025-12-31,297.4,120.69,57.42
+2026-01-02,307.2,121.83,57.32
+2026-01-05,312.8,130.03,58.08
+2026-01-06,312.7,127.31,56.94
+2026-01-07,322.6,127.42,55.99
+2026-01-08,319.6,130.31,57.76
+2026-01-09,317.3,130.9,59.12
+2026-01-12,319.0,131.38,59.32
+2026-01-13,325.8,130.13,60.93
+2026-01-14,320.2,124.54,62.02
+2026-01-15,318.8,128.75,59.19
+2026-01-16,320.7,131.72,59.44
+2026-01-20,316.3,131.76,60.34
+2026-01-21,315.6,134.1,60.62
+2026-01-22,306.0,133.52,59.36
+2026-01-23,310.4,133.84,61.07
+2026-01-26,307.7,136.62,60.63
+2026-01-27,309.3,137.22,62.39
+2026-01-28,301.8,135.9,63.21
+2026-01-29,298.6,132.8,65.42
+2026-01-30,301.0,136.4,65.21
+2026-02-02,302.2,141.42,62.14
+2026-02-03,303.6,145.67,63.21
+2026-02-04,300.7,146.78,65.14
+2026-02-05,302.5,149.59,63.29
+2026-02-06,308.0,154.09,63.55
+2026-02-09,314.4,153.32,64.2
+2026-02-10,308.0,153.14,63.79
+2026-02-11,304.9,150.6,64.46
+2026-02-12,307.3,150.47,62.65
+2026-02-13,332.8,145.87,62.75
+2026-02-17,340.9,146.65,62.33
+2026-02-18,347.2,147.33,65.19
+2026-02-19,342.1,139.34,66.43
+2026-02-20,346.4,142.33,66.39
+2026-02-23,346.0,141.72,66.31
+2026-02-24,340.6,145.39,65.63
+2026-02-25,344.2,147.94,65.42
+2026-02-26,346.6,146.32,65.21
+2026-02-27,340.0,138.61,67.02
+2026-03-02,336.1,132.01,71.23
+2026-03-03,321.5,130.3,74.56
+2026-03-04,327.0,132.21,74.66
+2026-03-05,316.3,126.9,81.01
+2026-03-06,317.7,125.04,90.9
+2026-03-09,314.7,125.54,91.48
+2026-03-10,321.0,125.46,82.1
+2026-03-11,318.2,122.22,86.07
+2026-03-12,308.1,112.44,94.43
+2026-03-13,304.4,110.38,96.84
+2026-03-16,306.7,114.02,93.5
+2026-03-17,304.9,116.18,96.21
+2026-03-18,306.6,110.26,96.32
+2026-03-19,293.2,110.74,96.14
+2026-03-20,281.6,108.98,98.32
+2026-03-23,287.3,113.38,88.13
+2026-03-24,282.1,114.13,92.35
+2026-03-25,288.1,115.29,90.32
+2026-03-26,281.7,113.94,94.48
+2026-03-27,278.4,110.91,99.64
+2026-03-30,274.4,107.81,102.88
+2026-03-31,279.4,113.61,101.38
+2026-04-01,290.6,117.92,100.12
+2026-04-02,287.3,114.59,111.54
+2026-04-07,283.0,111.56,112.95
+2026-04-08,313.1,119.17,94.41
+2026-04-09,316.0,119.25,97.87
+2026-04-10,313.3,119.18,96.57
+2026-04-13,310.1,118.78,92.95
+2026-04-14,317.4,120.9,88.19
+2026-04-15,308.8,120.68,88.13
+2026-04-16,298.2,118.41,94.69
+2026-04-17,315.3,125.58,83.85
+2026-04-20,303.0,125.3,89.61
+2026-04-21,282.4,121.0,92.13
+2026-04-22,272.5,119.71,92.96
+2026-04-23,279.0,116.09,95.85
+2026-04-24,270.0,117.95,94.4
+2026-04-27,274.0,115.9,96.37
+2026-04-28,271.3,114.57,99.93
+2026-04-29,268.8,112.28,106.88
+2026-04-30,273.0,115.68,105.07
+2026-05-04,265.2,110.99,106.42
+2026-05-05,272.3,113.61,102.27
+2026-05-06,296.7,122.55,95.08
+2026-05-07,294.8,122.9,94.81
+2026-05-08,286.3,122.8,95.42
+2026-05-11,284.4,117.04,98.07
+2026-05-12,280.7,115.96,102.18
+2026-05-13,281.5,114.92,101.02
+2026-05-14,283.2,135.51,101.17
+2026-05-15,271.4,131.72,105.42
+2026-05-18,273.9,134.04,108.66
+2026-05-19,274.2,128.17,107.77
+2026-05-20,282.5,135.63,98.26
+2026-05-21,279.7,137.07,96.35
+2026-05-22,285.0,137.0,96.6
+2026-05-26,295.1,142.26,93.89
+2026-05-27,299.0,142.95,88.68
+2026-05-28,303.0,140.45,88.9
+2026-05-29,305.7,142.89,87.36
+2026-06-01,297.0,140.4,92.16
+2026-06-02,298.0,136.83,93.76
+2026-06-03,293.8,135.84,96.02
+2026-06-04,300.3,133.14,93.04
+2026-06-05,298.5,133.59,90.54
+2026-06-08,294.5,131.68,91.3
+2026-06-09,295.6,135.37,88.2
+2026-06-10,291.5,128.51,90.03
+2026-06-11,295.3,139.09,87.71
+2026-06-12,306.1,141.69,84.88
+2026-06-15,316.4,144.4,79.44
+2026-06-16,324.0,143.36,75.27
+2026-06-17,324.0,143.23,76.79
+2026-06-18,333.5,151.04,76.6
+2026-06-22,331.2,152.99,74.82
+2026-06-23,331.1,151.93,73.21
+2026-06-24,338.4,156.86,70.34
+2026-06-25,343.7,157.04,71.92
+2026-06-26,332.7,157.19,69.23
+</script>
+    </div>
   </div>
 </section>
 
@@ -1898,24 +2533,55 @@ Use "Research" mode for supporting diligence and Q&A.
 (function(){
   document.documentElement.classList.add('js');
 
+  // page progress remains accurate when view mode or expandable research changes the page height.
+  var pageProgress=document.getElementById('pageProgress');
+  function updatePageProgress(){
+    if(!pageProgress) return;
+    var doc=document.documentElement;
+    var max=doc.scrollHeight-doc.clientHeight;
+    var pct=max>0?Math.max(0,Math.min(100,(window.scrollY||doc.scrollTop)/max*100)):0;
+    pageProgress.style.width=pct+'%';
+  }
+  window.addEventListener('scroll',updatePageProgress,{passive:true});
+  window.addEventListener('resize',updatePageProgress);
+  document.querySelectorAll('details').forEach(function(el){
+    el.addEventListener('toggle',function(){ requestAnimationFrame(updatePageProgress); });
+  });
+
   // presentation view keeps the interview path concise; research view restores diligence.
   var viewButtons=document.querySelectorAll('[data-view]');
   function setView(mode){
+    mode=(mode==='research'||mode==='market')?mode:'presentation';
     var isResearch=mode==='research';
+    var isMarket=mode==='market';
     document.body.classList.toggle('research-mode',isResearch);
-    document.body.classList.toggle('presentation-mode',!isResearch);
+    document.body.classList.toggle('market-mode',isMarket);
+    document.body.classList.toggle('presentation-mode',!isResearch&&!isMarket);
     viewButtons.forEach(function(btn){
       btn.setAttribute('aria-pressed',String(btn.getAttribute('data-view')===mode));
     });
-    if(!isResearch){
+    if(isMarket){
+      document.querySelectorAll('#market .reveal').forEach(function(el){ el.classList.add('in'); });
+      var marketSection=document.getElementById('market');
+      if(marketSection){
+        requestAnimationFrame(function(){ marketSection.scrollIntoView({block:'start'}); });
+      }
+    }else if(!isResearch){
       document.querySelectorAll('details[data-present-open]').forEach(function(el){ el.open=true; });
     }
+    requestAnimationFrame(updatePageProgress);
   }
   viewButtons.forEach(function(btn){
     btn.addEventListener('click',function(){ setView(btn.getAttribute('data-view')); });
   });
   var hashTarget=location.hash ? document.querySelector(location.hash) : null;
-  setView(hashTarget && hashTarget.classList.contains('research-only') ? 'research' : 'presentation');
+  setView(hashTarget && hashTarget.classList.contains('market-only') ? 'market' : (hashTarget && hashTarget.classList.contains('research-only') ? 'research' : 'presentation'));
+  if(hashTarget){
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ hashTarget.scrollIntoView({block:'start'}); });
+    });
+  }
+  updatePageProgress();
 
   // interactive historical financial charts
   var FIN_METRICS=[
@@ -1925,11 +2591,15 @@ Use "Research" mode for supporting diligence and Q&A.
     {key:'net',label:'רווח נקי',color:'#F0AC34'},
     {key:'ocf',label:'תזרים תפעולי',color:'#4FD1C5'}
   ];
+  var FIN_LINES=[
+    {key:'ebitdaMargin',label:'מרווח EBITDA',color:'#F7D774'},
+    {key:'operatingMargin',label:'מרווח תפעולי',color:'#46C28C'}
+  ];
   var FIN_DATA={
     safran:{
       currency:'€',
       unit:'מיליוני אירו · נתונים מתואמים',
-      operatingLabel:'רווח תפעולי חוזר',
+      operatingLabel:'רווח תפעולי',
       netLabel:'רווח נקי מתואם',
       years:['2021','2022','2023','2024','2025'],
       revenue:[15257,19035,23199,27317,31329],
@@ -1977,16 +2647,81 @@ Use "Research" mode for supporting diligence and Q&A.
     if(metric.key==='net') return cfg.netLabel;
     return metric.label;
   }
+  function finPctValue(v){
+    var rounded=Math.round(v*10)/10;
+    return rounded.toString().replace(/\.0$/,'')+'%';
+  }
+  function finNicePctMax(v){
+    return Math.max(10,Math.ceil((v+1)/5)*5);
+  }
+  function finNicePctMin(v){
+    return v<0 ? Math.floor((v-1)/5)*5 : 0;
+  }
+  function finLineValues(cfg,line){
+    if(line.key==='ebitdaMargin'){
+      return cfg.years.map(function(_,i){ return cfg.revenue[i] ? cfg.ebitda[i]/cfg.revenue[i]*100 : null; });
+    }
+    if(line.key==='operatingMargin'){
+      return cfg.years.map(function(_,i){ return cfg.revenue[i] ? cfg.operating[i]/cfg.revenue[i]*100 : null; });
+    }
+    return [];
+  }
+  function finLineLayers(cfg,lines){
+    if(!lines.length) return {axis:'',layer:''};
+    var series=lines.map(function(line){ return {line:line,values:finLineValues(cfg,line)}; });
+    var allValues=[];
+    series.forEach(function(s){
+      s.values.forEach(function(v){ if(v!=null && isFinite(v)) allValues.push(v); });
+    });
+    if(!allValues.length) return {axis:'',layer:''};
+    var axisMax=finNicePctMax(Math.max.apply(null,allValues));
+    var axisMin=finNicePctMin(Math.min.apply(null,allValues));
+    var axisRange=axisMax-axisMin || 1;
+    var labels=[0,50,100].map(function(p){
+      var value=axisMin+(axisRange*p/100);
+      return '<span class="ifc-plabel" style="bottom:'+p+'%">'+finPctValue(value)+'</span>';
+    }).join('');
+    var layers=series.map(function(s,lineIndex){
+      var points=s.values.map(function(v,i){
+        if(v==null || !isFinite(v)) return null;
+        var x=(i+.5)/s.values.length*100;
+        var y=100-((v-axisMin)/axisRange*100);
+        return {x:x,y:Math.max(0,Math.min(100,y)),v:v,year:cfg.years[i]};
+      }).filter(Boolean);
+      if(!points.length) return '';
+      var pathPoints=points.map(function(p){ return p.x.toFixed(2)+','+p.y.toFixed(2); }).join(' ');
+      var labelTransform=lineIndex===1?'translate(-50%,6px)':(lineIndex===2?'translate(-50%,-30px)':'translate(-50%,-18px)');
+      var dots=points.map(function(p){
+        var label=finPctValue(p.v);
+        return '<span class="ifc-line-dot" style="left:'+p.x.toFixed(2)+'%;top:'+p.y.toFixed(2)+'%;background:'+s.line.color+';box-shadow:0 0 0 1px '+s.line.color+'" title="'+s.line.label+' '+p.year+': '+label+'"></span><span class="ifc-line-value" style="left:'+p.x.toFixed(2)+'%;top:'+p.y.toFixed(2)+'%;color:'+s.line.color+';transform:'+labelTransform+'">'+label+'</span>';
+      }).join('');
+      return '<div class="ifc-line-layer" style="--line-color:'+s.line.color+'"><svg class="ifc-line-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline class="ifc-line-path" points="'+pathPoints+'"></polyline></svg>'+dots+'</div>';
+    }).join('');
+    return {
+      axis:'<div class="ifc-paxis">'+labels+'</div>',
+      layer:layers
+    };
+  }
+  function finLineNote(cfg,selected){
+    var notes=[];
+    if(selected.ebitda || selected.ebitdaMargin) notes.push(cfg.ebitdaNote+' מרווח ה-EBITDA מחושב כ-EBITDA חלקי הכנסות.');
+    if(selected.operatingMargin) notes.push('מרווח תפעולי מחושב כרווח תפעולי חלקי הכנסות, ולכן הוא מראה כמה מהצמיחה נשארת כרווח לפני מימון ומס.');
+    return notes.length?'<p class="src-note">'+notes.join(' ')+'</p>':'';
+  }
   function finRender(root,cfg,selected){
     var active=FIN_METRICS.filter(function(m){ return selected[m.key]; });
     var maxValue=0;
     active.forEach(function(m){
       cfg[m.key].forEach(function(v){ if(v>maxValue) maxValue=v; });
     });
+    if(maxValue<=0) maxValue=1;
     var yMax=finNiceMax(maxValue);
     root.setAttribute('data-count',String(active.length));
     var controls=FIN_METRICS.map(function(m){
       return '<button type="button" class="ifc-toggle" data-metric="'+m.key+'" aria-pressed="'+String(!!selected[m.key])+'" style="--metric-color:'+m.color+'"><span class="ifc-swatch"></span>'+finMetricLabel(m,cfg)+'</button>';
+    }).join('')+
+    FIN_LINES.map(function(line){
+      return '<button type="button" class="ifc-toggle" data-metric="'+line.key+'" aria-pressed="'+String(!!selected[line.key])+'" style="--metric-color:'+line.color+'"><span class="ifc-swatch"></span>'+line.label+'</button>';
     }).join('');
     var yLabels=[0,25,50,75,100].map(function(p){
       return '<span class="ifc-ylabel" style="bottom:'+p+'%">'+finValue(yMax*p/100,cfg.currency)+'</span>';
@@ -2014,9 +2749,11 @@ Use "Research" mode for supporting diligence and Q&A.
       }).join('');
       return '<div class="ifc-year-group"><div class="ifc-bars">'+bars+'</div><div class="ifc-year">'+year+'</div></div>';
     }).join('');
+    var activeLines=FIN_LINES.filter(function(line){ return selected[line.key]; });
+    var line=finLineLayers(cfg,activeLines);
     var wcKey=cfg.workingCapital?'<div class="ifc-wc-key"><span class="ifc-pattern"></span><span>בתזרים התפעולי: החלק הכהה הוא תזרים לפני שינוי בהון החוזר; החלק המפוספס הוא תרומת ההון החוזר. בשנת 2025 התרומה הייתה €1.07B.</span></div>':'';
-    var ebitdaKey=selected.ebitda?'<p class="src-note">'+cfg.ebitdaNote+'</p>':'';
-    root.innerHTML='<div class="ifc-head"><span class="ifc-headline">סדרות מוצגות</span><span class="ifc-unit">'+cfg.unit+'</span></div><div class="ifc-controls">'+controls+'</div><div class="ifc-body"><div class="ifc-yaxis">'+yLabels+'</div><div class="ifc-gridlines">'+gridLines+'</div><div class="ifc-groups">'+groups+'</div></div>'+wcKey+ebitdaKey;
+    var lineNote=finLineNote(cfg,selected);
+    root.innerHTML='<div class="ifc-head"><span class="ifc-headline">סדרות מוצגות</span><span class="ifc-unit">'+cfg.unit+'</span></div><div class="ifc-controls">'+controls+'</div><div class="ifc-body"><div class="ifc-yaxis">'+yLabels+'</div>'+line.axis+'<div class="ifc-gridlines">'+gridLines+'</div><div class="ifc-groups">'+groups+'</div>'+line.layer+'</div>'+wcKey+lineNote;
     root.querySelectorAll('.ifc-toggle').forEach(function(btn){
       btn.addEventListener('click',function(){
         var key=btn.getAttribute('data-metric');
@@ -2033,8 +2770,215 @@ Use "Research" mode for supporting diligence and Q&A.
   document.querySelectorAll('[data-fin-chart]').forEach(function(root){
     var cfg=FIN_DATA[root.getAttribute('data-fin-chart')];
     if(!cfg) return;
-    finRender(root,cfg,{revenue:true,operating:true,ebitda:false,net:false,ocf:true});
+    finRender(root,cfg,{revenue:true,operating:true,ebitda:false,net:false,ocf:true,ebitdaMargin:true,operatingMargin:true});
   });
+
+  // market data CSV chart: normalized prices plus daily-return correlations.
+  var marketInput=document.getElementById('marketCsvInput');
+  if(marketInput){
+    var marketSvg=document.getElementById('marketChartSvg');
+    var marketEmpty=document.getElementById('marketEmpty');
+    var marketStatus=document.getElementById('marketCsvStatus');
+    var marketCorr=document.getElementById('marketCorr');
+    var marketDefaultCsv=document.getElementById('marketDefaultCsv');
+    var marketState={rows:[],active:{safran:true,copa:true,oil:true}};
+    var marketSeries={
+      safran:{label:'Safran',color:'#7C9DFF',unit:'€',aliases:['safran','saf','saf.pa','saf fp','safry','safrf']},
+      copa:{label:'Copa',color:'#F0AC34',unit:'$',aliases:['copa','cpa','cpa us']},
+      oil:{label:'WTI',color:'#4FD1C5',unit:'$',suffix:'/bbl',aliases:['oil','wti','brent','jet','jet fuel','crude']}
+    };
+    function splitCsvLine(line){
+      var out=[],cur='',q=false;
+      for(var i=0;i<line.length;i++){
+        var ch=line[i];
+        if(ch==='"'&&q&&line[i+1]==='"'){ cur+='"'; i++; }
+        else if(ch==='"'){ q=!q; }
+        else if(ch===','&&!q){ out.push(cur.trim()); cur=''; }
+        else{ cur+=ch; }
+      }
+      out.push(cur.trim());
+      return out;
+    }
+    function normHeader(v){ return String(v||'').toLowerCase().replace(/[\s_\-\/]/g,'').trim(); }
+    function findColumn(headers,aliases){
+      var nh=headers.map(normHeader);
+      for(var a=0;a<aliases.length;a++){
+        var wanted=normHeader(aliases[a]);
+        var idx=nh.indexOf(wanted);
+        if(idx>=0) return idx;
+      }
+      return -1;
+    }
+    function toNum(v){
+      if(v==null||v==='') return null;
+      var n=parseFloat(String(v).replace(/[€$%\s]/g,'').replace(/,/g,''));
+      return Number.isFinite(n)?n:null;
+    }
+    function parseMarketCsv(text){
+      var lines=String(text||'').split(/\r?\n/).filter(function(l){ return l.trim(); });
+      if(lines.length<2) return [];
+      var headers=splitCsvLine(lines[0]);
+      var dateIdx=findColumn(headers,['date','תאריך']);
+      var cols={};
+      Object.keys(marketSeries).forEach(function(k){ cols[k]=findColumn(headers,marketSeries[k].aliases); });
+      if(dateIdx<0) return [];
+      var rows=[];
+      lines.slice(1).forEach(function(line){
+        var p=splitCsvLine(line);
+        var dt=new Date(p[dateIdx]);
+        if(!Number.isFinite(dt.getTime())) return;
+        var row={date:dt};
+        Object.keys(cols).forEach(function(k){ row[k]=cols[k]>=0?toNum(p[cols[k]]):null; });
+        if(row.safran!=null||row.copa!=null||row.oil!=null) rows.push(row);
+      });
+      rows.sort(function(a,b){ return a.date-b.date; });
+      return rows;
+    }
+    function marketPath(points){
+      return points.map(function(p,i){ return (i?'L':'M')+p.x.toFixed(1)+' '+p.y.toFixed(1); }).join(' ');
+    }
+    function buildSeries(key,rows,xScale,yScale){
+      var vals=rows.filter(function(r){ return r[key]!=null&&r[key]>0; });
+      if(!vals.length) return null;
+      var base=vals[0][key];
+      return vals.map(function(r){ return {date:r.date,value:r[key],norm:r[key]/base*100,x:xScale(r.date),y:yScale(r[key]/base*100)}; });
+    }
+    function pctReturns(key,rows){
+      var out=[],prev=null;
+      rows.forEach(function(r){
+        if(r[key]!=null&&r[key]>0){
+          if(prev!=null){ out.push({d:r.date.toISOString().slice(0,10),r:r[key]/prev-1}); }
+          prev=r[key];
+        }
+      });
+      return out;
+    }
+    function corr(aKey,bKey){
+      var a=pctReturns(aKey,marketState.rows), b=pctReturns(bKey,marketState.rows), bm={};
+      b.forEach(function(x){ bm[x.d]=x.r; });
+      var xs=[],ys=[];
+      a.forEach(function(x){ if(bm[x.d]!=null){ xs.push(x.r); ys.push(bm[x.d]); } });
+      if(xs.length<3) return null;
+      var ax=xs.reduce(function(s,x){ return s+x; },0)/xs.length;
+      var ay=ys.reduce(function(s,x){ return s+x; },0)/ys.length;
+      var num=0,dx=0,dy=0;
+      xs.forEach(function(x,i){ var vx=x-ax,vy=ys[i]-ay; num+=vx*vy; dx+=vx*vx; dy+=vy*vy; });
+      return dx&&dy?num/Math.sqrt(dx*dy):null;
+    }
+    function fmtCorr(v){ return v==null?'--':(v>=0?'+':'')+v.toFixed(2); }
+    function fmtDateTick(d){
+      return d.toISOString().slice(0,10);
+    }
+    function fmtMarketPrice(key,value){
+      var s=marketSeries[key], decimals=key==='oil'?2:2;
+      return s.unit+Number(value).toFixed(decimals)+(s.suffix||'');
+    }
+    function updateCorr(){
+      if(!marketCorr) return;
+      var vals=[corr('safran','oil'),corr('copa','oil'),corr('safran','copa')];
+      marketCorr.querySelectorAll('.corr-v').forEach(function(el,i){ el.textContent=fmtCorr(vals[i]); });
+    }
+    function renderMarketChart(){
+      if(!marketSvg) return;
+      var rows=marketState.rows;
+      marketSvg.innerHTML='';
+      if(!rows.length){
+        if(marketEmpty) marketEmpty.style.display='grid';
+        updateCorr();
+        return;
+      }
+      var active=Object.keys(marketState.active).filter(function(k){ return marketState.active[k]; });
+      var minT=rows[0].date.getTime(), maxT=rows[rows.length-1].date.getTime();
+      if(minT===maxT) maxT=minT+86400000;
+      var raw=[];
+      active.forEach(function(k){
+        var vals=rows.filter(function(r){ return r[k]!=null&&r[k]>0; });
+        if(!vals.length) return;
+        var base=vals[0][k];
+        vals.forEach(function(r){ raw.push(r[k]/base*100); });
+      });
+      if(!raw.length){
+        if(marketEmpty) marketEmpty.style.display='grid';
+        updateCorr();
+        return;
+      }
+      if(marketEmpty) marketEmpty.style.display='none';
+      var yMin=Math.min.apply(null,raw), yMax=Math.max.apply(null,raw);
+      var pad=Math.max(5,(yMax-yMin)*.12); yMin-=pad; yMax+=pad;
+      if(yMax===yMin){ yMax+=5; yMin-=5; }
+      var xScale=function(d){ return 46+(d.getTime()-minT)/(maxT-minT)*708; };
+      var yScale=function(v){ return 270-(v-yMin)/(yMax-yMin)*220; };
+      var grid='';
+      for(var i=0;i<5;i++){
+        var y=50+i*55, val=yMax-(yMax-yMin)*(i/4);
+        grid+='<line x1="46" y1="'+y+'" x2="754" y2="'+y+'" stroke="rgba(255,255,255,.08)" />';
+        grid+='<text x="760" y="'+(y+4)+'" fill="rgba(223,229,240,.48)" font-size="10" font-family="JetBrains Mono" direction="ltr">'+val.toFixed(0)+'</text>';
+      }
+      var xTicks=[
+        rows[0].date,
+        new Date((minT+maxT)/2),
+        rows[rows.length-1].date
+      ].map(function(d,idx){
+        var x=idx===0?46:(idx===1?400:754);
+        var anchor=idx===0?'start':(idx===1?'middle':'end');
+        return '<line x1="'+x+'" y1="50" x2="'+x+'" y2="270" stroke="rgba(255,255,255,.055)" />'
+          +'<text x="'+x+'" y="294" fill="rgba(223,229,240,.52)" font-size="10" font-family="JetBrains Mono" text-anchor="'+anchor+'" direction="ltr">'+fmtDateTick(d)+'</text>';
+      }).join('');
+      var baseLine='';
+      if(100>=yMin && 100<=yMax){
+        var y100=yScale(100);
+        baseLine='<line x1="46" y1="'+y100.toFixed(1)+'" x2="754" y2="'+y100.toFixed(1)+'" stroke="rgba(247,215,116,.35)" stroke-dasharray="4 5" />'
+          +'<text x="50" y="'+(y100-6).toFixed(1)+'" fill="rgba(247,215,116,.72)" font-size="10" font-family="JetBrains Mono" direction="ltr">100 = start</text>';
+      }
+      var axisTitle='<text x="46" y="28" fill="rgba(223,229,240,.66)" font-size="11" font-family="JetBrains Mono" direction="ltr">Index · start = 100</text>'
+        +'<text x="754" y="28" fill="rgba(223,229,240,.45)" font-size="10" font-family="JetBrains Mono" text-anchor="end" direction="ltr">normalized, not absolute price</text>';
+      var paths=active.map(function(k){
+        var points=buildSeries(k,rows,xScale,yScale);
+        if(!points||points.length<2) return '';
+        var last=points[points.length-1];
+        var label=marketSeries[k].label+' '+fmtMarketPrice(k,last.value);
+        return '<path d="'+marketPath(points)+'" fill="none" stroke="'+marketSeries[k].color+'" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />'
+          +'<circle cx="'+last.x.toFixed(1)+'" cy="'+last.y.toFixed(1)+'" r="4" fill="'+marketSeries[k].color+'" />'
+          +'<text x="746" y="'+(last.y-7).toFixed(1)+'" fill="'+marketSeries[k].color+'" font-size="11" font-family="JetBrains Mono" text-anchor="end" direction="ltr">'+label+'</text>';
+      }).join('');
+      marketSvg.innerHTML=axisTitle+grid+xTicks+baseLine+'<line x1="46" y1="270" x2="754" y2="270" stroke="rgba(255,255,255,.16)" />'+paths;
+      updateCorr();
+    }
+    function loadDefaultMarketData(){
+      if(!marketDefaultCsv) return;
+      marketState.rows=parseMarketCsv(marketDefaultCsv.textContent);
+      if(marketStatus && marketState.rows.length){
+        var first=marketState.rows[0].date.toISOString().slice(0,10);
+        var last=marketState.rows[marketState.rows.length-1].date.toISOString().slice(0,10);
+        marketStatus.textContent='Default data: loaded '+marketState.rows.length+' common trading days · '+first+' to '+last;
+      }
+    }
+    marketInput.addEventListener('change',function(){
+      var file=marketInput.files&&marketInput.files[0];
+      if(!file) return;
+      var reader=new FileReader();
+      reader.onload=function(){
+        marketState.rows=parseMarketCsv(reader.result);
+        if(marketStatus){
+          marketStatus.textContent=marketState.rows.length
+            ? 'CSV status: loaded '+marketState.rows.length+' rows from '+file.name
+            : 'CSV status: no usable rows. expected Date, Safran, Copa, Oil';
+        }
+        renderMarketChart();
+      };
+      reader.readAsText(file);
+    });
+    document.querySelectorAll('[data-market-series]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var key=btn.getAttribute('data-market-series');
+        marketState.active[key]=!marketState.active[key];
+        btn.setAttribute('aria-pressed',String(marketState.active[key]));
+        renderMarketChart();
+      });
+    });
+    loadDefaultMarketData();
+    renderMarketChart();
+  }
 
   // reveal on scroll
   var revs=document.querySelectorAll('.reveal');
@@ -2086,16 +3030,16 @@ Use "Research" mode for supporting diligence and Q&A.
   var ASSUMPTIONS = {
     safran:{
       cur:'€', price:334,
-      bull:{eps:13.5, mult:31, note:'תרחיש שורי: EPS גבוה בכ-10% מהקונצנזוס בזכות האצה ב-aftermarket ובמסירות LEAP, לצד מכפיל איכות של 31x.'},
-      base:{eps:12.3, mult:28, note:'תרחיש בסיס: קונצנזוס FY2027E של €12.30 ומכפיל 28x. איכות גבוהה, אך חלק גדול מהצמיחה כבר מתומחר.'},
-      bear:{eps:11.0, mult:24, note:'תרחיש דובי: EPS נמוך בכ-11% מהקונצנזוס עקב עיכובי מסירות או האטה אזרחית, לצד ירידת מכפיל ל-24x.'},
+      bull:{eps:13.5, mult:31, note:'תרחיש שורי: EPS גבוה בכ-10% מהקונצנזוס בזכות האצה ב-aftermarket ובמסירות LEAP, לצד מכפיל יעד של 31×.'},
+      base:{eps:12.3, mult:27.2, note:'תרחיש בסיס: קונצנזוס FY2027E של €12.30 ושמירה על מכפיל הבסיס האחיד של 27.2×, ללא התרחבות מכפיל.'},
+      bear:{eps:11.0, mult:24, note:'תרחיש דובי: EPS נמוך בכ-11% מהקונצנזוס עקב עיכובי מסירות או האטה אזרחית, לצד ירידת מכפיל היעד ל-24×.'},
       div:3.35
     },
     copa:{
       cur:'$', price:157,
       bull:{eps:22.0, mult:10.0, note:'תרחיש שורי: הקצה העליון של טווח קונצנזוס FY2027E, עם התייצבות בדלק וסגירה חלקית של הדיסקאונט.'},
-      base:{eps:19.62, mult:9.0, note:'תרחיש בסיס: קונצנזוס FY2027E של $19.62 ומכפיל 9x, המשקף איכות תפעולית לצד סיכון דלק.'},
-      bear:{eps:17.95, mult:7.0, note:'תרחיש דובי: הקצה התחתון של טווח הקונצנזוס ומכפיל מחזורי של 7x בשל לחץ דלק מתמשך.'},
+      base:{eps:19.62, mult:9.0, note:'תרחיש בסיס: קונצנזוס FY2027E של $19.62 ומכפיל יעד של 9×, המשקף איכות תפעולית לצד סיכון דלק.'},
+      bear:{eps:17.95, mult:7.0, note:'תרחיש דובי: הקצה התחתון של טווח הקונצנזוס ומכפיל יעד מחזורי של 7× בשל לחץ דלק מתמשך.'},
       div:6.84
     }
   };
@@ -2109,7 +3053,7 @@ Use "Research" mode for supporting diligence and Q&A.
     var moveTxt=(up?'אפסייד ':'דאונסייד ')+Math.abs(Math.round(mv))+'%';
     var dy=a.div/a.price*100;
     if(dy>=2 && up){ moveTxt+=', בתוספת תשואת דיבידנד של כ-'+snTrim(Math.round(dy*10)/10)+'%'; }
-    var bridge=a.cur+snTrim(s.eps)+' FY2027E EPS × '+snTrim(s.mult)+'x =';
+    var bridge=a.cur+snTrim(s.eps)+' EPS ל-2027E × מכפיל יעד '+snTrim(s.mult)+' =';
     return {target:a.cur+target, bridge:bridge, move:moveTxt, cls:(up?'up':'down'), note:s.note};
   }
   document.querySelectorAll('.scen').forEach(function(card){
