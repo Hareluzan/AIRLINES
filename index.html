@@ -608,7 +608,7 @@ Presentation Path (7-10 minutes):
 Use "Research" mode for supporting diligence and Q&A.
 Use "Market Data" mode for live market checks, price momentum and correlation work.
 -->
-<body class="presentation-mode">
+<body class="research-mode">
 
 <div id="pageProgress" aria-hidden="true"></div>
 <nav class="nav">
@@ -619,8 +619,8 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <span>INVESTMENT MEMO</span>
     </div>
     <div class="view-switch" role="group" aria-label="רמת פירוט">
-      <button type="button" data-view="presentation" aria-pressed="true">הצגה</button>
-      <button type="button" data-view="research" aria-pressed="false">מחקר</button>
+      <button type="button" data-view="presentation" aria-pressed="false" hidden>הצגה</button>
+      <button type="button" data-view="research" aria-pressed="true">מחקר</button>
       <button type="button" data-view="market" aria-pressed="false">נתוני שוק</button>
     </div>
     <div class="nav-links" id="navLinks">
@@ -2606,7 +2606,7 @@ Date,Safran,Copa,Oil
     el.addEventListener('toggle',function(){ requestAnimationFrame(updatePageProgress); });
   });
 
-  // presentation view keeps the interview path concise; research view restores diligence.
+  // Presentation mode remains available in code; research mode is the default full view.
   var viewButtons=document.querySelectorAll('[data-view]');
   function setView(mode){
     mode=(mode==='research'||mode==='market')?mode:'presentation';
@@ -2633,7 +2633,7 @@ Date,Safran,Copa,Oil
     btn.addEventListener('click',function(){ setView(btn.getAttribute('data-view')); });
   });
   var hashTarget=location.hash ? document.querySelector(location.hash) : null;
-  setView(hashTarget && hashTarget.classList.contains('market-only') ? 'market' : (hashTarget && hashTarget.classList.contains('research-only') ? 'research' : 'presentation'));
+  setView(hashTarget && hashTarget.classList.contains('market-only') ? 'market' : 'research');
   if(hashTarget){
     requestAnimationFrame(function(){
       requestAnimationFrame(function(){ hashTarget.scrollIntoView({block:'start'}); });
