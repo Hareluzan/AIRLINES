@@ -58,9 +58,11 @@ body.presentation-mode .co-leader{display:none}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:2px;color:var(--hud);text-transform:uppercase;margin-bottom:20px}
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--hud)}
 h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:clamp(34px,5.6vw,62px);line-height:1.08;letter-spacing:-.5px;max-width:16ch}
-.hero-sub{margin-top:18px;font-size:clamp(16px,2vw,20px);color:var(--ink-mid);font-weight:400;max-width:46ch;line-height:1.5}
+.hero-copy{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(285px,.86fr);gap:24px;align-items:start;width:min(900px,100%);margin-top:22px}
+.hero-sub{margin:0;padding-left:24px;font-size:clamp(16px,1.75vw,19px);color:var(--ink-mid);font-weight:400;max-width:none;line-height:1.48}
 .hero-sub strong{color:var(--ink);font-weight:700}
-.hero-thesis{margin-top:26px;font-size:15px;color:var(--ink-mid);max-width:54ch;line-height:1.65;border-right:2px solid var(--hud);padding-right:16px}
+.hero-thesis{margin:0;font-size:13.8px;color:var(--ink-mid);max-width:none;line-height:1.56;border-right:1px solid rgba(79,209,197,.85);padding:1px 18px 1px 0}
+.hero-thesis strong{color:var(--ink);font-weight:700}
 .hero-stats{display:flex;flex-wrap:wrap;gap:30px;margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
 .hstat .v{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:700;color:var(--ink);direction:ltr}
 .hstat .v small{font-size:15px;color:var(--ink-dim);font-weight:400;margin-right:3px}
@@ -475,7 +477,7 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 html:not(.js) .reveal{opacity:1;transform:none}
-@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw,.fc-grid,.fc-more-grid,.market-kpis,.market-corr{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section,body.presentation-mode .section{padding:48px 0}.sec-head{grid-template-columns:48px minmax(0,1fr);column-gap:14px}.sec-eyebrow .num{font-size:33px}.subchapter{margin-top:44px}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:8px}.brand span{display:none}.nav-links{flex:1}.nav-links a{padding:6px 6px;font-size:11.5px}.view-switch button{padding:5px 7px;font-size:11px}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}.fc-head{flex-direction:column}.fc-grid{gap:22px}.fc-more-grid{gap:20px}.geo-head{flex-direction:column}.geo-badge{align-self:flex-start}.market-chart-head{flex-direction:column}.market-chart-box{height:280px}}
+@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw,.fc-grid,.fc-more-grid,.market-kpis,.market-corr{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.hero-copy{grid-template-columns:1fr;gap:14px;max-width:58ch}.hero-thesis{font-size:14px}.section,body.presentation-mode .section{padding:48px 0}.sec-head{grid-template-columns:48px minmax(0,1fr);column-gap:14px}.sec-eyebrow .num{font-size:33px}.subchapter{margin-top:44px}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:8px}.brand span{display:none}.nav-links{flex:1}.nav-links a{padding:6px 6px;font-size:11.5px}.view-switch button{padding:5px 7px;font-size:11px}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}.fc-head{flex-direction:column}.fc-grid{gap:22px}.fc-more-grid{gap:20px}.geo-head{flex-direction:column}.geo-badge{align-self:flex-start}.market-chart-head{flex-direction:column}.market-chart-box{height:280px}}
 @media(max-width:600px){.nav-inner{padding:0 12px}.brand{gap:0}.brand b{display:none}.nav-links a{padding:6px 6px;font-size:11.5px}}
 body{max-width:100%;overflow-x:hidden}
 table,svg,img{max-width:100%}
@@ -566,6 +568,13 @@ input[type=range].fslider::-moz-range-thumb{width:20px;height:20px;border-radius
 .fsafran .fs-txt{font-size:12.5px;color:var(--ink-mid);flex:0 0 auto}
 .fsafran .fs-txt b{color:var(--safran)}
 .fsim-note{font-size:11px;color:var(--ink-faint);line-height:1.55;margin-top:16px;border-top:1px solid var(--line-soft);padding-top:12px}
+.fuel-line-chart{direction:ltr;margin:4px 0 2px}
+.fuel-line-chart svg{display:block;width:100%;height:auto}
+.fuel-legend{display:flex;flex-wrap:wrap;gap:12px 18px;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--ink-dim)}
+.fuel-legend span{display:inline-flex;align-items:center;gap:7px}
+.fuel-legend i{width:18px;height:2px;border-radius:2px;background:var(--ink-dim);display:inline-block}
+.fuel-legend .hist i{background:var(--copa)}
+.fuel-legend .partial i{background:var(--hud)}
 @media(max-width:820px){.spine{grid-template-columns:1fr;gap:9px}.spine-link{display:none}.fsim-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:880px){.fleet-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.peer-grid{grid-template-columns:1fr}}
@@ -635,25 +644,27 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
   <div class="wrap">
     <div class="eyebrow">תזת השקעה · ניתוח מוסדי מלמעלה למטה ומלמטה למעלה</div>
     <h1>תעופה מחוץ לארה״ב ושרשרת הערך התעופתית</h1>
-    <p class="hero-sub">שני רעיונות עצמאיים עם חוט מקשר: <strong>Safran כתזת איכות בשרשרת הערך</strong>, ו-<strong>Copa כתזת ערך תפעולי באמריקה הלטינית</strong>.</p>
-    <p class="hero-thesis">נקודת המוצא היא זעזוע דלק שפגע בתמחור, אך לא פתר את מגבלת ההיצע. משם הניתוח עובר מכלכלת הענף הדקה אל המקומות שבהם יש חפיר, כוח תמחור ומאזן: ספק מנועים וחלפים עם הכנסות חוזרות, ומפעילה אזורית יעילה עם האב שקשה לשכפל.</p>
+    <div class="hero-copy">
+      <p class="hero-sub">התזה מתחילה בענף התעופה, אבל לא מסתיימת בקניית חברות תעופה. המסקנה היא לבחור <strong>שתי נקודות איכותיות בשרשרת הערך</strong>: ספקית תעופה וביטחון עם הכנסות חוזרות, ומפעילת תעופה אזורית עם חפיר תפעולי.</p>
+      <p class="hero-thesis">נקודת המוצא: דלק פגע בתמחור, אבל לא פתר את מגבלת ההיצע. לכן הניתוח עובר מכלכלת ענף דקה אל חפיר, כוח תמחור ומאזן. רק אחרי ההבחנה הזו נכנסות שתי החברות: <strong>Safran</strong>, ספקית אירופית למנועים, חלפים ושירותי תעופה וביטחון; ו-<strong>Copa</strong>, מפעילת תעופה פנמית שמחברת את האמריקות דרך האב שקשה לשכפל.</p>
+    </div>
     <div class="hero-stats">
       <div class="hstat"><div class="v">17,000<small>+</small></div><div class="k">צבר הזמנות מטוסים, כ-60% מהצי הפעיל</div></div>
       <div class="hstat"><div class="v" style="color:var(--hud)">$193<small>B</small></div><div class="k">שוק התחזוקה (MRO) עד 2030</div></div>
-      <div class="hstat"><div class="v" style="color:var(--safran)">+26<small>%</small></div><div class="k">צמיחת רווח תפעולי Safran 2025</div></div>
-      <div class="hstat"><div class="v" style="color:var(--copa)">9.2<small>×</small></div><div class="k">מכפיל רווח עוקב של Copa</div></div>
+      <div class="hstat"><div class="v" style="color:var(--safran)">+26<small>%</small></div><div class="k">צמיחת רווח תפעולי בספקית שרשרת הערך</div></div>
+      <div class="hstat"><div class="v" style="color:var(--copa)">9.2<small>×</small></div><div class="k">מכפיל רווח עוקב במפעילה האזורית</div></div>
     </div>
     <div class="roles reveal">
       <div class="role core">
         <div class="role-top"><span class="tick">SAFRAN</span><span class="badge">Quality</span></div>
-        <h3>תזת איכות בשרשרת הערך</h3>
-        <p>כמעט ללא חשיפת דלק ישירה, עם בסיס מנועים מותקן וזרם ארוך טווח של חלפים ושירותים דרך שותפות CFM עם GE.</p>
+        <h3>Safran: ספקית שרשרת הערך</h3>
+        <p>קבוצת תעופה וביטחון צרפתית. הליבה היא מנועי CFM/LEAP, חלפים ושירותים, כמעט ללא חשיפת דלק ישירה ועם בסיס מנועים מותקן שמייצר הכנסות חוזרות.</p>
         <div class="metric"><span class="mv">16.6%</span><span class="ml">שולי רווח תפעולי</span></div>
       </div>
       <div class="role comp">
         <div class="role-top"><span class="tick">COPA</span><span class="badge">Value</span></div>
-        <h3>תזת ערך תפעולי</h3>
-        <p>חפיר רשת בפנמה, מאזן מהחזקים בענף ותמחור זול. הדרך הנקייה להיחשף לצמיחת אמריקה הלטינית. רגישה לדלק כי אינה מגדרת.</p>
+        <h3>Copa: מפעילה אזורית איכותית</h3>
+        <p>חברת תעופה פנמית שמחברת את האמריקות דרך האב בפנמה. המודל נשען על צי 737 אחיד, מאזן חזק ויחידות כלכליות טובות, אך רגיש לדלק כי החברה אינה מגדרת.</p>
         <div class="metric"><span class="mv">9.2×</span><span class="ml">מכפיל רווח עוקב</span></div>
       </div>
       <div class="role ctx">
@@ -671,15 +682,15 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">01</span><span class="label">Thesis</span><span class="rule"></span></div>
       <h2>מה זיהיתי, ואיך הגעתי לשני הרעיונות?</h2>
-      <p class="sec-lead">התחלתי בזעזוע מאקרו, עברתי לכלכלת הענף, ואז בדקתי היכן נשאר ערך לבעלי המניות. בענף עם רווחיות דקה ורגישות גבוהה לדלק, המסקנה היא שלא קונים סל: מחפשים <strong>חפיר, כוח תמחור, מאזן ויחידות כלכליות</strong>. כך מתקבלים Safran ו-Copa משתי נקודות שונות בשרשרת.</p>
+      <p class="sec-lead">התחלתי בזעזוע מאקרו, עברתי לכלכלת הענף, ואז בדקתי היכן נשאר ערך לבעלי המניות. בענף עם רווחיות דקה ורגישות גבוהה לדלק, המסקנה היא שלא קונים סל: מחפשים <strong>חפיר, כוח תמחור, מאזן ויחידות כלכליות</strong>. כך מגיעים לשתי דרכי מימוש שונות: Safran כספקית שרשרת ערך עם הכנסות aftermarket, ו-Copa כמפעילה אזורית איכותית שמנצלת האב חזק בפנמה.</p>
     </div>
     <div class="grid g3 reveal">
       <div class="readout neg"><div class="rv">$23<small>B</small> <span style="font-size:13px;color:var(--ink-dim)">← $41B</span></div><div class="rk">חיתוך תחזית הרווח הענפי ל-2026</div></div>
       <div class="readout"><div class="rv">$45<small>B</small></div><div class="rk">רווח ענפי בפועל ב-2025</div></div>
-      <div class="readout accent"><div class="rv">2</div><div class="rk">רעיונות עצמאיים: Safran ו-Copa</div></div>
+      <div class="readout accent"><div class="rv">2</div><div class="rk">דרכי מימוש: ספקית שרשרת ערך ומפעילה אזורית</div></div>
     </div>
     <h3 class="card-title reveal" style="margin-top:42px;font-size:15px"><span class="tk"></span>השדרה של הרעיון: ארבעה כוחות שמתחברים</h3>
-    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:6px;font-size:15px">שני מנועי ביקוש מבניים, אזרחי (כלכלת החוויות) וביטחוני (התחמשות אירופה), נפגשים עם מגבלת היצע שמייצרת משמעת תמחור, ומיתרגמים דרך שרשרת הערך ליותר תחזוקה וחלפים. שני מנועי הביקוש מתנקזים ל-Safran, שיש לה רגל אזרחית וגם רגל ביטחונית.</p>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:6px;font-size:15px">שני מנועי ביקוש מבניים, אזרחי (כלכלת החוויות) וביטחוני (התחמשות אירופה), נפגשים עם מגבלת היצע שמייצרת משמעת תמחור, ומיתרגמים דרך שרשרת הערך ליותר תחזוקה וחלפים. שני מנועי הביקוש מתנקזים בעיקר ל-Safran, ספקית שרשרת הערך שיש לה רגל אזרחית וגם רגל ביטחונית.</p>
     <div class="spine reveal">
       <div class="spine-node" style="border-top:2px solid var(--hud)"><span class="sn-k" style="color:var(--hud)">Civil demand</span><div class="sn-t"><b>כלכלת החוויות</b> מזינה את הביקוש האזרחי. מעבר צרכני ממוצרים לחוויות ולנסיעות מתורגם ליותר טיסות.</div></div>
       <div class="spine-link">+</div>
@@ -1599,6 +1610,14 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <span class="sc-index">02</span>
       <div><span class="sc-kicker">Financials &amp; Balance Sheet</span><h3>דוחות, תחזיות וחוסן מאזני</h3><p>בוחנים את ההתאוששות מאז 2021, את איכות התזרים, את ציפיות הקונצנזוס ואת יכולת המאזן לספוג דלק והשקעות צי.</p></div>
     </div>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>תמונת מאזן מהירה</h3>
+    <div class="grid g4 reveal" style="margin-bottom:18px">
+      <div class="readout pos"><div class="rv">$1.52<small>B</small></div><div class="rsub">מזומן והשקעות</div><div class="rk">כרית נזילות משמעותית ביחס לגודל החברה</div></div>
+      <div class="readout"><div class="rv">$2.1<small>B</small></div><div class="rsub">כולו מימון מטוסים</div><div class="rk">סך החוב הפיננסי</div></div>
+      <div class="readout accent"><div class="rv">~$0.6<small>B</small></div><div class="rsub">$2.1B פחות ~$1.5B</div><div class="rk">חוב נטו משוער אחרי מזומן והשקעות</div></div>
+      <div class="readout pos"><div class="rv">~0.7<small>x</small></div><div class="rsub">חוב ברוטו / EBITDA: ~1.8x</div><div class="rk">מינוף נטו ל-EBITDA</div></div>
+    </div>
+    <div class="lev-note reveal" style="margin-top:-4px;margin-bottom:26px"><b>איך לקרוא את זה:</b> החוב הברוטו נראה גבוה יותר כי הוא מממן מטוסים, אבל מולו יש כרית מזומן והשקעות של כ-$1.5B. לכן המינוף הנכון לדיון האיכות המאזנית הוא מינוף נטו, לא רק חוב ברוטו ל-EBITDA.</div>
     <div class="card pad-lg reveal history-card" style="margin-bottom:26px">
       <div class="card-title"><span class="tk" style="background:var(--copa)"></span>ביצועים פיננסיים, 2021 עד 2025, מיליוני דולר</div>
       <div class="ifc" data-fin-chart="copa"></div>
@@ -1689,7 +1708,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
         <p class="fc-note"><b>בסיס הקונצנזוס:</b> ב-Copa זה אינו “צמיחה אורגנית” במובן תעשייתי, אלא מודל של קיבולת, צי מטוסים, תפוסה, RASM, CASM, מחיר דלק, תחרות ומטבעות באמריקה הלטינית.</p>
         <p class="src-note">מקור: קונצנזוס אנליסטים, יוני 2026. תחזית EPS ל-2027 מבוססת על 9 אנליסטים; תחזית 2028 על 4 בלבד ולכן מוצגת כאינדיקציה, לא כעוגן התמחור המרכזי.</p>
         <details class="fc-more">
-          <summary>הנחיות הנהלה, מאזן והחזר הון</summary>
+          <summary>הנחיות הנהלה והחזר הון</summary>
           <div class="fc-more-grid">
             <div class="fc-more-block">
               <h4>2026 GUIDANCE</h4>
@@ -1702,14 +1721,12 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
               <p class="fc-note">ברבעון השני החברה צופה מרווח של 8%-12% בשל זינוק הדלק. המבחן הוא קצב גלגול העלות למחירי הכרטיסים, לא עצם צמיחת הקיבולת.</p>
             </div>
             <div class="fc-more-block">
-              <h4>BALANCE SHEET & RETURNS</h4>
+              <h4>CAPITAL RETURNS</h4>
               <ul class="glist">
-                <li><span class="gl-k">מזומן והשקעות</span><span class="gl-v">~$1.5B</span></li>
-                <li><span class="gl-k">מינוף נטו ל-EBITDA</span><span class="gl-v">~0.7x</span></li>
                 <li><span class="gl-k">דיבידנד שנתי למניה</span><span class="gl-v">$6.84</span></li>
                 <li><span class="gl-k">רכישה עצמית ברבעון 1</span><span class="gl-v">$45M</span></li>
               </ul>
-              <p class="fc-note">תשואת הדיבידנד היא כ-4.4%. המאזן החזק מספק כרית לתוכנית ההתרחבות ולתנודתיות בדלק, אך אינו מבטל את הסיכון למרווח.</p>
+              <p class="fc-note">תשואת הדיבידנד היא כ-4.4%. החזר ההון נשען על תזרים תפעולי חזק, אך אינו מבטל את הסיכון למרווח כאשר הדלק עולה.</p>
             </div>
           </div>
         </details>
@@ -1720,11 +1737,11 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <p class="fn-note" style="margin-top:6px;margin-bottom:14px">כל השינויים מול הרבעון המקביל אשתקד (רבעון 1, 2025), אלא אם צוין אחרת.</p>
       <div class="grid fleet-grid" style="gap:12px;margin-bottom:14px">
         <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">$5.16</div><div class="rsub">+20.5%</div><div class="rk">רווח למניה (EPS)</div></div>
-        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">24.6<small>%</small></div><div class="rsub">שיפור של 0.8 נ"א</div><div class="rk">מרווח תפעולי</div></div>
+        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">24.6<small>%</small></div><div class="rsub">מול 23.8% ברבעון 1 2025</div><div class="rk">מרווח תפעולי, רבעון 1 2026</div></div>
         <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">11.8</div><div class="rsub">+2.7%</div><div class="rk">RASM, סנט</div></div>
         <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">$2.73</div><div class="rsub">+7.5%</div><div class="rk">מחיר דלק ממוצע לגלון</div></div>
       </div>
-      <div class="lev-note" style="margin-top:0;background:rgba(70,194,140,.08);border-color:rgba(70,194,140,.26)"><b>הנקודה החשובה:</b> למרות שסביבת הדלק התהפכה כלפי מעלה במרץ, המרווח התפעולי דווקא <b>התרחב</b> ב-0.8 נקודת אחוז ל-24.6%, כי ה-RASM עלה 2.7% וה-CASM ללא דלק ירד 1.0% ל-5.8 סנט. ההשפעה ברבעון הראשון הייתה מתונה (כ-20 מיליון דולר) כי הזינוק הגיע רק בסוף מרץ. המבחן האמיתי הוא רבעון 2, שם נוחתת מלוא ההשפעה.</div>
+      <div class="lev-note" style="margin-top:0;background:rgba(70,194,140,.08);border-color:rgba(70,194,140,.26)"><b>הנקודה החשובה:</b> למרות שסביבת הדלק התהפכה כלפי מעלה במרץ, מרווח הרבעון הראשון דווקא <b>התרחב</b> ב-0.8 נקודת אחוז ל-24.6%, מול 23.8% ברבעון המקביל. זה אינו אותו בסיס כמו מרווח 2025 השנתי של 22.6%. ההתרחבות נבעה מעלייה של 2.7% ב-RASM ומירידה של 1.0% ב-CASM ללא דלק ל-5.8 סנט. ההשפעה ברבעון הראשון הייתה מתונה (כ-20 מיליון דולר) כי הזינוק הגיע רק בסוף מרץ. המבחן האמיתי הוא רבעון 2, שם נוחתת מלוא ההשפעה.</div>
     </div>
     <div class="card pad-lg reveal presentation-only" style="border:1px solid rgba(240,172,52,.32);background:linear-gradient(135deg,var(--copa-soft),var(--card));margin-bottom:24px">
       <div class="card-title"><span class="tk" style="background:var(--copa)"></span>צי המטוסים: נכס מאזני, השקעת הון ומנוע הצמיחה</div>
@@ -1763,7 +1780,6 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
             <tr><td class="metric-name">מכפיל רווח עוקב</td><td class="n">~9.2 <span class="disc-tag cheap">זול</span></td><td class="n sector">22.10</td></tr>
             <tr><td class="metric-name">EV/EBITDA עוקב</td><td class="n">~6.4 <span class="disc-tag cheap">זול</span></td><td class="n sector">14.61</td></tr>
             <tr><td class="metric-name">תשואת דיבידנד</td><td class="n">~4.4%</td><td class="n sector">-</td></tr>
-            <tr><td class="metric-name">מינוף נטו ל-EBITDA</td><td class="n">~0.7x</td><td class="n sector">-</td></tr>
           </tbody>
         </table>
       </div>
@@ -1782,7 +1798,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px">לא מספיק להשוות לחציון הסקטור, צריך להשוות למתחרות בשמן. וכאן התמונה ברורה: הרווחיות באמריקה הלטינית <strong>מתפצלת לשניים</strong>. בצד אחד LATAM, Copa ו-Avianca, רווחיות ומזמינות מטוסים. בצד השני Aeroméxico (רווח שצנח 43%), Viva (הכנסה שירדה) וחברות שעברו הקפאת הליכים. Copa יושבת בראש הצד הרווחי, עם המרווח הגבוה והעקבי ביותר והמינוף הנמוך ביותר.</p>
     <div class="grid g3 reveal" style="margin-bottom:14px">
       <div class="readout accent"><div class="rv">22.6<small>%</small></div><div class="rsub">LATAM ~16.8%, Avianca 7.2%</div><div class="rk">מרווח תפעולי Copa, הגבוה באזור</div></div>
-      <div class="readout pos"><div class="rv">~0.7<small>x</small></div><div class="rsub">LATAM 1.5x</div><div class="rk">מינוף נטו Copa, הנמוך באזור</div></div>
+      <div class="readout pos"><div class="rv">~0.7<small>x</small></div><div class="rsub">אחרי מזומן והשקעות; LATAM 1.5x</div><div class="rk">מינוף נטו Copa, הנמוך באזור</div></div>
       <div class="readout"><div class="rv">11<small>×</small></div><div class="rk">כתר הדייקנות של Cirium באמריקה הלטינית, פעם 11</div></div>
     </div>
     <details class="xcompare reveal">
@@ -1812,13 +1828,13 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
             <tr><td class="metric-name">מינוף נטו (נמוך עדיף)<span class="en-m">Net Debt / EBITDA</span></td><td class="n" style="background:rgba(214,158,46,.08)">0.7x</td><td class="n">2.4x</td><td class="n">2.0x</td><td class="n" style="color:var(--pos)">0.5x</td></tr>
             <tr><td class="metric-name">עלות ללא דלק חלקי הכנסה ליחידה (נמוך עדיף)<span class="en-m">CASM ex-fuel / RASM</span></td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">49%</td><td class="n">74%</td><td class="n">74%</td><td class="n">82%</td></tr>
             <tr><td class="metric-name">מרווח יחידה חלקי הכנסה ליחידה (גבוה עדיף)<span class="en-m">Unit spread / RASM</span></td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">51%</td><td class="n">26%</td><td class="n">26%</td><td class="n">18%</td></tr>
-            <tr><td class="metric-name">מרווח תפעולי (גבוה עדיף)<span class="en-m">Operating margin</span></td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">24.6%</td><td class="n">4.6%</td><td class="n">4.2%</td><td class="n">4.9%</td></tr>
+            <tr><td class="metric-name">מרווח תפעולי Q1 2026 (גבוה עדיף)<span class="en-m">Operating margin</span></td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">24.6%</td><td class="n">4.6%</td><td class="n">4.2%</td><td class="n">4.9%</td></tr>
             <tr><td class="metric-name">מרווח תזרים חופשי (גבוה עדיף)<span class="en-m">FCF margin</span></td><td class="n" style="background:rgba(214,158,46,.08)">-5.2%</td><td class="n">8.6%</td><td class="n" style="color:var(--pos)">19.9%</td><td class="n">לא פורסם</td></tr>
             <tr><td class="metric-name">תשואת דיבידנד (גבוה עדיף)<span class="en-m">Dividend yield</span></td><td class="n" style="background:rgba(214,158,46,.08);color:var(--pos)">~4.4%</td><td class="n">~1.1%</td><td class="n">0%</td><td class="n">~2.0%</td></tr>
           </tbody>
         </table>
-        <div class="lev-note"><b>מה רואים:</b> Copa מצטיינת ברווחיות מנורמלת ויחידות כלכליות, ולא בגלל שהיא גדולה יותר. מרווח תפעולי 24.6% מול 4% עד 5% אצל הגדולות, מרווח יחידה 51% מהכנסה ליחידה מול 18% עד 26%, ויחס העלות ללא דלק הנמוך ביותר. החולשה היחידה היא מרווח התזרים החופשי, שבו United מובילה, אבל אצל Copa זה שלילי רק בגלל השקעת הצי (כפי שמוצג בבלוק התזרים). IAG עם המינוף הנמוך ביותר אך מרווח היחידה החלש ביותר.</div>
-        <p class="fn-note" style="margin-top:12px">הערת השוואתיות: הגדרות RASM, TRASM ו-PRASK והתאמות IFRS מול GAAP שונות בין חברות. הקריאה הנקייה ביותר היא יחס העלות ללא דלק להכנסה ליחידה. נתוני הרבעון הראשון 2026, תשואת דיבידנד מקורבת לפי מחיר נוכחי.</p>
+        <div class="lev-note"><b>מה רואים:</b> Copa מצטיינת ברווחיות מנורמלת ויחידות כלכליות, ולא בגלל שהיא גדולה יותר. ברבעון 1 2026 מרווח תפעולי של 24.6% מול 4% עד 5% אצל הגדולות, מרווח יחידה 51% מהכנסה ליחידה מול 18% עד 26%, ויחס העלות ללא דלק הנמוך ביותר. החולשה היחידה היא מרווח התזרים החופשי, שבו United מובילה, אבל אצל Copa זה שלילי רק בגלל השקעת הצי (כפי שמוצג בבלוק התזרים). IAG עם המינוף הנמוך ביותר אך מרווח היחידה החלש ביותר.</div>
+        <p class="fn-note" style="margin-top:12px">הערת השוואתיות: הגדרות RASM, TRASM ו-PRASK והתאמות IFRS מול GAAP שונות בין חברות. הקריאה הנקייה ביותר היא יחס העלות ללא דלק להכנסה ליחידה. נתוני הבנצ׳מרק הם רבעון ראשון 2026; מרווח Copa השנתי ל-2025 מוצג בנפרד כ-22.6%. תשואת דיבידנד מקורבת לפי מחיר נוכחי.</p>
       </div>
     </details>
 
@@ -1849,14 +1865,12 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     </div>
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>מבנה מימון הצי: בעלות מול חכירה</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px">בניגוד למפעילות לואו קוסט רבות שמסתמכות על חכירה תפעולית, <strong>Copa מחזיקה בבעלות את מרבית הצי</strong>. זהו חותם של חוזק מאזני: כשהמטוסים הם נכס במאזן ולא רק התחייבות חכירה, החברה גמישה יותר ועמידה יותר ללחצים.</p>
-    <div class="grid g4 reveal" style="margin-bottom:14px">
+    <div class="grid g2 reveal" style="margin-bottom:14px">
       <div class="readout accent"><div class="rv">45</div><div class="rsub">רבעון 1, 2026</div><div class="rk">מטוסים בבעלות מלאה וללא שעבוד, וכן 15 מנועי חילוף</div></div>
       <div class="readout"><div class="rv">97 / 28</div><div class="rsub">סוף 2025</div><div class="rk">מטוסים בבעלות / בחכירה ארוכת טווח</div></div>
-      <div class="readout"><div class="rv">$2.1<small>B</small></div><div class="rk">סך החוב, כולו מימון מטוסים, 53.7% בריבית קבועה</div></div>
-      <div class="readout pos"><div class="rv">~0.7<small>x</small></div><div class="rk">מינוף נטו ל-EBITDA, מהנמוכים בענף</div></div>
     </div>
     <div class="card pad-lg reveal" style="margin-bottom:24px;background:linear-gradient(135deg,var(--copa-soft),var(--card))">
-      <div class="lev-note" style="margin-top:0"><b>סימן לאיכות, לא רק למספר:</b> Copa אף נוהגת לרכוש מטוסים מחברות החכירה ולהמיר חכירה תפעולית לבעלות, מה שמקטין עוד את החשיפה לחכירה. המבנה הנכסי הזה, עם מינוף נמוך, כ-45 מטוסים ו-15 מנועי חילוף חופשיים משעבוד, הוא בדיוק מה שמאפשר לחברה לממן את תוכנית הצמיחה של 13.5 מיליארד דולר, לשמר דיבידנד של כ-4.4%, ולספוג זינוק דלק בלי לסכן את היציבות. זו הליבה של תזת המאזן.</div>
+      <div class="lev-note" style="margin-top:0"><b>סימן לאיכות, לא רק למספר:</b> Copa אף נוהגת לרכוש מטוסים מחברות החכירה ולהמיר חכירה תפעולית לבעלות, מה שמקטין עוד את החשיפה לחכירה. המבנה הנכסי הזה נותן לחברה בטוחות, שליטה בצי וגמישות למימון תוכנית הצמיחה, בלי להישען רק על חכירות תפעוליות. זו הליבה של תזת המאזן.</div>
     </div>
 
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>איכות התזרים: למה ה-FCF השלילי הוא בחירת צמיחה</h3>
@@ -1887,12 +1901,11 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
           <div class="cfb-k">תזרים חופשי שלילי קל, כולו בגלל הצמיחה</div>
         </div>
       </div>
-      <div class="grid g3" style="gap:12px;margin-bottom:6px">
+      <div class="grid g2" style="gap:12px;margin-bottom:6px">
         <div class="readout" style="padding:14px"><div class="rv" style="font-size:19px">$116M</div><div class="rk">החזר לבעלים: דיבידנד של $71M ורכישה עצמית של $45M</div></div>
         <div class="readout" style="padding:14px"><div class="rv" style="font-size:19px">+$155M</div><div class="rk">משיכת חוב חדש, מימון חלקי של הצמיחה במינוף זול כנגד נכס</div></div>
-        <div class="readout pos" style="padding:14px"><div class="rv" style="font-size:19px">$1,524M</div><div class="rk">כרית מזומן והשקעות שסופגת בקלות את ההשקעה</div></div>
       </div>
-      <div class="lev-note"><b>התשובה לשאלת הדיבידנד והרכישה העצמית:</b> ההחזר לבעלים, כ-116 מיליון דולר, מכוסה בנוחות על ידי התזרים התפעולי לבדו, פי שלושה ויותר, עוד לפני שנוגעים בכרית של 1.5 מיליארד דולר. ה-FCF השלילי הוא <b>בחירה אסטרטגית</b>, להשקיע היום במטוסים שיגדילו את הצי בכ-60%, ולא אילוץ. כל עוד תוכנית הצי פעילה, ה-FCF יהיה תנודתי ולעיתים שלילי, אך עם מינוף של 0.7x בלבד החברה יכולה לממן צמיחה, לחלק דיבידנד של כ-4.4% ולבצע רכישה עצמית בו זמנית.</div>
+      <div class="lev-note"><b>התשובה לשאלת הדיבידנד והרכישה העצמית:</b> ההחזר לבעלים, כ-116 מיליון דולר, מכוסה בנוחות על ידי התזרים התפעולי לבדו, פי שלושה ויותר. ה-FCF השלילי הוא <b>בחירה אסטרטגית</b>, להשקיע היום במטוסים שיגדילו את הצי בכ-60%, ולא אילוץ. כל עוד תוכנית הצי פעילה, ה-FCF יהיה תנודתי ולעיתים שלילי, אך איכות המאזן מאפשרת לחברה לממן צמיחה ולהמשיך להחזיר הון במקביל.</div>
     </div>
 
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>פרופיל אסטרטגי ואירועים מרכזיים</h3>
@@ -1928,30 +1941,55 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <div class="readout"><div class="rv">$2.11</div><div class="rsub">ממוצע 2025</div><div class="rk">המחיר האחרון עדיין גבוה ממנו בכ-40%</div></div>
     </div>
     <div class="card pad-lg reveal" style="margin-bottom:6px">
-      <div class="card-title"><span class="tk" style="background:var(--copa)"></span>ממוצע שנתי, דולר לגלון (חוף המפרץ)</div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2021, התאוששות</span><span class="gm-r"><span class="gm-pct flat">$1.86</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="47" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
+      <div class="card-title"><span class="tk" style="background:var(--copa)"></span>דלק סילוני, דולר לגלון (חוף המפרץ)</div>
+      <div class="fuel-line-chart" role="img" aria-label="מחיר דלק סילוני בחוף המפרץ: ממוצעים שנתיים 2021 עד 2025 ונתוני 2026 לא שנה מלאה">
+        <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="fuelArea" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#F0AC34" stop-opacity=".22"/>
+              <stop offset="1" stop-color="#F0AC34" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="fuelGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <rect x="0" y="0" width="720" height="260" rx="14" fill="rgba(15,20,31,.18)"/>
+          <line x1="58" y1="36.5" x2="688" y2="36.5" stroke="#1F2942" stroke-width="1"/>
+          <line x1="58" y1="101.9" x2="688" y2="101.9" stroke="#1F2942" stroke-width="1"/>
+          <line x1="58" y1="167.3" x2="688" y2="167.3" stroke="#1F2942" stroke-width="1"/>
+          <line x1="58" y1="200" x2="688" y2="200" stroke="#2A3550" stroke-width="1.2"/>
+          <text x="48" y="40" fill="#6E7894" font-size="10" font-family="JetBrains Mono" text-anchor="end">$4</text>
+          <text x="48" y="105" fill="#6E7894" font-size="10" font-family="JetBrains Mono" text-anchor="end">$3</text>
+          <text x="48" y="171" fill="#6E7894" font-size="10" font-family="JetBrains Mono" text-anchor="end">$2</text>
+          <path d="M70 176.5 L170 77.7 L270 121.5 L370 145.1 L470 160.1 L470 200 L70 200 Z" fill="url(#fuelArea)"/>
+          <path d="M70 176.5 L170 77.7 L270 121.5 L370 145.1 L470 160.1" fill="none" stroke="#F0AC34" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" filter="url(#fuelGlow)"/>
+          <path d="M470 160.1 L570 40.5 L670 105.2" fill="none" stroke="#4FD1C5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+          <g fill="#0F141F" stroke="#F0AC34" stroke-width="3">
+            <circle cx="70" cy="176.5" r="5"/><circle cx="170" cy="77.7" r="5"/><circle cx="270" cy="121.5" r="5"/><circle cx="370" cy="145.1" r="5"/><circle cx="470" cy="160.1" r="5"/>
+          </g>
+          <g fill="#0F141F" stroke="#4FD1C5" stroke-width="3">
+            <circle cx="570" cy="40.5" r="5"/><circle cx="670" cy="105.2" r="5"/>
+          </g>
+          <g font-family="JetBrains Mono" font-size="10" fill="#A6B0C8" text-anchor="middle">
+            <text x="70" y="220">2021</text><text x="170" y="220">2022</text><text x="270" y="220">2023</text><text x="370" y="220">2024</text><text x="470" y="220">2025</text><text x="570" y="220">May 26</text><text x="670" y="220">Jun 18</text>
+          </g>
+          <g font-family="JetBrains Mono" font-size="11" font-weight="700" text-anchor="middle">
+            <text x="70" y="164" fill="#A6B0C8">$1.86</text>
+            <text x="170" y="64" fill="#E36565">$3.37</text>
+            <text x="270" y="108" fill="#A6B0C8">$2.70</text>
+            <text x="370" y="132" fill="#A6B0C8">$2.34</text>
+            <text x="470" y="147" fill="#A6B0C8">$2.11</text>
+            <text x="570" y="27" fill="#E36565">$3.94</text>
+            <text x="670" y="92" fill="#4FD1C5">$2.95</text>
+          </g>
+          <text x="640" y="54" fill="#4FD1C5" font-size="11" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">-25%</text>
+          <text x="670" y="239" fill="#6E7894" font-size="9" font-family="JetBrains Mono" text-anchor="middle">2026 לא שנה מלאה</text>
+        </svg>
       </div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2022, משבר אנרגיה</span><span class="gm-r"><span class="gm-pct" style="color:var(--neg)">$3.37</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="86" style="background:linear-gradient(90deg,var(--neg),#C24A4A)"></div></div>
-      </div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2023</span><span class="gm-r"><span class="gm-pct flat">$2.70</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="69" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
-      </div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2024</span><span class="gm-r"><span class="gm-pct flat">$2.34</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="59" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
-      </div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2025</span><span class="gm-r"><span class="gm-pct flat">$2.11</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="54" style="background:linear-gradient(90deg,rgba(91,108,158,.5),#46557F)"></div></div>
-      </div>
-      <div class="gmetric">
-        <div class="gm-top"><span class="gm-name">2026, לא שנה מלאה</span><span class="gm-r"><span class="gm-vals">$3.94 → $2.95</span><span class="gm-pct" style="color:var(--copa)">-25%</span></span></div>
-        <div class="gm-track"><div class="gm-fill" data-w="75" style="background:linear-gradient(90deg,var(--copa),var(--hud))"></div></div>
+      <div class="fuel-legend">
+        <span class="hist"><i></i>ממוצע שנתי 2021-2025</span>
+        <span class="partial"><i></i>2026: ממוצע מאי מול מחיר 18 ביוני</span>
       </div>
       <div class="lev-note warnote"><b>הקריאה לתזה:</b> השוק עבר במהירות מתמחור מחסור לתמחור חזרת הזרימה. Copa, שאינה מגדרת, נהנית מהירידה אך עדיין משלמת מחיר גבוה מהנורמה ההיסטורית. לכן האפסייד יכול להגיע גם מהתייצבות, בלי להניח חזרה מלאה לממוצע 2025. ל-Safran כמעט אין חשיפה ישירה למחיר הדלק.</div>
       <p class="src-note">מקור: EIA, U.S. Gulf Coast Kerosene-Type Jet Fuel Spot Price. נתוני 2021-2025 הם ממוצעים שנתיים; נתון 2026 הוא מחיר ל-18 ביוני ואינו ממוצע שנתי.</p>
@@ -2100,7 +2138,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <div class="three reveal">
       <div class="tn"><div class="tn-v">$193<small>B</small></div><div class="tn-k">שוק התחזוקה (MRO) עד 2030, האנונה של Safran</div></div>
       <div class="tn"><div class="tn-v">€3.92<small>B</small></div><div class="tn-k">FCF של Safran ב-2025; P/E מתואם ל-2027E של 27.2×</div></div>
-      <div class="tn"><div class="tn-v">9.2<small>×</small></div><div class="tn-k">מכפיל רווח עוקב של Copa, מינוף ~0.7x ודיבידנד ~4.4%</div></div>
+      <div class="tn"><div class="tn-v">9.2<small>×</small></div><div class="tn-k">מכפיל רווח עוקב של Copa, לצד דיבידנד של כ-4.4%</div></div>
     </div>
     <div class="callout reveal" style="margin-top:34px"><div class="mk">✓</div><p>המסקנה אינה “לקנות תעופה”. היא לבחור חברה רק לאחר שהמאקרו עבר דרך כלכלת הענף, החפיר, הדוחות, התזרים, המאזן והתמחור.</p></div>
   </div>
