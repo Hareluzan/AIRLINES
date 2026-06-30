@@ -29,14 +29,14 @@ body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opa
 #pageProgress{position:fixed;top:0;right:0;width:0;height:3px;z-index:120;background:var(--hud);box-shadow:0 0 10px rgba(79,209,197,.45);transition:width .08s linear;pointer-events:none}
 .mono{font-family:'JetBrains Mono',monospace;font-feature-settings:"tnum" 1;direction:ltr;unicode-bidi:isolate;display:inline-block}
 .nav{position:fixed;top:0;right:0;left:0;width:100%;z-index:80;background:rgba(10,14,24,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.18)}
-.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:18px;overflow:hidden}
+.nav-inner{max-width:none;width:100%;margin:0 auto;padding:0 18px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:12px;overflow:hidden}
 .brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
 .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--hud);box-shadow:0 0 12px var(--hud);flex-shrink:0}
 .brand b{font-weight:800;font-size:14.5px;letter-spacing:.2px}
-.brand span{color:var(--ink-dim);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
-.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1}
+.brand span{display:none;color:var(--ink-dim);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1;justify-content:flex-start}
 .nav-links::-webkit-scrollbar{display:none}
-.nav-links a{color:var(--ink-dim);text-decoration:none;font-size:13px;font-weight:500;padding:7px 11px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
+.nav-links a{color:var(--ink-dim);text-decoration:none;font-size:12px;font-weight:500;padding:6px 7px;border-radius:8px;white-space:nowrap;transition:color .2s,background .2s}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a.active{color:var(--ink);background:var(--card-2)}
 .nav-links a.active::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--hud);margin-left:6px;vertical-align:middle}
@@ -218,14 +218,20 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .nw-line:first-of-type{border-top:none}
 .nw-line .k{color:var(--ink-mid)}
 .nw-line .v{color:var(--ink);font-weight:600;text-align:left;direction:ltr;flex-shrink:0}
-.co-head{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:26px;padding:22px 24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.co-head{display:flex;flex-wrap:wrap;align-items:flex-start;gap:18px;margin-bottom:26px;padding:22px 24px;background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
 .co-mark{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;flex-shrink:0;direction:ltr}
 .co-mark.s{background:var(--safran-soft);color:var(--safran);border:1px solid rgba(124,157,255,.4)}
 .co-mark.c{background:var(--copa-soft);color:var(--copa);border:1px solid rgba(240,172,52,.4)}
 .co-head .co-name{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;direction:ltr}
 .co-head .co-kicker{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-dim);margin-top:5px}
-.co-head .co-desc{font-size:13px;color:var(--ink-dim);margin-top:2px;max-width:60ch}
-.co-head .co-leader{font-size:12px;color:var(--ink-mid);line-height:1.55;margin-top:10px;padding-top:10px;border-top:1px solid var(--line-soft);max-width:66ch}
+.co-head .co-desc{font-size:13.4px;color:var(--ink-mid);margin-top:8px;max-width:82ch;line-height:1.62}
+.co-head .co-desc p{margin:0 0 8px}
+.co-head .co-desc p:last-child{margin-bottom:0}
+.co-head .co-desc b{color:var(--ink);font-weight:700}
+.co-head .co-investment{margin-top:10px;padding:10px 13px;border-right:2px solid var(--hud);background:rgba(79,209,197,.06);border-radius:8px;color:var(--ink-mid)}
+.co-head .co-investment.s{border-right-color:var(--safran);background:var(--safran-soft)}
+.co-head .co-investment.c{border-right-color:var(--copa);background:var(--copa-soft)}
+.co-head .co-leader{font-size:12.4px;color:var(--ink-mid);line-height:1.6;margin-top:12px;padding-top:11px;border-top:1px solid var(--line-soft);max-width:82ch}
 .co-head .co-leader b{color:var(--ink)}
 .co-head .co-role{margin-right:auto;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;border-radius:20px;direction:ltr;font-weight:700}
 .co-role.s{background:var(--safran-soft);color:var(--safran)}
@@ -469,8 +475,8 @@ h2{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:clamp(25px,3.4
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .reveal.in{opacity:1;transform:none}
 html:not(.js) .reveal{opacity:1;transform:none}
-@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw,.fc-grid,.fc-more-grid,.market-kpis,.market-corr{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section,body.presentation-mode .section{padding:48px 0}.sec-head{grid-template-columns:48px minmax(0,1fr);column-gap:14px}.sec-eyebrow .num{font-size:33px}.subchapter{margin-top:44px}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:8px}.brand span{display:none}.nav-links{flex:1}.nav-links a{padding:7px 9px}.view-switch button{padding:5px 7px;font-size:11px}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}.fc-head{flex-direction:column}.fc-grid{gap:22px}.fc-more-grid{gap:20px}.geo-head{flex-direction:column}.geo-badge{align-self:flex-start}.market-chart-head{flex-direction:column}.market-chart-box{height:280px}}
-@media(max-width:600px){.nav-inner{padding:0 12px}.brand{gap:0}.brand b{display:none}.nav-links a{padding:7px 8px}}
+@media(max-width:880px){.roles,.g3,.g4,.scen-grid,.three,.dmatrix,.risk-grid,.caveat,.monitor,.nw,.fc-grid,.fc-more-grid,.market-kpis,.market-corr{grid-template-columns:1fr}.g2{grid-template-columns:1fr}.hero{padding:48px 0 40px}.section,body.presentation-mode .section{padding:48px 0}.sec-head{grid-template-columns:48px minmax(0,1fr);column-gap:14px}.sec-eyebrow .num{font-size:33px}.subchapter{margin-top:44px}.scen-body{gap:16px}.co-head .co-role{margin-right:0}.cbar-row{grid-template-columns:64px 1fr 64px}.nav-inner{gap:8px}.brand span{display:none}.nav-links{flex:1}.nav-links a{padding:6px 6px;font-size:11.5px}.view-switch button{padding:5px 7px;font-size:11px}.valtable{font-size:12px}.valtable th,.valtable td{padding:9px 6px}.wrap{padding:0 16px}.ftick .tt{font-size:8.5px}.fc-head{flex-direction:column}.fc-grid{gap:22px}.fc-more-grid{gap:20px}.geo-head{flex-direction:column}.geo-badge{align-self:flex-start}.market-chart-head{flex-direction:column}.market-chart-box{height:280px}}
+@media(max-width:600px){.nav-inner{padding:0 12px}.brand{gap:0}.brand b{display:none}.nav-links a{padding:6px 6px;font-size:11.5px}}
 body{max-width:100%;overflow-x:hidden}
 table,svg,img{max-width:100%}
 .xcompare{border:1px solid var(--line);border-radius:14px;background:linear-gradient(135deg,rgba(124,157,255,.05),var(--card));margin-bottom:24px;overflow:hidden}
@@ -610,16 +616,16 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     </div>
     <div class="nav-links" id="navLinks">
       <a href="#thesis">הרעיון</a>
-      <a class="research-only" href="#demand">ביקוש אזרחי</a>
+      <a class="research-only" href="#demand" title="ביקוש אזרחי">ביקוש</a>
       <a class="research-only" href="#rearm">ביטחון</a>
-      <a href="#macro">למה עכשיו</a>
-      <a href="#fuel">דלק ורווח</a>
-      <a href="#supply">מגבלת היצע</a>
-      <a href="#chain">שרשרת ערך</a>
+      <a href="#macro" title="למה עכשיו">עכשיו</a>
+      <a href="#fuel" title="דלק ורווח">דלק</a>
+      <a href="#supply" title="מגבלת היצע">היצע</a>
+      <a href="#chain" title="שרשרת ערך">שרשרת</a>
       <a href="#safran">Safran</a>
       <a href="#copa">Copa</a>
-      <a href="#decision">תרחישים וסיכונים</a>
-      <a class="market-only" href="#market">נתוני שוק</a>
+      <a href="#decision" title="תרחישים וסיכונים">סיכונים</a>
+      <a class="market-only" href="#market" title="נתוני שוק">שוק</a>
     </div>
   </div>
 </nav>
@@ -1034,8 +1040,12 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <div>
         <div class="co-name">Safran</div>
         <div class="co-kicker">Business Model · פעילות עסקית</div>
-        <div class="co-desc">קבוצת טכנולוגיה צרפתית בהנעה, ציוד תעופתי, פנים מטוס, ביטחון וחלל, עם כ-100 אלף עובדים. הליבה היא מנועי סילון דרך CFM, מיזם 50/50 עם GE, לצד מערכות נחיתה, גלגלים, אלקטרוניקה והגנה. נכללת ב-CAC 40 וב-Euro Stoxx 50, והיא הדרך מחוץ לארה״ב להיחשף לסופר-מחזור המנועים.</div>
-        <div class="co-leader"><b>מנכ״ל: אוליבייה אנדרייס (Olivier Andriès)</b>, בתפקיד מאז 2021, בוגר École Polytechnique. לפני כן הוביל את Safran Aircraft Engines (2015 עד 2020) ואת מעבר ה-CFM56 ל-LEAP, בדיוק מנוע הצמיחה של היום. החברה נוצרה ב-2005 ממיזוג Snecma ו-Sagem, ואין לה מייסד יחיד. אנדרייס מחזיק כ-0.009% מהמניות, מנהל מקצועי ולא בעל שליטה.</div>
+        <div class="co-desc">
+          <p><b>Safran היא קבוצת טכנולוגיה תעופתית וביטחונית צרפתית</b>, מהמובילות בעולם בתחומי הנעה תעופתית, ציוד למטוסים, פנים מטוס, ביטחון וחלל. החברה מעסיקה כ-100 אלף עובדים ונכללת במדדי CAC 40 ו-Euro Stoxx 50.</p>
+          <p>ליבת הפעילות נמצאת במנועי סילון אזרחיים דרך CFM International, מיזם 50/50 עם GE שמייצר את מנועי CFM56 וה-LEAP. סביב הליבה הזו Safran פועלת גם במערכות נחיתה, גלגלים ובלמים, אלקטרוניקה, מערכות הגנה ופתרונות לחלל.</p>
+          <p class="co-investment s"><b>המסר למשקיע:</b> זו חשיפה אירופית איכותית למחזור הצמיחה בתעופה העולמית: התאוששות תנועת הנוסעים, ביקוש למטוסים חסכוניים יותר, והתרחבות בסיס המנועים הפעיל שמייצר הכנסות חוזרות משירותים, תחזוקה וחלפים.</p>
+        </div>
+        <div class="co-leader"><b>הנהלה והקשר תעשייתי:</b> החברה נוצרה בשנת 2005 ממיזוג Snecma ו-Sagem, ולכן אין לה מייסד יחיד. מנכ״ל החברה הוא אוליבייה אנדרייס (Olivier Andriès), בתפקיד מאז 2021, מנהל מקצועי מתוך הקבוצה ובוגר École Polytechnique. לפני כן הוביל את Safran Aircraft Engines בשנים 2015 עד 2020, כולל תקופת המעבר המרכזית ממנועי CFM56 למנועי LEAP, אחד ממנועי הצמיחה המרכזיים של החברה כיום.</div>
       </div>
       <span class="co-role s">Quality</span>
     </div>
@@ -1062,9 +1072,49 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <div class="callout reveal" style="margin-bottom:26px"><div class="mk">⊕</div><p>Safran אינה מניית תעופה רגילה. היא חשיפה לחלפים, שירותים ומנועים, עם חסמי כניסה טכנולוגיים ורגולטוריים.</p></div>
     <div class="grid g4 reveal" style="margin-bottom:26px">
       <div class="readout"><div class="rv">€31.3<small>B</small></div><div class="rsub">+15% מ-2024</div><div class="rk">הכנסות 2025</div></div>
-      <div class="readout accent"><div class="rv">€5.2<small>B</small></div><div class="rsub">+26% מ-2024</div><div class="rk">שולי רווח תפעולי 16.6%</div></div>
+      <div class="readout accent"><div class="rv">€5.2<small>B</small></div><div class="rsub">+26% מ-2024</div><div class="rk">רווח תפעולי, שולי 16.6%</div></div>
       <div class="readout"><div class="rv">€3.92<small>B</small></div><div class="rk">תזרים חופשי (FCF) 2025</div></div>
       <div class="readout"><div class="rv">1,802</div><div class="rsub">+28% מ-2024</div><div class="rk">מסירות LEAP 2025 (דרך CFM)</div></div>
+    </div>
+    <div class="geo-panel safran research-only reveal" id="safran-geography">
+      <div class="geo-head">
+        <div class="geo-title">
+          <h4>פיזור הכנסות לפי המיקום הגיאוגרפי של הלקוח</h4>
+          <p>הכנסות מתואמות · אחוז מהכנסות הקבוצה · 2024 מול 2025</p>
+        </div>
+        <span class="geo-badge">RESEARCH · GEOGRAPHY</span>
+      </div>
+      <div class="geo-years" role="img" aria-label="פיזור הכנסות Safran לפי אזור בשנים 2024 ו-2025">
+        <div class="geo-row">
+          <span class="geo-year">2024</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:19%;background:#7C9DFF" title="צרפת: 19%">19%</span>
+            <span class="geo-seg" style="width:23%;background:#4FD1C5" title="אירופה ללא צרפת: 23%">23%</span>
+            <span class="geo-seg" style="width:33%;background:#F0AC34" title="אמריקה: 33%">33%</span>
+            <span class="geo-seg" style="width:16%;background:#46C28C" title="אסיה-פסיפיק: 16%">16%</span>
+            <span class="geo-seg" style="width:9%;background:#B98CF5" title="אפריקה והמזרח התיכון: 9%">9%</span>
+          </div>
+        </div>
+        <div class="geo-row">
+          <span class="geo-year">2025</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:19%;background:#7C9DFF" title="צרפת: 19%">19%</span>
+            <span class="geo-seg" style="width:23%;background:#4FD1C5" title="אירופה ללא צרפת: 23%">23%</span>
+            <span class="geo-seg" style="width:29%;background:#F0AC34" title="אמריקה: 29%">29%</span>
+            <span class="geo-seg" style="width:19%;background:#46C28C" title="אסיה-פסיפיק: 19%">19%</span>
+            <span class="geo-seg" style="width:10%;background:#B98CF5" title="אפריקה והמזרח התיכון: 10%">10%</span>
+          </div>
+        </div>
+      </div>
+      <div class="geo-legend">
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#7C9DFF"></span>צרפת</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#4FD1C5"></span>אירופה ללא צרפת</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#F0AC34"></span>אמריקה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#46C28C"></span>אסיה-פסיפיק</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#B98CF5"></span>אפריקה והמזרח התיכון</span>
+      </div>
+      <div class="geo-takeaway"><b>הקריאה האנליטית:</b> הפיזור הגיאוגרפי רחב ויציב. חלקה של אמריקה ירד מ-33% ל-29%, בעוד אסיה-פסיפיק עלתה מ-16% ל-19%; ארה"ב לבדה היוותה 22% מהכנסות 2025 לעומת 25% ב-2024. עם זאת, פיזור גיאוגרפי אינו פיזור לקוחות: שני לקוחות, שכל אחד מהם מעל 10% מההכנסות, ייצרו יחד €9.53 מיליארד, כ-30% מהקבוצה, ושני שלישים מסכום זה היו במגזר ההנעה.</div>
+      <p class="geo-source">מקור: <a href="https://www.safran-group.com/download/media/450394" target="_blank" rel="noopener">Safran, consolidated financial statements 2025, notes 4.2-4.3</a>.</p>
     </div>
     <div class="subchapter safran reveal">
       <span class="sc-index">01</span>
@@ -1199,11 +1249,11 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     </div>
     <div class="grid g3 reveal" style="margin-bottom:14px">
       <div class="readout s"><div class="rv">48.0<small>%</small></div><div class="rsub">חציון סקטור: 31.3%</div><div class="rk">מרווח גולמי, פרמיה של 54% לסקטור</div></div>
-      <div class="readout s"><div class="rv">14.6<small>%</small></div><div class="rsub">חציון סקטור: 10.5%</div><div class="rk">מרווח תפעולי גבוה ב39% מהסקטור</div></div>
+      <div class="readout s"><div class="rv">14.6<small>%</small></div><div class="rsub">חציון סקטור: 10.5%</div><div class="rk">מרווח תפעולי, גבוה ב-39%</div></div>
       <div class="readout s"><div class="rv">15.6<small>%</small></div><div class="rsub">חציון סקטור: 6.9%</div><div class="rk">תשואה על ההון הכולל, יותר מפי שניים</div></div>
     </div>
     <details class="xcompare reveal">
-      <summary><span style="display:flex;align-items:center;gap:11px"><span class="xc-ic">+</span><span>השוואה לסקטור ולממוצע 5 שנים: עומק רווחיות<br><span class="xc-hint">שני הצירים שהוועדה ביקשה, לחצו להרחבה</span></span></span></summary>
+      <summary><span style="display:flex;align-items:center;gap:11px"><span class="xc-ic">+</span><span>השוואה לסקטור ולממוצע 5 שנים: עומק רווחיות<br><span class="xc-hint">שני צירי השוואה מרכזיים, לחצו להרחבה</span></span></span></summary>
       <div class="xc-body">
         <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin:0 0 14px">השוואה זו מוסיפה את שני הצירים שהיו חסרים: מול חציון הסקטור ומול הביצועים ההיסטוריים של Safran עצמה. היא מבססת את החפיר במספרים, ומראה לא רק רמה גבוהה אלא מגמת שיפור. כל הנתונים TTM.</p>
         <table class="valtable">
@@ -1226,7 +1276,22 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     </details>
     <div class="subchapter safran reveal">
       <span class="sc-index">02</span>
-      <div><span class="sc-kicker">Peers &amp; Benchmark</span><h3>קבוצת ההשוואה: GE ו-Thales</h3><p>אחרי שמבינים את מבנה הפעילות והחפיר, בודקים מול מי נכון להשוות: GE במנועים ו-aftermarket, ו-Thales כחלופת ביטחון אירופית.</p></div>
+      <div><span class="sc-kicker">Growth Drivers</span><h3>מנועי הצמיחה והגיוון העסקי</h3><p>מסירות LEAP ושירותי מנועים הן הליבה; CFM, ציוד, ביטחון וחלל מוסיפים שכבות צמיחה וגיוון שצריך לבחון בנפרד.</p></div>
+    </div>
+    <div class="card pad-lg reveal" style="margin-bottom:14px">
+      <div class="card-title"><span class="tk" style="background:var(--pos)"></span>מנועי הצמיחה, רבעון ראשון 2026</div>
+      <p class="fn-note" style="margin-top:6px;margin-bottom:14px">כל השינויים מול הרבעון המקביל אשתקד (רבעון 1, 2025).</p>
+      <div class="grid g4">
+        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+18.8<small>%</small></div><div class="rk">הכנסות, €8.624B</div></div>
+        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+33.1<small>%</small></div><div class="rk">הנעה (Propulsion)</div></div>
+        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+43.1<small>%</small></div><div class="rk">שירותים אזרחיים, בדולר</div></div>
+        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+63<small>%</small></div><div class="rsub">520 יח׳</div><div class="rk">מסירות LEAP</div></div>
+      </div>
+    </div>
+
+    <div class="subchapter safran reveal">
+      <span class="sc-index">03</span>
+      <div><span class="sc-kicker">Peers &amp; Benchmark</span><h3>קבוצת ההשוואה: GE ו-Thales</h3><p>אחרי שמבינים את מבנה הפעילות, החפיר ומנועי הצמיחה, בודקים מול מי נכון להשוות: GE במנועים ו-aftermarket, ו-Thales כחלופת ביטחון אירופית.</p></div>
     </div>
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--safran)"></span>מול מי נכון לבחון את <bdi dir="ltr">Safran</bdi>?</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px"><bdi dir="ltr">GE Aerospace</bdi> היא ההשוואה הישירה במנועים וב-aftermarket, וגם השותפה של <bdi dir="ltr">Safran</bdi> ב-<bdi dir="ltr">CFM</bdi>. <bdi dir="ltr">Thales</bdi> אינה מתחרה ישירה במנועים, אלא חלופת השקעה אירופית באוויוניקה, ביטחון וחלל. ההפרדה הזו מונעת השוואת חברות שונות כאילו היו אותה חשיפה.</p>
@@ -1268,104 +1333,8 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
         <p class="src-note">מקורות תפעוליים: תוצאות 2025 ורבעון 1, 2026 של Safran, GE Aerospace ו-Thales. נתוני התמחור מקורבים ל-26 ביוני 2026 ודורשים עדכון לפני הצגה.</p>
       </div>
     </details>
-    <div class="geo-panel safran research-only reveal" id="safran-geography">
-      <div class="geo-head">
-        <div class="geo-title">
-          <h4>פיזור הכנסות לפי המיקום הגיאוגרפי של הלקוח</h4>
-          <p>הכנסות מתואמות · אחוז מהכנסות הקבוצה · 2024 מול 2025</p>
-        </div>
-        <span class="geo-badge">RESEARCH · GEOGRAPHY</span>
-      </div>
-      <div class="geo-years" role="img" aria-label="פיזור הכנסות Safran לפי אזור בשנים 2024 ו-2025">
-        <div class="geo-row">
-          <span class="geo-year">2024</span>
-          <div class="geo-track">
-            <span class="geo-seg" style="width:19%;background:#7C9DFF" title="צרפת: 19%">19%</span>
-            <span class="geo-seg" style="width:23%;background:#4FD1C5" title="אירופה ללא צרפת: 23%">23%</span>
-            <span class="geo-seg" style="width:33%;background:#F0AC34" title="אמריקה: 33%">33%</span>
-            <span class="geo-seg" style="width:16%;background:#46C28C" title="אסיה-פסיפיק: 16%">16%</span>
-            <span class="geo-seg" style="width:9%;background:#B98CF5" title="אפריקה והמזרח התיכון: 9%">9%</span>
-          </div>
-        </div>
-        <div class="geo-row">
-          <span class="geo-year">2025</span>
-          <div class="geo-track">
-            <span class="geo-seg" style="width:19%;background:#7C9DFF" title="צרפת: 19%">19%</span>
-            <span class="geo-seg" style="width:23%;background:#4FD1C5" title="אירופה ללא צרפת: 23%">23%</span>
-            <span class="geo-seg" style="width:29%;background:#F0AC34" title="אמריקה: 29%">29%</span>
-            <span class="geo-seg" style="width:19%;background:#46C28C" title="אסיה-פסיפיק: 19%">19%</span>
-            <span class="geo-seg" style="width:10%;background:#B98CF5" title="אפריקה והמזרח התיכון: 10%">10%</span>
-          </div>
-        </div>
-      </div>
-      <div class="geo-legend">
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#7C9DFF"></span>צרפת</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#4FD1C5"></span>אירופה ללא צרפת</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#F0AC34"></span>אמריקה</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#46C28C"></span>אסיה-פסיפיק</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#B98CF5"></span>אפריקה והמזרח התיכון</span>
-      </div>
-      <div class="geo-takeaway"><b>הקריאה האנליטית:</b> הפיזור הגיאוגרפי רחב ויציב. חלקה של אמריקה ירד מ-33% ל-29%, בעוד אסיה-פסיפיק עלתה מ-16% ל-19%; ארה"ב לבדה היוותה 22% מהכנסות 2025 לעומת 25% ב-2024. עם זאת, פיזור גיאוגרפי אינו פיזור לקוחות: שני לקוחות, שכל אחד מהם מעל 10% מההכנסות, ייצרו יחד €9.53 מיליארד, כ-30% מהקבוצה, ושני שלישים מסכום זה היו במגזר ההנעה.</div>
-      <p class="geo-source">מקור: <a href="https://www.safran-group.com/download/media/450394" target="_blank" rel="noopener">Safran, consolidated financial statements 2025, notes 4.2-4.3</a>.</p>
-    </div>
-
-    <div class="subchapter safran reveal">
-      <span class="sc-index">03</span>
-      <div><span class="sc-kicker">Earnings Quality &amp; Valuation</span><h3>איכות הרווח והתמחור</h3><p>מנטרלים את רעש הגידור, בוחרים בסיס EPS עקבי ומפרידים בין מכפיל השוק הנוכחי לבין מכפיל היעד בתרחיש.</p></div>
-    </div>
-    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--safran)"></span>באיזה רווח נכון לתמחר את Safran?</h3>
-    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">Safran מדווחת לפי IFRS, ושערוכי ספר גידור המטבע יוצרים תנודתיות חדה ברווח המדווח שאינה משקפת את הפעילות השוטפת. לכן אני מתמחר על בסיס EPS מתואם, רווח תפעולי ותזרים חופשי. כל חישובי התמחור בדשבורד מעוגנים ב-EPS מתואם של €12.30 ל-2027: במחיר ייחוס של €334 מתקבל מכפיל של 27.2. מכפיל או PEG המבוססים על הרווח המדווח אינם בסיס השוואה נקי.</p>
-    <div class="grid g3 reveal" style="margin-bottom:14px">
-      <div class="readout neg"><div class="rv">€17.17</div><div class="rsub">2024: €(1.60)</div><div class="rk">EPS מדווח לפי IFRS: תנודתיות משערוכי גידור</div></div>
-      <div class="readout accent"><div class="rv">€7.60</div><div class="rsub">2024: €7.37</div><div class="rk">EPS מתואם: בסיס עקבי לניתוח הפעילות</div></div>
-      <div class="readout"><div class="rv">27.2<small>×</small></div><div class="rsub">€334 / €12.30 ב-2027E</div><div class="rk">מכפיל הבסיס האחיד בדשבורד</div></div>
-    </div>
-    <div class="lev-note reveal"><b>המסקנה המתודולוגית:</b> Safran אינה זולה על בסיס הרווח הכלכלי. תרחיש הבסיס שומר על מכפיל 27.2 ללא התרחבות מכפיל, ולכן מחיר היעד כמעט זהה למחיר הייחוס. זו תזת איכות שבה רוב הצמיחה כבר מתומחרת; אפסייד מהותי דורש רווח גבוה מהקונצנזוס, ולא רק עמידה בו.</div>
-    <details class="fc-more reveal">
-      <summary>פירוט חשבונאות הגידור ולמה ה-PEG המדווח אינו שימושי</summary>
-      <div class="warn" style="margin-top:12px;border-color:rgba(124,157,255,.35);background:linear-gradient(120deg,var(--safran-soft),transparent 70%)">
-        <div class="wk" style="background:var(--safran-soft);color:var(--safran);border-color:rgba(124,157,255,.4)">!</div>
-        <div><h4 style="color:var(--safran)">הגשר מהרווח המדווח לרווח הכלכלי</h4><p>השנים 2027 ו-2028 מגודרות במלואן בשער יורו-דולר של 1.12, עם חשיפה נטו של עד 17 מיליארד דולר בשנה. שערוך הנגזרים יכול ליצור קפיצות והפסדים ברווח המדווח בלי שינוי מקביל בביצוע התפעולי או בתזרים. לכן אין להשתמש ב-PEG או במכפיל המבוססים על EPS מדווח. העוגן התפעולי הוא רווח תפעולי של 5.2 מיליארד יורו ב-2025 מול יעד של 7.0 עד 7.5 מיליארד יורו ב-2028.</p></div>
-      </div>
-    </details>
-
-    <div class="grid g2 reveal research-only" style="align-items:start;margin-top:24px;margin-bottom:24px">
-      <div class="card pad-lg">
-        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>תמחור Safran</div>
-        <table class="valtable">
-          <thead><tr><th>מדד</th><th class="n">Safran</th><th class="n">חציון סקטור</th></tr></thead>
-          <tbody>
-            <tr><td class="metric-name">מחיר</td><td class="n">~€334</td><td class="n sector">-</td></tr>
-            <tr><td class="metric-name">שווי שוק</td><td class="n">~€140B</td><td class="n sector">-</td></tr>
-            <tr><td class="metric-name">EV/EBITDA עתידי</td><td class="n">17.67</td><td class="n sector">12.09</td></tr>
-            <tr><td class="metric-name">P/E מתואם, 2027E</td><td class="n">27.2× <span class="disc-tag prem">פרמיית איכות</span></td><td class="n sector">28.6×*</td></tr>
-            <tr><td class="metric-name">PEG על בסיס EPS מדווח</td><td class="n">לא רלוונטי</td><td class="n sector">-</td></tr>
-          </tbody>
-        </table>
-        <p class="fn-note" style="text-align:right;margin-top:14px">* חציון הסקטור ואומדן GE מבוססים על נתוני שוק קדימה שאינם מנורמלים בהכרח ל-2027E; עוגן החישוב של Safran נשאר 27.2× על EPS מתואם ל-2027 בלבד.</p>
-      </div>
-      <div class="caveat" style="margin-top:0;grid-template-columns:1fr">
-        <div class="cav q"><div class="cav-tag">Caveat · הסתייגות כנה</div><p>עוצמת Safran במנועים נשענת במידה רבה על שותפות CFM עם GE, שמובילה רכיבים מרכזיים בליבת הלחץ הגבוה. מחוץ למסגרת CFM היו ל-Safran כישלונות אזרחיים בעבר, ואין לה מנוע רחב גוף עצמאי.</p></div>
-        <div class="cav a"><div class="cav-tag">Response · תשובה</div><p>CFM היא שותפות 50/50 עמוקה, חוזית ונעולה הדדית. Safran מחזיקה 50% באחד הנכסים החשובים בעולם מנועי הסילון, והבסיס המותקן מייצר לה חלק מובנה בזרם האחזקה לעשורים.</p></div>
-      </div>
-    </div>
-    <div class="subchapter safran reveal">
-      <span class="sc-index">04</span>
-      <div><span class="sc-kicker">Growth Drivers</span><h3>מנועי הצמיחה והגיוון העסקי</h3><p>מסירות LEAP ושירותי מנועים הן הליבה; CFM, ציוד, ביטחון וחלל מוסיפים שכבות צמיחה וגיוון שצריך לבחון בנפרד.</p></div>
-    </div>
-    <div class="card pad-lg reveal" style="margin-bottom:14px">
-      <div class="card-title"><span class="tk" style="background:var(--pos)"></span>מנועי הצמיחה, רבעון ראשון 2026</div>
-      <p class="fn-note" style="margin-top:6px;margin-bottom:14px">כל השינויים מול הרבעון המקביל אשתקד (רבעון 1, 2025).</p>
-      <div class="grid g4">
-        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+18.8<small>%</small></div><div class="rk">הכנסות, €8.624B</div></div>
-        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+33.1<small>%</small></div><div class="rk">הנעה (Propulsion)</div></div>
-        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+43.1<small>%</small></div><div class="rk">שירותים אזרחיים, בדולר</div></div>
-        <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">+63<small>%</small></div><div class="rsub">520 יח׳</div><div class="rk">מסירות LEAP</div></div>
-      </div>
-    </div>
-
     <div class="research-only">
-    <h3 class="card-title reveal" style="margin-top:44px;font-size:15px"><span class="tk" style="background:var(--ge)"></span>Safran מול GE Aerospace: שותפות וגם השוואת השקעה</h3>
+    <h3 class="card-title reveal" style="margin-top:24px;font-size:15px"><span class="tk" style="background:var(--ge)"></span>Safran מול GE Aerospace: שותפות וגם השוואת השקעה</h3>
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:20px;font-size:15px">אי אפשר להבין את Safran בלי GE. הן שותפות 50/50 במיזם <strong>CFM International</strong> מאז 1974, אחת השותפויות המוצלחות בתולדות התעשייה. CFM מייצרת את ה-CFM56 ואת יורשו ה-LEAP. שתי החברות אף מדווחות את אותו מספר מסירות LEAP (1,802 ב-2025), כי זה תוצר המיזם המשותף.</p>
     <div class="grid g2 reveal" style="align-items:start;margin-bottom:20px">
       <div class="card pad-lg">
@@ -1396,7 +1365,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
           <tr><td class="metric-name">צמיחת הכנסות</td><td class="n saf">+15%</td><td class="n ge">+21% מתואם</td></tr>
           <tr><td class="metric-name">שולי רווח תפעולי</td><td class="n saf">16.6%</td><td class="n ge">21.4% מתואם (CES 26.6%)</td></tr>
           <tr><td class="metric-name">תזרים חופשי (FCF)</td><td class="n saf">€3.9B</td><td class="n ge">$7.7B</td></tr>
-          <tr><td class="metric-name">צבר הזמנות</td><td class="n saf">$190B-$200B</td><td class="n ge">$190B</td></tr>
+          <tr><td class="metric-name">צבר הזמנות</td><td class="n saf">גבוה</td><td class="n ge">$190B</td></tr>
           <tr><td class="metric-name">מנועי רחב גוף עצמאיים</td><td class="n saf">אין, ציוד בלבד</td><td class="n ge">GEnx, GE9X, GE90</td></tr>
           <tr><td class="metric-name">P/E מוצג</td><td class="n saf">27.2× על 2027E מתואם</td><td class="n ge">~37×-39× אומדן שוק קדימה</td></tr>
         </tbody>
@@ -1449,6 +1418,50 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <div class="callout reveal" style="margin-bottom:20px"><div class="mk">∑</div><p>Safran היא מצרף מגוון עם ארבעה מנועי רווח: שירותי מנועים אזרחיים, ביטחון וחלל, ציוד ופנים מטוס, ולא רק שותפה של GE בחלקי מנוע.</p></div>
     </div>
 
+    <div class="subchapter safran reveal">
+      <span class="sc-index">04</span>
+      <div><span class="sc-kicker">Earnings Quality &amp; Valuation</span><h3>איכות הרווח והתמחור</h3><p>מנטרלים את רעש הגידור, בוחרים בסיס EPS עקבי ומפרידים בין מכפיל השוק הנוכחי לבין מכפיל היעד בתרחיש.</p></div>
+    </div>
+    <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--safran)"></span>באיזה רווח נכון לתמחר את Safran?</h3>
+    <p class="sec-lead reveal" style="margin-top:0;margin-bottom:18px;font-size:15px">Safran מדווחת לפי IFRS, ושערוכי ספר גידור המטבע יוצרים תנודתיות חדה ברווח המדווח שאינה משקפת את הפעילות השוטפת. לכן אני מתמחר על בסיס EPS מתואם, רווח תפעולי ותזרים חופשי. כל חישובי התמחור בדשבורד מעוגנים ב-EPS מתואם של €12.30 ל-2027: במחיר ייחוס של €334 מתקבל מכפיל של 27.2. מכפיל או PEG המבוססים על הרווח המדווח אינם בסיס השוואה נקי.</p>
+    <div class="grid g3 reveal" style="margin-bottom:14px">
+      <div class="readout neg"><div class="rv">€17.17</div><div class="rsub">2024: €(1.60)</div><div class="rk">EPS מדווח לפי IFRS: תנודתיות משערוכי גידור</div></div>
+      <div class="readout accent"><div class="rv">€7.60</div><div class="rsub">2024: €7.37</div><div class="rk">EPS מתואם: בסיס עקבי לניתוח הפעילות</div></div>
+      <div class="readout"><div class="rv">27.2<small>×</small></div><div class="rsub">€334 / €12.30 ב-2027E</div><div class="rk">מכפיל הבסיס האחיד בדשבורד</div></div>
+    </div>
+    <div class="lev-note reveal"><b>המסקנה המתודולוגית:</b> Safran אינה זולה על בסיס הרווח הכלכלי. תרחיש הבסיס שומר על מכפיל 27.2 ללא התרחבות מכפיל, ולכן מחיר היעד כמעט זהה למחיר הייחוס. זו תזת איכות שבה רוב הצמיחה כבר מתומחרת; אפסייד מהותי דורש רווח גבוה מהקונצנזוס, ולא רק עמידה בו.</div>
+    <details class="fc-more reveal">
+      <summary>פירוט חשבונאות הגידור ולמה ה-PEG המדווח אינו שימושי</summary>
+      <div class="warn" style="margin-top:12px;border-color:rgba(124,157,255,.35);background:linear-gradient(120deg,var(--safran-soft),transparent 70%)">
+        <div class="wk" style="background:var(--safran-soft);color:var(--safran);border-color:rgba(124,157,255,.4)">!</div>
+        <div><h4 style="color:var(--safran)">הגשר מהרווח המדווח לרווח הכלכלי</h4><p>השנים 2027 ו-2028 מגודרות במלואן בשער יורו-דולר של 1.12, עם חשיפה נטו של עד 17 מיליארד דולר בשנה. שערוך הנגזרים יכול ליצור קפיצות והפסדים ברווח המדווח בלי שינוי מקביל בביצוע התפעולי או בתזרים. לכן אין להשתמש ב-PEG או במכפיל המבוססים על EPS מדווח. העוגן התפעולי הוא רווח תפעולי של 5.2 מיליארד יורו ב-2025 מול יעד של 7.0 עד 7.5 מיליארד יורו ב-2028.</p></div>
+      </div>
+    </details>
+
+    <div class="grid g2 reveal research-only" style="align-items:start;margin-top:24px;margin-bottom:24px">
+      <div class="card pad-lg">
+        <div class="card-title"><span class="tk" style="background:var(--safran)"></span>תמחור Safran</div>
+        <table class="valtable">
+          <thead><tr><th>מדד</th><th class="n">Safran</th><th class="n">חציון סקטור</th></tr></thead>
+          <tbody>
+            <tr><td class="metric-name">מחיר</td><td class="n">~€334</td><td class="n sector">-</td></tr>
+            <tr><td class="metric-name">שווי שוק</td><td class="n">~€140B</td><td class="n sector">-</td></tr>
+            <tr><td class="metric-name">EV/EBITDA עתידי</td><td class="n">17.67</td><td class="n sector">12.09</td></tr>
+            <tr><td class="metric-name">P/E מתואם, 2027E</td><td class="n">27.2× <span class="disc-tag prem">פרמיית איכות</span></td><td class="n sector">28.6×*</td></tr>
+            <tr><td class="metric-name">PEG על בסיס EPS מדווח</td><td class="n">לא רלוונטי</td><td class="n sector">-</td></tr>
+          </tbody>
+        </table>
+        <p class="fn-note" style="text-align:right;margin-top:14px">* חציון הסקטור ואומדן GE מבוססים על נתוני שוק קדימה שאינם מנורמלים בהכרח ל-2027E; עוגן החישוב של Safran נשאר 27.2× על EPS מתואם ל-2027 בלבד.</p>
+      </div>
+      <div class="caveat" style="margin-top:0;grid-template-columns:1fr">
+        <div class="cav q"><div class="cav-tag">Caveat · הסתייגות כנה</div><p>עוצמת Safran במנועים נשענת במידה רבה על שותפות CFM עם GE, שמובילה רכיבים מרכזיים בליבת הלחץ הגבוה. מחוץ למסגרת CFM היו ל-Safran כישלונות אזרחיים בעבר, ואין לה מנוע רחב גוף עצמאי.</p></div>
+        <div class="cav a"><div class="cav-tag">Response · תשובה</div><p>CFM היא שותפות 50/50 עמוקה, חוזית ונעולה הדדית. Safran מחזיקה 50% באחד הנכסים החשובים בעולם מנועי הסילון, והבסיס המותקן מייצר לה חלק מובנה בזרם האחזקה לעשורים.</p></div>
+      </div>
+    </div>
+
+
+
+
     <div class="callout reveal"><div class="mk">★</div><p>Safran היא לא סיפור של מכפיל נמוך. היא סיפור של איכות, aftermarket, תזרים וחסמי כניסה, במכפיל מלא אך מוצדק.</p></div>
   </div>
 </section>
@@ -1465,10 +1478,70 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <div>
         <div class="co-name">Copa Holdings</div>
         <div class="co-kicker">Business Model · פעילות עסקית</div>
-        <div class="co-desc">חברת האם של Copa Airlines בפנמה, של Wingo (לואו קוסט) ושל Copa Airlines Colombia. מפעילה מודל האב ודיבור (hub-and-spoke) דרך Tocumen, ה-Hub of the Americas, ומחברת צפון, מרכז ודרום אמריקה והקריביים, כ-375 טיסות יומיות ל-88 יעדים ב-32 מדינות. כ-95% מההכנסה מנוסעים, והיתר ממטען וממועדון הנוסע המתמיד ConnectMiles. נסחרת בניו יורק מאז 2005.</div>
-        <div class="co-leader"><b>מנהיג ארוך טווח: פדרו היילברון (Pedro Heilbron)</b>, מנכ״ל מאז 1988 ויו״ר פעיל מ-2025. תחתיו צמחה החברה משני מטוסים למעל 120 וביססה את ההאב בפנמה. החברה עצמה נוסדה ב-1947, היילברון אינו המייסד. הוא מחזיק כ-0.55% מהמניות במישרין, בשווי של כ-20 מיליון דולר, וכן אחזקות עקיפות במניות Class B.</div>
+        <div class="co-desc">
+          <p><b>Copa Holdings היא קבוצת תעופה פנמית</b> שמפעילה את Copa Airlines, את Copa Airlines Colombia ואת Wingo, זרוע לואו קוסט אזורית. החברה נסחרת בניו יורק מאז 2005 ופועלת סביב נמל Tocumen בפנמה, ה-Hub of the Americas.</p>
+          <p>המודל העסקי הוא hub-and-spoke ממוקד: צי Boeing 737 אחיד, כ-375 טיסות יומיות ל-88 יעדים ב-32 מדינות, וחיבור בין ערים בצפון, מרכז ודרום אמריקה והקריביים שאין ביניהן מספיק ביקוש לטיסה ישירה. כ-95% מההכנסות מגיעות מנוסעים, והיתר ממטען, שירותים נלווים ומועדון ConnectMiles.</p>
+          <p class="co-investment c"><b>המסר למשקיע:</b> Copa אינה קניית סל חברות תעופה, אלא חשיפה נקודתית למפעילה אזורית איכותית עם חפיר גיאוגרפי בפנמה, יחידות כלכליות חזקות, מאזן שמרני ורווחיות גבוהה. מנגד, זו עדיין חברת תעופה רגישה לדלק, לקיבולת ולמחזור הכלכלי באמריקה הלטינית.</p>
+        </div>
+        <div class="co-leader"><b>הנהלה והקשר תפעולי:</b> פדרו היילברון (Pedro Heilbron) הוא מנהיג ארוך טווח, מנכ״ל מאז 1988 ויו״ר פעיל מ-2025. תחתיו צמחה החברה משני מטוסים למעל 120 וביססה את ההאב בפנמה. החברה עצמה נוסדה ב-1947, היילברון אינו המייסד. הוא מחזיק כ-0.55% מהמניות במישרין, בשווי של כ-20 מיליון דולר, וכן אחזקות עקיפות במניות Class B.</div>
       </div>
       <span class="co-role c">Value</span>
+    </div>
+    <div class="subchapter copa reveal">
+      <span class="sc-index">01</span>
+      <div><span class="sc-kicker">Moat &amp; Network</span><h3>החפיר: למה אמריקה הלטינית ולמה Copa היא הדרך הנכונה</h3><p>לפני המספרים, צריך להבין את הזירה ואת החפיר: אזור עם צמיחה גבוהה אך סיכון גבוה, והאב בפנמה שמייצר אפקט רשת שקשה לשכפל.</p></div>
+    </div>
+    <div class="card pad-lg reveal" style="background:linear-gradient(135deg,var(--copa-soft),var(--card));margin-bottom:24px">
+      <div class="card-title"><span class="tk" style="background:var(--copa)"></span>למה אמריקה הלטינית, ולמה Copa היא הדרך הנכונה</div>
+      <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin-bottom:16px">האזור צומח מהר יותר מצפון אמריקה הבשלה, אך גם מסוכן יותר: מטבעות תנודתיים, הכנסה פנויה נמוכה ותחרות לואו קוסט. לכן לא קונים את האזור כגוש, אלא את המפעילה עם החפיר הברור, המאזן החזק והיחידות הכלכליות הטובות. Copa היא בדיוק זו.</p>
+      <div class="grid g4" style="gap:12px">
+        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">נמוכה</div><div class="rk">חדירה תעופתית באזור, מרחב צמיחה</div></div>
+        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">~5%</div><div class="rk">צמיחת תנועה צפויה באזור 2026</div></div>
+        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">מעמד</div><div class="rk">ביניים גדל ומרחקים גדולים, ביקוש לקישוריות</div></div>
+        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">PTY</div><div class="rk">צומת גיאוגרפי טבעי בין האמריקות</div></div>
+      </div>
+    </div>
+    <div class="grid g2 reveal" style="align-items:start;margin-bottom:26px">
+      <div class="card pad-lg">
+        <div class="card-title"><span class="tk" style="background:var(--copa)"></span>חפיר רשת בפנמה</div>
+        <svg viewBox="0 0 360 240" class="hub-svg" role="img" aria-label="סכמת hub של פנמה">
+          <g stroke="var(--line)" stroke-width="1">
+            <line x1="180" y1="120" x2="70" y2="40"/><line x1="180" y1="120" x2="140" y2="30"/>
+            <line x1="180" y1="120" x2="230" y2="30"/><line x1="180" y1="120" x2="300" y2="55"/>
+            <line x1="180" y1="120" x2="60" y2="120"/><line x1="180" y1="120" x2="310" y2="130"/>
+            <line x1="180" y1="120" x2="80" y2="200"/><line x1="180" y1="120" x2="150" y2="215"/>
+            <line x1="180" y1="120" x2="240" y2="215"/><line x1="180" y1="120" x2="300" y2="195"/>
+          </g>
+          <g fill="var(--latam)">
+            <circle cx="70" cy="40" r="4"/><circle cx="140" cy="30" r="4"/><circle cx="230" cy="30" r="4"/><circle cx="300" cy="55" r="4"/>
+            <circle cx="60" cy="120" r="4"/><circle cx="310" cy="130" r="4"/>
+            <circle cx="80" cy="200" r="4"/><circle cx="150" cy="215" r="4"/><circle cx="240" cy="215" r="4"/><circle cx="300" cy="195" r="4"/>
+          </g>
+          <circle cx="180" cy="120" r="13" fill="var(--copa)"/>
+          <circle cx="180" cy="120" r="20" fill="none" stroke="var(--copa)" stroke-width="1.5" opacity=".5"/>
+          <text x="180" y="155" fill="var(--copa)" font-size="13" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">PTY</text>
+          <text x="180" y="30" fill="var(--ink-dim)" font-size="11" font-family="Heebo" text-anchor="middle">צפון</text>
+          <text x="30" y="124" fill="var(--ink-dim)" font-size="11" font-family="Heebo" text-anchor="middle" transform="rotate(-90 30 124)">מרכז</text>
+          <text x="180" y="235" fill="var(--ink-dim)" font-size="11" font-family="Heebo" text-anchor="middle">דרום</text>
+        </svg>
+        <p class="fn-note" style="text-align:right;margin-top:8px">צי 737 אחיד, כ-375 טיסות יומיות, hub ממוקד. צריך לבנות hub שלם, לא רק לפתוח קו אחד.</p>
+      </div>
+      <div>
+        <div class="card pad-lg" style="margin-bottom:14px">
+          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אמינות תפעולית וצי</div>
+          <div class="grid g2" style="gap:12px;margin-bottom:14px">
+            <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">127</div><div class="rsub">סוף רבעון 1, 2026</div><div class="rk">מטוסי Boeing 737</div></div>
+            <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">~375</div><div class="rk">טיסות יומיות</div></div>
+            <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">89.0<small>%</small></div><div class="rk">ביצוע בזמן</div></div>
+            <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">99.80<small>%</small></div><div class="rk">השלמת טיסות</div></div>
+          </div>
+          <p style="font-size:12.5px;color:var(--ink-dim);line-height:1.5">החפיר: צומת גיאוגרפי טבעי בין אמריקות, אפקט רשת מתחזק, מנהיגות עלות וחסמי כניסה גבוהים.</p>
+        </div>
+        <div class="card pad-lg" style="background:linear-gradient(135deg,var(--copa-soft),var(--card))">
+          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אפקט הרשת</div>
+          <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin:0">פנמה יושבת בצומת טבעי בין אמריקות. יותר יעדים יוצרים יותר חיבורים, יותר תנועה, ועוד הצדקה לפתיחת יעדים נוספים. החברה מחברת ערים שאין ביניהן מספיק ביקוש לטיסה ישירה.</p>
+        </div>
+      </div>
     </div>
     <div class="grid g4 reveal" style="margin-bottom:26px">
       <div class="readout"><div class="rv">$3.62<small>B</small></div><div class="rsub">+5% מ-2024</div><div class="rk">הכנסות 2025</div></div>
@@ -1476,8 +1549,54 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <div class="readout accent"><div class="rv">22.6<small>%</small></div><div class="rk">שולי תפעול 2025</div></div>
       <div class="readout"><div class="rv">88</div><div class="rsub">32 מדינות</div><div class="rk">יעדים</div></div>
     </div>
+    <div class="geo-panel copa research-only reveal" id="copa-geography">
+      <div class="geo-head">
+        <div class="geo-title">
+          <h4>פיזור הכנסות לפי נקודת המכירה</h4>
+          <p>הכנסות תפעוליות · אחוז מההכנסות האזוריות · 2023 עד 2025</p>
+        </div>
+        <span class="geo-badge">RESEARCH · POINT OF SALE</span>
+      </div>
+      <div class="geo-years" role="img" aria-label="פיזור הכנסות Copa לפי נקודת מכירה בשנים 2023 עד 2025">
+        <div class="geo-row">
+          <span class="geo-year">2023</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:38.9%;background:#F0AC34" title="צפון אמריקה: 38.9%">38.9%</span>
+            <span class="geo-seg" style="width:36.1%;background:#4FD1C5" title="דרום אמריקה: 36.1%">36.1%</span>
+            <span class="geo-seg" style="width:23.3%;background:#7C9DFF" title="מרכז אמריקה: 23.3%">23.3%</span>
+            <span class="geo-seg" style="width:1.6%;background:#B98CF5" title="הקריביים: 1.6%"></span>
+          </div>
+        </div>
+        <div class="geo-row">
+          <span class="geo-year">2024</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:40.5%;background:#F0AC34" title="צפון אמריקה: 40.5%">40.5%</span>
+            <span class="geo-seg" style="width:35.9%;background:#4FD1C5" title="דרום אמריקה: 35.9%">35.9%</span>
+            <span class="geo-seg" style="width:22%;background:#7C9DFF" title="מרכז אמריקה: 22.0%">22.0%</span>
+            <span class="geo-seg" style="width:1.5%;background:#B98CF5" title="הקריביים: 1.5%"></span>
+          </div>
+        </div>
+        <div class="geo-row">
+          <span class="geo-year">2025</span>
+          <div class="geo-track">
+            <span class="geo-seg" style="width:42.9%;background:#F0AC34" title="צפון אמריקה: 42.9%">42.9%</span>
+            <span class="geo-seg" style="width:36.1%;background:#4FD1C5" title="דרום אמריקה: 36.1%">36.1%</span>
+            <span class="geo-seg" style="width:19.6%;background:#7C9DFF" title="מרכז אמריקה: 19.6%">19.6%</span>
+            <span class="geo-seg" style="width:1.4%;background:#B98CF5" title="הקריביים: 1.4%"></span>
+          </div>
+        </div>
+      </div>
+      <div class="geo-legend">
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#F0AC34"></span>צפון אמריקה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#4FD1C5"></span>דרום אמריקה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#7C9DFF"></span>מרכז אמריקה, כולל פנמה</span>
+        <span class="geo-key"><span class="geo-swatch" style="--swatch:#B98CF5"></span>הקריביים</span>
+      </div>
+      <div class="geo-takeaway"><b>הקריאה האנליטית:</b> משקל צפון אמריקה עלה מ-38.9% ב-2023 ל-42.9% ב-2025, בעוד דרום אמריקה נשארה יציבה סביב 36% ומרכז אמריקה ירדה ל-19.6%. אבל זו חלוקה לפי <b>נקודת המכירה</b>, לא לפי מסלול הטיסה או מוצא הנוסע. בנפרד, החברה מציינת שכשליש מהנוסעים מתחילים או מסיימים את נסיעתם בפנמה, ורוב הנוסעים הנותרים עוברים דרך ההאב בקונקשן.</div>
+      <p class="geo-source">מקור: <a href="https://www.sec.gov/Archives/edgar/data/1345105/000134510526000019/cpa-20251231.htm" target="_blank" rel="noopener">Copa Holdings, Form 20-F לשנת 2025, revenue by region and note 7.3</a>.</p>
+    </div>
     <div class="subchapter copa reveal">
-      <span class="sc-index">01</span>
+      <span class="sc-index">02</span>
       <div><span class="sc-kicker">Financials &amp; Balance Sheet</span><h3>דוחות, תחזיות וחוסן מאזני</h3><p>בוחנים את ההתאוששות מאז 2021, את איכות התזרים, את ציפיות הקונצנזוס ואת יכולת המאזן לספוג דלק והשקעות צי.</p></div>
     </div>
     <div class="card pad-lg reveal history-card" style="margin-bottom:26px">
@@ -1619,61 +1738,8 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
       <p class="src-note">הערת בסיס: חלוקת הבעלות והחכירה היא ל-125 מטוסים נכון ל-31 בדצמבר 2025; סך הצי 127 נכון לסוף רבעון 1, 2026. יעד 2034 כולל צמיחה והחלפה של מטוסים ותיקים.</p>
     </div>
     <div class="subchapter copa reveal">
-      <span class="sc-index">02</span>
-      <div><span class="sc-kicker">Moat &amp; Unit Economics</span><h3>החפיר, היחידות הכלכליות והתמחור</h3><p>האב בפנמה, צי אחיד ומשמעת עלויות נבחנים דרך RASM, CASM, מרווח היחידה והמכפיל שהשוק מוכן לשלם.</p></div>
-    </div>
-    <div class="card pad-lg reveal" style="background:linear-gradient(135deg,var(--copa-soft),var(--card));margin-bottom:24px">
-      <div class="card-title"><span class="tk" style="background:var(--copa)"></span>למה אמריקה הלטינית, ולמה Copa היא הדרך הנכונה</div>
-      <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin-bottom:16px">האזור צומח מהר יותר מצפון אמריקה הבשלה, אך גם מסוכן יותר: מטבעות תנודתיים, הכנסה פנויה נמוכה ותחרות לואו קוסט. לכן לא קונים את האזור כגוש, אלא את המפעילה עם החפיר הברור, המאזן החזק והיחידות הכלכליות הטובות. Copa היא בדיוק זו.</p>
-      <div class="grid g4" style="gap:12px">
-        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">נמוכה</div><div class="rk">חדירה תעופתית באזור, מרחב צמיחה</div></div>
-        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">~5%</div><div class="rk">צמיחת תנועה צפויה באזור 2026</div></div>
-        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">מעמד</div><div class="rk">ביניים גדל ומרחקים גדולים, ביקוש לקישוריות</div></div>
-        <div class="readout" style="padding:15px"><div class="rv" style="font-size:21px">PTY</div><div class="rk">צומת גיאוגרפי טבעי בין האמריקות</div></div>
-      </div>
-    </div>
-    <div class="lev-note presentation-only" style="margin-bottom:24px;background:var(--copa-soft);border-color:rgba(240,172,52,.3)"><b>איך החפיר עובד:</b> ההאב בפנמה מרכז כ-375 טיסות יומיות ל-88 יעדים ומאפשר לחבר ערים שאין ביניהן ביקוש לטיסה ישירה. צי 737 אחיד, ביצוע בזמן של 89.0% והשלמת טיסות של 99.80% מחזקים את אפקט הרשת ואת יתרון העלות.</div>
-    <div class="grid g2 reveal research-only" style="align-items:start;margin-bottom:26px">
-      <div class="card pad-lg">
-        <div class="card-title"><span class="tk" style="background:var(--copa)"></span>חפיר רשת בפנמה</div>
-        <svg viewBox="0 0 360 240" class="hub-svg" role="img" aria-label="סכמת hub של פנמה">
-          <g stroke="var(--line)" stroke-width="1">
-            <line x1="180" y1="120" x2="70" y2="40"/><line x1="180" y1="120" x2="140" y2="30"/>
-            <line x1="180" y1="120" x2="230" y2="30"/><line x1="180" y1="120" x2="300" y2="55"/>
-            <line x1="180" y1="120" x2="60" y2="120"/><line x1="180" y1="120" x2="310" y2="130"/>
-            <line x1="180" y1="120" x2="80" y2="200"/><line x1="180" y1="120" x2="150" y2="215"/>
-            <line x1="180" y1="120" x2="240" y2="215"/><line x1="180" y1="120" x2="300" y2="195"/>
-          </g>
-          <g fill="var(--latam)">
-            <circle cx="70" cy="40" r="4"/><circle cx="140" cy="30" r="4"/><circle cx="230" cy="30" r="4"/><circle cx="300" cy="55" r="4"/>
-            <circle cx="60" cy="120" r="4"/><circle cx="310" cy="130" r="4"/>
-            <circle cx="80" cy="200" r="4"/><circle cx="150" cy="215" r="4"/><circle cx="240" cy="215" r="4"/><circle cx="300" cy="195" r="4"/>
-          </g>
-          <circle cx="180" cy="120" r="13" fill="var(--copa)"/>
-          <circle cx="180" cy="120" r="20" fill="none" stroke="var(--copa)" stroke-width="1.5" opacity=".5"/>
-          <text x="180" y="155" fill="var(--copa)" font-size="13" font-family="JetBrains Mono" font-weight="700" text-anchor="middle">PTY</text>
-          <text x="180" y="30" fill="var(--ink-dim)" font-size="11" font-family="Heebo" text-anchor="middle">צפון</text>
-          <text x="30" y="124" fill="var(--ink-dim)" font-size="11" font-family="Heebo" text-anchor="middle" transform="rotate(-90 30 124)">מרכז</text>
-          <text x="180" y="235" fill="var(--ink-dim)" font-size="11" font-family="Heebo" text-anchor="middle">דרום</text>
-        </svg>
-        <p class="fn-note" style="text-align:right;margin-top:8px">צי 737 אחיד, כ-375 טיסות יומיות, hub ממוקד. צריך לבנות hub שלם, לא רק לפתוח קו אחד.</p>
-      </div>
-      <div>
-        <div class="card pad-lg" style="margin-bottom:14px">
-          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אמינות תפעולית וצי</div>
-          <div class="grid g2" style="gap:12px;margin-bottom:14px">
-            <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">127</div><div class="rsub">סוף רבעון 1, 2026</div><div class="rk">מטוסי Boeing 737</div></div>
-            <div class="readout" style="padding:16px"><div class="rv" style="font-size:23px">~375</div><div class="rk">טיסות יומיות</div></div>
-            <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">89.0<small>%</small></div><div class="rk">ביצוע בזמן</div></div>
-            <div class="readout pos" style="padding:16px"><div class="rv" style="font-size:23px">99.80<small>%</small></div><div class="rk">השלמת טיסות</div></div>
-          </div>
-          <p style="font-size:12.5px;color:var(--ink-dim);line-height:1.5">החפיר: צומת גיאוגרפי טבעי בין אמריקות, אפקט רשת מתחזק, מנהיגות עלות וחסמי כניסה גבוהים.</p>
-        </div>
-        <div class="card pad-lg" style="background:linear-gradient(135deg,var(--copa-soft),var(--card))">
-          <div class="card-title"><span class="tk" style="background:var(--copa)"></span>אפקט הרשת</div>
-          <p style="font-size:13.5px;color:var(--ink-mid);line-height:1.6;margin:0">פנמה יושבת בצומת טבעי בין אמריקות. יותר יעדים יוצרים יותר חיבורים, יותר תנועה, ועוד הצדקה לפתיחת יעדים נוספים. החברה מחברת ערים שאין ביניהן מספיק ביקוש לטיסה ישירה.</p>
-        </div>
-      </div>
+      <span class="sc-index">03</span>
+      <div><span class="sc-kicker">Unit Economics &amp; Valuation</span><h3>יחידות כלכליות ותמחור</h3><p>אחרי החפיר והמאזן, בודקים אם היתרון מתורגם ל-RASM, CASM, מרווח יחידה ומכפיל שהשוק מוכן לשלם.</p></div>
     </div>
     <div class="card pad-lg reveal" style="margin-bottom:24px">
       <div class="card-title"><span class="tk" style="background:var(--copa)"></span>יחידות כלכליות, סנט למושב זמין למייל (בסיס שנתי 2025)</div>
@@ -1708,54 +1774,8 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
         </div>
       </div>
     </div>
-    <div class="geo-panel copa research-only reveal" id="copa-geography">
-      <div class="geo-head">
-        <div class="geo-title">
-          <h4>פיזור הכנסות לפי נקודת המכירה</h4>
-          <p>הכנסות תפעוליות · אחוז מההכנסות האזוריות · 2023 עד 2025</p>
-        </div>
-        <span class="geo-badge">RESEARCH · POINT OF SALE</span>
-      </div>
-      <div class="geo-years" role="img" aria-label="פיזור הכנסות Copa לפי נקודת מכירה בשנים 2023 עד 2025">
-        <div class="geo-row">
-          <span class="geo-year">2023</span>
-          <div class="geo-track">
-            <span class="geo-seg" style="width:38.9%;background:#F0AC34" title="צפון אמריקה: 38.9%">38.9%</span>
-            <span class="geo-seg" style="width:36.1%;background:#4FD1C5" title="דרום אמריקה: 36.1%">36.1%</span>
-            <span class="geo-seg" style="width:23.3%;background:#7C9DFF" title="מרכז אמריקה: 23.3%">23.3%</span>
-            <span class="geo-seg" style="width:1.6%;background:#B98CF5" title="הקריביים: 1.6%"></span>
-          </div>
-        </div>
-        <div class="geo-row">
-          <span class="geo-year">2024</span>
-          <div class="geo-track">
-            <span class="geo-seg" style="width:40.5%;background:#F0AC34" title="צפון אמריקה: 40.5%">40.5%</span>
-            <span class="geo-seg" style="width:35.9%;background:#4FD1C5" title="דרום אמריקה: 35.9%">35.9%</span>
-            <span class="geo-seg" style="width:22%;background:#7C9DFF" title="מרכז אמריקה: 22.0%">22.0%</span>
-            <span class="geo-seg" style="width:1.5%;background:#B98CF5" title="הקריביים: 1.5%"></span>
-          </div>
-        </div>
-        <div class="geo-row">
-          <span class="geo-year">2025</span>
-          <div class="geo-track">
-            <span class="geo-seg" style="width:42.9%;background:#F0AC34" title="צפון אמריקה: 42.9%">42.9%</span>
-            <span class="geo-seg" style="width:36.1%;background:#4FD1C5" title="דרום אמריקה: 36.1%">36.1%</span>
-            <span class="geo-seg" style="width:19.6%;background:#7C9DFF" title="מרכז אמריקה: 19.6%">19.6%</span>
-            <span class="geo-seg" style="width:1.4%;background:#B98CF5" title="הקריביים: 1.4%"></span>
-          </div>
-        </div>
-      </div>
-      <div class="geo-legend">
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#F0AC34"></span>צפון אמריקה</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#4FD1C5"></span>דרום אמריקה</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#7C9DFF"></span>מרכז אמריקה, כולל פנמה</span>
-        <span class="geo-key"><span class="geo-swatch" style="--swatch:#B98CF5"></span>הקריביים</span>
-      </div>
-      <div class="geo-takeaway"><b>הקריאה האנליטית:</b> משקל צפון אמריקה עלה מ-38.9% ב-2023 ל-42.9% ב-2025, בעוד דרום אמריקה נשארה יציבה סביב 36% ומרכז אמריקה ירדה ל-19.6%. אבל זו חלוקה לפי <b>נקודת המכירה</b>, לא לפי מסלול הטיסה או מוצא הנוסע. בנפרד, החברה מציינת שכשליש מהנוסעים מתחילים או מסיימים את נסיעתם בפנמה, ורוב הנוסעים הנותרים עוברים דרך ההאב בקונקשן.</div>
-      <p class="geo-source">מקור: <a href="https://www.sec.gov/Archives/edgar/data/1345105/000134510526000019/cpa-20251231.htm" target="_blank" rel="noopener">Copa Holdings, Form 20-F לשנת 2025, revenue by region and note 7.3</a>.</p>
-    </div>
     <div class="subchapter copa reveal">
-      <span class="sc-index">03</span>
+      <span class="sc-index">04</span>
       <div><span class="sc-kicker">Peer Comparison</span><h3>מתחרות ישירות ובנצ'מרקים גלובליים</h3><p>מפרידים בין יתרון שנובע מגודל לבין יתרון אמיתי ביחידות הכלכליות, במרווחים, במינוף ובאמינות התפעולית.</p></div>
     </div>
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>Copa מול מתחרות ישירות: רווחיות שמתפצלת</h3>
@@ -1804,7 +1824,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
 
     <div class="research-only">
     <div class="subchapter copa reveal">
-      <span class="sc-index">04</span>
+      <span class="sc-index">05</span>
       <div><span class="sc-kicker">Fleet, Cash Flow &amp; Capital</span><h3>צי, תזרים והקצאת הון</h3><p>הזמנות המטוסים הן גם מנוע צמיחה וגם מבחן הון: בעלות מול חכירה, Capex, מקדמות, מינוף והיכולת להמשיך להחזיר הון.</p></div>
     </div>
     <h3 class="card-title reveal" style="margin-top:8px;font-size:15px"><span class="tk" style="background:var(--copa)"></span>צבר הזמנות וצמיחת צי: עסקת ענק חדשה</h3>
@@ -1831,7 +1851,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <p class="sec-lead reveal" style="margin-top:0;margin-bottom:16px;font-size:15px">בניגוד למפעילות לואו קוסט רבות שמסתמכות על חכירה תפעולית, <strong>Copa מחזיקה בבעלות את מרבית הצי</strong>. זהו חותם של חוזק מאזני: כשהמטוסים הם נכס במאזן ולא רק התחייבות חכירה, החברה גמישה יותר ועמידה יותר ללחצים.</p>
     <div class="grid g4 reveal" style="margin-bottom:14px">
       <div class="readout accent"><div class="rv">45</div><div class="rsub">רבעון 1, 2026</div><div class="rk">מטוסים בבעלות מלאה וללא שעבוד, וכן 15 מנועי חילוף</div></div>
-      <div class="readout"><div class="rv">28 / 97</div><div class="rsub">סוף 2025</div><div class="rk">מטוסים בבעלות / בחכירה ארוכת טווח</div></div>
+      <div class="readout"><div class="rv">97 / 28</div><div class="rsub">סוף 2025</div><div class="rk">מטוסים בבעלות / בחכירה ארוכת טווח</div></div>
       <div class="readout"><div class="rv">$2.1<small>B</small></div><div class="rk">סך החוב, כולו מימון מטוסים, 53.7% בריבית קבועה</div></div>
       <div class="readout pos"><div class="rv">~0.7<small>x</small></div><div class="rk">מינוף נטו ל-EBITDA, מהנמוכים בענף</div></div>
     </div>
@@ -1897,7 +1917,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     </div>
 
     <div class="subchapter copa reveal">
-      <span class="sc-index">05</span>
+      <span class="sc-index">06</span>
       <div><span class="sc-kicker">Fuel Sensitivity</span><h3>דלק ורגישות הרווח</h3><p>מחיר הדלק נבחן מול ההיסטוריה ובסימולטור תפעולי, כדי להבין מה כבר מתומחר ומהו סדר הגודל של הפגיעה או ההקלה ברווח.</p></div>
     </div>
     <h3 class="card-title reveal" style="font-size:15px"><span class="tk" style="background:var(--copa)"></span>מחיר הדלק הסילוני בפרספקטיבה היסטורית</h3>
@@ -2091,7 +2111,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <div class="sec-head reveal">
       <div class="sec-eyebrow"><span class="num">M</span><span class="label">Market Data</span><span class="rule"></span></div>
       <h2>נתוני שוק ותעודת מניה</h2>
-      <p class="sec-lead">זהו מסך עבודה שסוקר נתוני שוק: מחיר, שווי, דיבידנד, מומנטום, החזקות מוסדיים וקורלציה לנפט. הוא לא מחליף את התזה הפונדמנטלית, אלא משלים אותה בבדיקת תמחור, סנטימנט ותזמון.</p>
+      <p class="sec-lead">מסך שוק נפרד לבדיקת מחיר, שווי, דיבידנד, מומנטום, החזקות מוסדיים וקורלציה לנפט. הוא לא מחליף את התזה הפונדמנטלית, אלא משלים אותה בבדיקת תמחור, סנטימנט ותזמון.</p>
     </div>
 
     <div class="callout reveal" style="margin-top:0">
@@ -2186,7 +2206,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
     <div class="grid g2 reveal" style="align-items:start;margin-bottom:24px">
       <div class="card pad-lg">
         <h3 class="card-title" style="font-size:15px"><span class="tk"></span>ביצועים, מומנטום ובעלות</h3>
-        <p class="sec-lead" style="margin-top:0;margin-bottom:16px;font-size:14px">הטבלה הזו מיועדת לעדכון ממקור שוק סמוך למועד הראיון. היא עונה על שאלות קצרות שוועדה יכולה לשאול: האם הרעיון כבר רץ, האם יש מומנטום, האם המניה צפופה אצל מוסדיים, ומה התנודתיות.</p>
+        <p class="sec-lead" style="margin-top:0;margin-bottom:16px;font-size:14px">הטבלה הזו מתעדכנת ממקור שוק סמוך למועד השימוש. היא מרכזת את שאלות השוק הקצרות: האם הרעיון כבר רץ, האם יש מומנטום, האם המניה צפופה אצל מוסדיים, ומה רמת התנודתיות.</p>
         <table class="market-table">
           <thead><tr><th>מדד</th><th>Safran</th><th>Copa</th></tr></thead>
           <tbody>
@@ -2215,7 +2235,7 @@ Use "Market Data" mode for live market checks, price momentum and correlation wo
             <tr><td>שאלה 3</td><td>האם שתי המניות זזות יחד בגלל גורם תעופה כללי, או שהמנועים הפונדמנטליים שונים?</td></tr>
           </tbody>
         </table>
-        <p class="market-note">הצגה חדה לראיון: אם המתאם של Copa לנפט שלילי ומובהק יותר משל Safran, זה מחזק את ההבחנה בין מפעילת תעופה רגישה לדלק לבין ספקית aftermarket עם חשיפה עקיפה בלבד.</p>
+        <p class="market-note">הקריאה האנליטית: אם המתאם של Copa לנפט שלילי ומובהק יותר משל Safran, זה מחזק את ההבחנה בין מפעילת תעופה רגישה לדלק לבין ספקית aftermarket עם חשיפה עקיפה בלבד.</p>
       </div>
     </div>
 
